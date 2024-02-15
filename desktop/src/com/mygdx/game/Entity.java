@@ -1,0 +1,50 @@
+package com.mygdx.game;
+
+import com.badlogic.gdx.graphics.Color;
+
+public abstract class Entity implements ConcerteEntity{
+    protected float posX, posY, speed;
+    protected Color texColor;
+    
+
+    public Entity(float posX, float posY, float speed, Color texColor) {
+        this.posX = posX;
+        this.posY = posY;
+        this.speed = speed;
+        this.texColor = texColor;
+    }
+    
+    public Entity(float posX, float posY, float speed) {
+        this.posX = posX;
+        this.posY = posY;
+        this.speed = speed;
+
+    }
+    
+    public float getPosX() {
+        return posX;
+    }
+
+    public float getPosY() {
+        return posY;
+    }
+
+    public float getSpeed() {
+        return speed;
+    }
+
+    public void setPosX(float x) {
+        posX = x;
+    }
+
+    public void setPosY(float y) {
+        posY = y;
+    }
+
+    public void setSpeed(float dp) {
+        speed = dp;
+    }
+
+	public abstract void dispose();
+
+}
