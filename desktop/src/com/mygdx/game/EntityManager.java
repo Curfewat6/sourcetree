@@ -4,37 +4,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EntityManager {
-	private List<ConcerteEntity> entities;
+	private List<Entity> entities;
 	
 	public EntityManager() {
         entities = new ArrayList<>();
     }
 
-    public void addEntity(ConcerteEntity entity) {
+    public void addEntity(Entity entity) {
         entities.add(entity);
     }
 
     public void draw() {
-        for (ConcerteEntity entity : entities) {
+        for (Entity entity : entities) {
         	entity.create();
             entity.render(); 
         }
     }
 
     public void move() {
-        for (ConcerteEntity entity : entities) {
+        for (Entity entity : entities) {
             entity.move(); 
         }
     }
 
     public void update() {
-        for (ConcerteEntity entity : entities) {
+        for (Entity entity : entities) {
             entity.update();
         }
     }
 
     public void dispose() {
-        for (ConcerteEntity entity : entities) {
+        for (Entity entity : entities) {
             entity.dispose();
         }
         entities.clear();

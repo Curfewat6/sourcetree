@@ -2,7 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.Color;
 
-public abstract class Entity implements ConcerteEntity{
+public abstract class Entity {
     protected float posX, posY, speed;
     protected Color texColor;
     
@@ -46,5 +46,10 @@ public abstract class Entity implements ConcerteEntity{
     }
 
 	public abstract void dispose();
+	public abstract void render();
+	public abstract void create();
+	public abstract void move();
+	public abstract void update();
+	
 
 }
