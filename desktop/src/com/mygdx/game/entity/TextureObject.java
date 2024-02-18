@@ -98,4 +98,8 @@ public class TextureObject extends Entity {
 	public boolean collide(TextureObject tex) {
 		return rectBound.overlaps(tex.getRectBound());
 	}
+	
+	public String getName() {
+		return texName;
+	}
 }
