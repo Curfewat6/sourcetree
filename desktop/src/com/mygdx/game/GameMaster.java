@@ -11,17 +11,11 @@ import com.badlogic.gdx.math.Rectangle;
 public class GameMaster extends ApplicationAdapter
 {	
 	
-<<<<<<< HEAD
-	
 	private EntityManagement entityList;
-=======
-	private EntityManager entityList;
->>>>>>> 01816785c0799b39be7960dc32d04fffb34e2038
-	
+
 	@Override
 	public void create() 
 	{
-<<<<<<< HEAD
 		entityList = new EntityManagement();
 		int x = 10;
 		//ensure that the object is randomly place 
