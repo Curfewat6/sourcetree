@@ -92,7 +92,8 @@ public class TitleScreen extends Screens{
 
 	@Override
 	public void dispose() {
-		
+        stage.dispose();
+        skin.dispose();
 		
 	}
 
