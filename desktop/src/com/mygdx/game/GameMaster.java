@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.graphics.Color;
@@ -8,9 +9,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 
-public class GameMaster extends ApplicationAdapter
+public class GameMaster extends Game
 {	
 	
+<<<<<<< HEAD
 	private EntityManagement entityList;
 
 	@Override
@@ -35,6 +37,17 @@ public class GameMaster extends ApplicationAdapter
 		entityList.addEntity(new Circle(50,50,50,Color.GRAY,200));
 		
 		
+=======
+	private ScreenManager screenList;
+	
+	@Override
+	public void create() 
+	{
+		screenList = new ScreenManager();
+		
+		screenList.addScreen(new TitleScreen(this));
+		this.setScreen(new TitleScreen(this));
+>>>>>>> acc2f68f3e1f3347fc1dd357b5144fa2bb9bb9a0
 	}
 
 	@Override
@@ -42,16 +55,21 @@ public class GameMaster extends ApplicationAdapter
 	{
 		//Refresh the screen to a blank canvas 
 		ScreenUtils.clear(0,0,0.2f,1);
+<<<<<<< HEAD
 		//Render all the Object 
         entityList.draw();
         entityList.move();
         entityList.update();
         
         entityList.checkCollide();
+=======
+		super.render();
+		
+		
+>>>>>>> acc2f68f3e1f3347fc1dd357b5144fa2bb9bb9a0
 	}
 	public void dispose() {
 		//clear all object render
-		entityList.dispose();
 	}
 	@Override
 	public void pause() {
