@@ -3,7 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.graphics.Color;
 
 public abstract class Entity {
-    protected float posX, posY, speed;
+    protected float posX, posY, speed, width, height;
     protected Color texColor;
     
 

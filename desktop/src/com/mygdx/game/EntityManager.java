@@ -39,4 +39,22 @@ public class EntityManager {
         }
         entities.clear();
     }
+    
+    public void checkCollide() {
+    	for (int i = 0; i < entities.size(); i++) {
+    		for (int j = i + 1; j < entities.size() ; j++) {
+    			Entity a = entities.get(i);
+    			Entity b = entities.get(j);
+    			
+    			if (a instanceof TextureObject && b instanceof TextureObject) {
+    				TextureObject A = (TextureObject) a;
+    				TextureObject B = (TextureObject) b;
+
+    				if(A.collide(B)) {
+    					System.out.println("BANG!!!");
+    				}
+    			}
+    		}
+    	}
+    }
 }
