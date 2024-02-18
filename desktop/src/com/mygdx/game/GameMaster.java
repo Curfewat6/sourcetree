@@ -4,10 +4,9 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.entity.Circle;
-import com.mygdx.game.entity.EntityManagement;
+import com.mygdx.game.entity.EntityManager;
 import com.mygdx.game.entity.TextureObject;
 import com.mygdx.game.entity.Triangle;
-import com.mygdx.game.screen.ScreenManagement;
 import com.mygdx.game.screen.ScreenManager;
 import com.mygdx.game.screen.TitleScreen;
 import com.badlogic.gdx.graphics.Color;
@@ -17,13 +16,13 @@ import com.badlogic.gdx.math.MathUtils;
 
 public class GameMaster extends Game
 {	
-	private EntityManagement entityList;
-	private ScreenManagement screenList;
+	private EntityManager entityList;
+	private ScreenManager screenList;
 
 	@Override
 	public void create() 
 	{
-		entityList = new EntityManagement();
+		entityList = new EntityManager();
 		
 		int x = 10;
 		//ensure that the object is randomly place 
@@ -32,7 +31,7 @@ public class GameMaster extends Game
 			float ranY = MathUtils.random(Gdx.graphics.getHeight()/2,Gdx.graphics.getHeight());
 			entityList.addEntity(new TextureObject("droplet.png",ranX,ranY,2));
 		}
-		entityList = new EntityManagement();
+		entityList = new EntityManager();
 
 		//Creates all the Object needed
 		entityList.addEntity(new TextureObject("droplet.png", 400, 0,2));
@@ -40,7 +39,7 @@ public class GameMaster extends Game
 		entityList.addEntity(new Triangle(150,250,350,50,150,50,Color.RED,200));
 		entityList.addEntity(new Circle(50,50,50,Color.GRAY,200));
 		
-		screenList = new ScreenManagement();
+		screenList = new ScreenManager();
 		
 		screenList.addScreen(new TitleScreen(this));
 		this.setScreen(new TitleScreen(this));
