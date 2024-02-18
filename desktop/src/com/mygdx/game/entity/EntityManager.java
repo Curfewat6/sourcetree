@@ -3,12 +3,16 @@ package com.mygdx.game.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mygdx.game.collision.CollisionManager;
+
 public class EntityManager implements EntityManagement{
 	private List<Entity> entities;
+	private CollisionManager collisionManager;
 	
 	public EntityManager() {
         entities = new ArrayList<>();
-    }    
+    }
+	
     public void addEntity(Entity entity) {
         entities.add(entity);
     }
@@ -16,7 +20,7 @@ public class EntityManager implements EntityManagement{
     public void draw() {
         for (Entity entity : entities) {
         	entity.create();
-            entity.render(); 
+            entity.render();
         }
     }
 
@@ -38,9 +42,11 @@ public class EntityManager implements EntityManagement{
         }
         entities.clear();
     }
+    
     public List<Entity> getEntities(){
     	return entities;
     }
+    
     public void setList(EntityManager el) {
     	for (Entity  entity: el.getEntities()) {
     		entities.add(entity);
@@ -63,12 +69,12 @@ public class EntityManager implements EntityManagement{
                     continue;
                 }
                 TextureObject B = (TextureObject) b;
-    			
-                if (!A.getName().equals(B.getName()) && A.collide(B)) {
-                    System.out.println("BANG!!!");
-                    collisionCount++;
-                }
+                
+        		if (collisionManager.checkCollision(A, B) == true) {
+        			collisionCount ++;
+        		}
     		}
+
     	}
 		return collisionCount;
     }

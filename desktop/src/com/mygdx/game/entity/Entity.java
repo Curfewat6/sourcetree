@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 
 public abstract class Entity {
     protected float posX, posY, speed, width, height;
+    protected String entName;
     protected Color texColor;
     
 
@@ -44,6 +45,10 @@ public abstract class Entity {
     public void setSpeed(float dp) {
         speed = dp;
     }
+    
+	public String getName() {
+		return entName;
+	}
 
 	public abstract void dispose();
 	public abstract void render();
