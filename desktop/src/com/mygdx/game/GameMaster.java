@@ -42,11 +42,8 @@ public class GameMaster extends Game
 		entityList.addEntity(new Circle(50,50,50,Color.GRAY,200));
 		
 		
-		
 		screenList.addScreen(new TitleScreen(this, entityList));
-		this.setScreen(new TitleScreen(this, entityList));
-		
-		//lifeCycle.startSimulation(screenList, entityList);
+		lifeCycle.startSimulation(screenList, entityList);
 	}
 		
 
@@ -56,11 +53,14 @@ public class GameMaster extends Game
 		//Refresh the screen to a blank canvas 
 		ScreenUtils.clear(0,0,0.2f,1);
 		//Render all the Object 
+		
 		super.render();
 		
 	}
 	public void dispose() {
 		//clear all object render
+		lifeCycle.endSimulation(screenList, entityList);
+		
 	}
 	@Override
 	public void pause() {
