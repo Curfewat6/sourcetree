@@ -118,8 +118,7 @@ public class GameScreen extends Screens{
 
 	@Override
 	public void dispose() {
-
-		
+        stage.dispose();
 	}
 	
 }
