@@ -3,6 +3,13 @@ package com.mygdx.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.entity.Circle;
+import com.mygdx.game.entity.EntityManagement;
+import com.mygdx.game.entity.TextureObject;
+import com.mygdx.game.entity.Triangle;
+import com.mygdx.game.screen.ScreenManagement;
+import com.mygdx.game.screen.ScreenManager;
+import com.mygdx.game.screen.TitleScreen;
 import com.badlogic.gdx.graphics.Color;
 
 import com.badlogic.gdx.math.MathUtils;
@@ -11,7 +18,7 @@ import com.badlogic.gdx.math.MathUtils;
 public class GameMaster extends Game
 {	
 	private EntityManagement entityList;
-	private ScreenManager screenList;
+	private ScreenManagement screenList;
 
 	@Override
 	public void create() 
@@ -33,7 +40,7 @@ public class GameMaster extends Game
 		entityList.addEntity(new Triangle(150,250,350,50,150,50,Color.RED,200));
 		entityList.addEntity(new Circle(50,50,50,Color.GRAY,200));
 		
-		screenList = new ScreenManager();
+		screenList = new ScreenManagement();
 		
 		screenList.addScreen(new TitleScreen(this));
 		this.setScreen(new TitleScreen(this));

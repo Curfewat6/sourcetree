@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.screen;
 
 import org.lwjgl.opengl.GL20;
 
@@ -11,6 +11,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.entity.Circle;
+import com.mygdx.game.entity.EntityManagement;
+import com.mygdx.game.entity.TextureObject;
+import com.mygdx.game.entity.Triangle;
 
 
 public class GameScreen extends Screens{

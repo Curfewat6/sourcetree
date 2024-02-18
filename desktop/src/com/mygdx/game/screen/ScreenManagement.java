@@ -1,9 +1,9 @@
-package com.mygdx.game;
+package com.mygdx.game.screen;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScreenManager
+public class ScreenManagement
 {
 	private List<Screens> screenList;
 	

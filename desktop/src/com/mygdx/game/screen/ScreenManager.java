@@ -1,6 +1,6 @@
-package com.mygdx.game;
+package com.mygdx.game.screen;
 
-public interface ScreenManger {
+public interface ScreenManager {
 	public void addScreen(Screens screen);
 	public void dispose();
 }
