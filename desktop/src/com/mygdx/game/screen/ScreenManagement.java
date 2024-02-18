@@ -7,7 +7,7 @@ public class ScreenManagement
 {
 	private List<Screens> screenList;
 	
-	public ScreenManager() 
+	public void ScreenManager()
 	{
 		screenList = new ArrayList<>();
 	}
