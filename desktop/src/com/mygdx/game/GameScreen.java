@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class GameScreen extends Screens{
 
-	private EntityManager entityList;
+	private EntityManagement entityList;
 	private boolean isPaused = false;
     private SpriteBatch batch;
     private BitmapFont font;
@@ -26,7 +26,7 @@ public class GameScreen extends Screens{
 	{
 		super(game, new Stage(new ScreenViewport()));
 		Gdx.input.setInputProcessor(stage);
-		entityList = new EntityManager();
+		entityList = new EntityManagement();
 		batch = new SpriteBatch();
 		font = new BitmapFont();
 

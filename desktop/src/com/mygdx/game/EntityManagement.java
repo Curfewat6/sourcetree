@@ -39,7 +39,9 @@ public class EntityManagement implements EntityManager{
         entities.clear();
     }
     
-    public void checkCollide() {
+    public int checkCollide() {
+    	int collisionCount = 0;
+    	
     	for (int i = 0; i < entities.size(); i++) {
     		for (int j = i + 1; j < entities.size() ; j++) {
     			Entity a = entities.get(i);
@@ -51,9 +53,11 @@ public class EntityManagement implements EntityManager{
 
     				if(A.collide(B)) {
     					System.out.println("BANG!!!");
+    					collisionCount++;
     				}
     			}
     		}
     	}
+		return collisionCount;
     }
 }

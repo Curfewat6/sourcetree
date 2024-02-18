@@ -7,6 +7,6 @@ public interface EntityManager {
 	public abstract void move();
 	public abstract void dispose();
 	public abstract void update();
-	public abstract void checkCollide();
+	public abstract int checkCollide();
 	
 }
