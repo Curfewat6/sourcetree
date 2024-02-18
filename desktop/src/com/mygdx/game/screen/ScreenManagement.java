@@ -8,3 +8,4 @@ public interface ScreenManagement {
 	public void dispose();
 	public Game getScreen();
 }
+
