@@ -7,6 +7,7 @@ import com.mygdx.game.entity.Circle;
 import com.mygdx.game.entity.EntityManager;
 import com.mygdx.game.entity.TextureObject;
 import com.mygdx.game.entity.Triangle;
+import com.mygdx.game.lifecycle.LifeCycleManager;
 import com.mygdx.game.screen.ScreenManager;
 import com.mygdx.game.screen.TitleScreen;
 import com.badlogic.gdx.graphics.Color;
@@ -18,11 +19,14 @@ public class GameMaster extends Game
 {	
 	private EntityManager entityList;
 	private ScreenManager screenList;
+	private LifeCycleManager lifeCycle;
 
 	@Override
 	public void create() 
 	{
 		entityList = new EntityManager();
+		screenList = new ScreenManager();
+		lifeCycle = new LifeCycleManager();
 		
 		int x = 10;
 		//ensure that the object is randomly place 
@@ -31,18 +35,18 @@ public class GameMaster extends Game
 			float ranY = MathUtils.random(Gdx.graphics.getHeight()/2,Gdx.graphics.getHeight());
 			entityList.addEntity(new TextureObject("droplet.png",ranX,ranY,2));
 		}
-		entityList = new EntityManager();
-
 		//Creates all the Object needed
 		entityList.addEntity(new TextureObject("droplet.png", 400, 0,2));
 		entityList.addEntity(new TextureObject("bucket.png",280,20,300));
 		entityList.addEntity(new Triangle(150,250,350,50,150,50,Color.RED,200));
 		entityList.addEntity(new Circle(50,50,50,Color.GRAY,200));
 		
-		screenList = new ScreenManager();
+		
 		
 		screenList.addScreen(new TitleScreen(this));
 		this.setScreen(new TitleScreen(this));
+		
+		//lifeCycle.startSimulation(screenList, entityList);
 	}
 		
 
