@@ -10,12 +10,12 @@ public class GameMaster extends ApplicationAdapter
 {	
 	
 	
-	private EntityManager entityList;
+	private EntityManagement entityList;
 	
 	@Override
 	public void create() 
 	{
-		entityList = new EntityManager();
+		entityList = new EntityManagement();
 		int x = 10;
 		//ensure that the object is randomly place 
 		for (int i = 0; i < x; i++) {
@@ -42,6 +42,18 @@ public class GameMaster extends ApplicationAdapter
 	public void dispose() {
 		//clear all object render
 		entityList.dispose();
+	}
+	@Override
+	public void pause() {
+		
+	}
+	@Override
+	public void resume() {
+		
+	}
+	@Override
+	public void resize(int width,int height) {
+		
 	}
 }
 

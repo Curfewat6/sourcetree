@@ -1,42 +1,12 @@
 package com.mygdx.game;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class EntityManager {
-	private List<Entity> entities;
+public interface EntityManager {
 	
-	public EntityManager() {
-        entities = new ArrayList<>();
-    }
+	public abstract void addEntity(Entity entity);
+	public abstract void draw();
+	public abstract void move();
+	public abstract void dispose();
+	public abstract void update();
+	
 
-    public void addEntity(Entity entity) {
-        entities.add(entity);
-    }
-
-    public void draw() {
-        for (Entity entity : entities) {
-        	entity.create();
-            entity.render(); 
-        }
-    }
-
-    public void move() {
-        for (Entity entity : entities) {
-            entity.move(); 
-        }
-    }
-
-    public void update() {
-        for (Entity entity : entities) {
-            entity.update();
-        }
-    }
-
-    public void dispose() {
-        for (Entity entity : entities) {
-            entity.dispose();
-        }
-        entities.clear();
-    }
 }
