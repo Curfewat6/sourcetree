@@ -5,10 +5,12 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 
 
 public class TextureObject extends Entity {
     private Texture tex;
+    private Rectangle rectBound;
     private SpriteBatch batch;
     private String texName;
     
@@ -16,6 +18,8 @@ public class TextureObject extends Entity {
     public TextureObject(String texPath, float posX, float posY, float speed) {
         super(posX, posY, speed);
         this.tex = new Texture(Gdx.files.internal(texPath));
+        // this rectBound is like a hit box for the texture objects
+        this.rectBound = new Rectangle(posX, posY, tex.getWidth(), tex.getHeight());
         this.texName = texPath;
     }
 
@@ -36,9 +40,9 @@ public class TextureObject extends Entity {
     	}
     	else {
     		moveAIControlled();
-    	}
-    	
+    	}	
     }
+    
     @Override
     public void update() {
     	System.out.println("In " + texName + " at " + "(" + posX + ","+ posY +") with the speed of " + speed);
@@ -46,6 +50,10 @@ public class TextureObject extends Entity {
 
     public Texture getTexture() {
         return tex;
+    }
+    
+    public Rectangle getRectBound() {
+    	return rectBound;
     }
 
     public void dispose() {
@@ -69,9 +77,9 @@ public class TextureObject extends Entity {
 				setPosX(ranX);
 			}
 		}
+	    updateRecPos(getPosX(), getPosY());
 	}
 
-	
 	public void moveUserControlled() {
 		// TODO Auto-generated method stub
 		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
@@ -80,7 +88,14 @@ public class TextureObject extends Entity {
 		if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
 			setPosX(getPosX() + (getSpeed()*Gdx.graphics.getDeltaTime()));
 		}
-		
+	    updateRecPos(getPosX(), getPosY());
 	}
     
+	public void updateRecPos(float x, float y) {
+		rectBound.setPosition(x, y);
+	}
+	
+	public boolean collide(TextureObject tex) {
+		return rectBound.overlaps(tex.getRectBound());
+	}
 }
