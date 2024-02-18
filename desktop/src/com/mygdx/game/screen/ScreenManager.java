@@ -3,9 +3,12 @@ package com.mygdx.game.screen;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mygdx.game.entity.EntityManager;
+
 public class ScreenManager implements ScreenManagement
 {
 	private List<Screens> screenList;
+	private EntityManager entityList;
 	
 	public ScreenManager() 
 	{
@@ -25,4 +28,6 @@ public class ScreenManager implements ScreenManagement
 		}
 		screenList.clear();
 	}
+
+	 
 }

@@ -38,6 +38,14 @@ public class EntityManager implements EntityManagement{
         }
         entities.clear();
     }
+    public List<Entity> getEntities(){
+    	return entities;
+    }
+    public void setList(EntityManager el) {
+    	for (Entity  entity: el.getEntities()) {
+    		entities.add(entity);
+    	}
+    }
     
     public int checkCollide() {
     	int collisionCount = 0;
@@ -60,4 +68,5 @@ public class EntityManager implements EntityManagement{
     	}
 		return collisionCount;
     }
+
 }

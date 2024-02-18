@@ -26,11 +26,12 @@ public class GameScreen extends Screens{
     private int totalCollisions = 0;
 
 	
-	public GameScreen(Game game) 
+	public GameScreen(Game game,EntityManager el) 
 	{
 		super(game, new Stage(new ScreenViewport()));
 		Gdx.input.setInputProcessor(stage);
 		entityList = new EntityManager();
+		entityList.setList(el);
 		batch = new SpriteBatch();
 		font = new BitmapFont();
 
@@ -51,17 +52,7 @@ public class GameScreen extends Screens{
 	@Override
 	public void show() 
 	{
-		int x = 10;
-		//ensure that the object is randomly place 
-		for (int i = 0; i < x; i++) {
-			float ranX = MathUtils.random(64,Gdx.graphics.getWidth()- 64);
-			float ranY = MathUtils.random(Gdx.graphics.getHeight()/2,Gdx.graphics.getHeight());
-			entityList.addEntity(new TextureObject("droplet.png",ranX,ranY,2));
-		}
-		//Creates all the Object needed
-		entityList.addEntity(new TextureObject("bucket.png",280,20,300));
-		entityList.addEntity(new Triangle(150,250,350,50,150,50,Color.RED,200));
-		entityList.addEntity(new Circle(50,50,50,Color.GRAY,200));
+		
 	}
 
 	@Override
