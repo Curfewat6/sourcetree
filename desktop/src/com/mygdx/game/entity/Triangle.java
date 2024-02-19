@@ -4,12 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.mygdx.game.pcm.PlayerControlManager;
 
 public class Triangle extends Entity{
 	
 	private float x1, x2, x3, y1, y2, y3;
 	private ShapeRenderer shapeRenderer;
-
+	private PlayerControlManager playerControl;
+	
     public Triangle(float x1, float x2, float x3, float y1, float y2, float y3, Color texColor, float speed) {
         super(0, 0, speed, texColor); 
         this.x1 = x1;
@@ -33,7 +35,13 @@ public class Triangle extends Entity{
     }
     @Override
     public void move() {
-        moveUserControlled();
+        //moveUserControlled();
+    	if (playerControl != null) {
+            playerControl.handleTriangleInput(this);
+        } else {
+        // For other objects, move them according to AI or other logic
+        moveAIControlled();
+    	}
     }
     
     @Override
@@ -66,16 +74,22 @@ public class Triangle extends Entity{
 		
 	}
 
-	
-	public void moveUserControlled() {
-		// TODO Auto-generated method stub
-		if (Gdx.input.isKeyPressed(Input.Keys.A)){
-            setX(-5);
-        }
-        else if( Gdx.input.isKeyPressed(Input.Keys.D)){
-            setX(5);
-        }
+	public PlayerControlManager getPlayerControl() {
+		return playerControl;
 	}
+
+	public void setPlayerControl(PlayerControlManager playerControl) {
+		this.playerControl = playerControl;
+	}
+	//public void moveUserControlled() {
+		// TODO Auto-generated method stub
+		//if (Gdx.input.isKeyPressed(Input.Keys.A)){
+            //setX(-5);
+        //}
+        //else if( Gdx.input.isKeyPressed(Input.Keys.D)){
+            //setX(5);
+        //}
+	//}
 
 
     

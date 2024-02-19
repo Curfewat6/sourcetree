@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.mygdx.game.entity.Circle;
 import com.mygdx.game.entity.EntityManager;
 import com.mygdx.game.entity.TextureObject;
+import com.mygdx.game.entity.Triangle;
 
 public class PlayerControlManager implements PlayerControlManagement {
     private EntityManager entityManager;
@@ -20,6 +21,12 @@ public class PlayerControlManager implements PlayerControlManagement {
                 if (textureObject.getName().equals("bucket.png")) {
                     handleBucketInput(textureObject);
                 }
+            } else if (entity instanceof Circle) {
+                Circle circle = (Circle) entity;
+                handleCircleInput(circle);
+            } else if (entity instanceof Triangle) {
+                Triangle triangle = (Triangle) entity;
+                handleTriangleInput(triangle);
             }
         });
     }
@@ -45,6 +52,17 @@ public class PlayerControlManager implements PlayerControlManagement {
         }
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
             circle.setPosY(circle.getPosY() - (circle.getSpeed() * Gdx.graphics.getDeltaTime()));
+        }
+    }
+    
+    public void handleTriangleInput(Triangle triangle) {
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+            //triangle.setPosX(triangle.getPosX() + (triangle.getSpeed() * Gdx.graphics.getDeltaTime()));
+        	triangle.setX(-5);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+            //triangle.setPosX(triangle.getPosX() - (triangle.getSpeed() * Gdx.graphics.getDeltaTime()));
+        	triangle.setX(5);
         }
     }
 

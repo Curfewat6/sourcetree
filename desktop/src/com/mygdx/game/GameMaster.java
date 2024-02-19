@@ -45,7 +45,7 @@ public class GameMaster extends Game
 		entityList.addEntity(new TextureObject("droplet.png", 400, 0,2));
 		entityList.addEntity(new TextureObject("bucket.png",280,20,300));
 		entityList.addEntity(new Triangle(150,250,350,50,150,50,Color.RED,200));
-		entityList.addEntity(new Circle(50,50,50,Color.GRAY,200));
+		entityList.addEntity(new Circle(50,50,50,Color.GREEN,200));
 		
 		
 		screenList.addScreen(new TitleScreen(this, entityList));
