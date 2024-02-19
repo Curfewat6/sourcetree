@@ -1,17 +1,17 @@
 package com.mygdx.game.lifecycle;
 import com.badlogic.gdx.Game;
-import com.mygdx.game.entity.EntityManager;
-import com.mygdx.game.screen.ScreenManager;
+import com.mygdx.game.entity.EntityManagement;
+import com.mygdx.game.screen.ScreenManagement;
 import com.mygdx.game.screen.TitleScreen;
 
-public class LifeCycleManager {
+public class LifeCycleManager implements LifeCycleManagement{
 	
 	private Game game;
 	
 	 public LifeCycleManager() {}
 
 	    // Start the simulation and initialize the first scene
-	    public void startSimulation(ScreenManager screenManager, EntityManager entityManager) {
+	    public void startSimulation(ScreenManagement screenManager, EntityManagement entityManager) {
 	    	game = screenManager.getScreen();
 	    	
 	    	game.setScreen(new TitleScreen(game, entityManager));		
@@ -19,7 +19,7 @@ public class LifeCycleManager {
 	    }
 
 	    // Ends the simulation and disposes everything used
-	    public void endSimulation(ScreenManager screenManager,EntityManager entityManager ) {
+	    public void endSimulation(ScreenManagement screenManager,EntityManagement entityManager ) {
 	        entityManager.dispose();
 	        screenManager.dispose();
 	        //for (Scenes scenes: sceneManager.getSceneMap().values()) {

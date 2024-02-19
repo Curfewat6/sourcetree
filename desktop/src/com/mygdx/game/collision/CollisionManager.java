@@ -1,15 +1,15 @@
 package com.mygdx.game.collision;
 
 import com.mygdx.game.entity.Entity;
-import com.mygdx.game.entity.EntityManager;
+import com.mygdx.game.entity.EntityManagement;
 import com.mygdx.game.entity.TextureObject;
 
 public class CollisionManager implements CollisionManagement{
 	
-	private EntityManager em;
+	private EntityManagement em;
 	
-	public CollisionManager(EntityManager entityManager) {
-	    this.em = entityManager;
+	public CollisionManager(EntityManagement entityList) {
+	    this.em = entityList;
 	}
 	
     public int checkCollision() {
@@ -28,7 +28,7 @@ public class CollisionManager implements CollisionManagement{
                    continue;
                }
                TextureObject B = (TextureObject) b;
-    	if(A.getName().equals(B.getName()) && A.collide(B)) {
+    	if(!A.getName().equals(B.getName()) && A.collide(B)) {
     		collisionCount ++;
     		}
    		}

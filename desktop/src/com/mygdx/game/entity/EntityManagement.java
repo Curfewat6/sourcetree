@@ -1,5 +1,6 @@
 package com.mygdx.game.entity;
 
+import java.util.List;
 
 public interface EntityManagement {
 	
@@ -9,5 +10,6 @@ public interface EntityManagement {
 	public abstract void dispose();
 	public abstract void update();
 	public void setList(EntityManager el);
+	public List<Entity> getEntities();
 	
 }

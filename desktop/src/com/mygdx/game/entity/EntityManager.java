@@ -3,8 +3,6 @@ package com.mygdx.game.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mygdx.game.collision.CollisionManager;
-
 public class EntityManager implements EntityManagement{
 	private List<Entity> entities;
 	

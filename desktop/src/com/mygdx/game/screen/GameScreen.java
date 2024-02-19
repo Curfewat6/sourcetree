@@ -11,8 +11,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.collision.CollisionManagement;
 import com.mygdx.game.collision.CollisionManager;
 import com.mygdx.game.entity.Circle;
+import com.mygdx.game.entity.EntityManagement;
 import com.mygdx.game.entity.EntityManager;
 import com.mygdx.game.entity.TextureObject;
 import com.mygdx.game.entity.Triangle;
@@ -20,24 +22,22 @@ import com.mygdx.game.entity.Triangle;
 
 public class GameScreen extends Screens{
 
-	private EntityManager entityList;
-	private CollisionManager collisionManager;
+	private EntityManagement entityList;
+	private CollisionManagement collisionManager;
 	private boolean isPaused = false;
     private SpriteBatch batch;
     private BitmapFont font;
     private int totalCollisions = 0;
 
 	
-	public GameScreen(Game game, EntityManager el) 
+	public GameScreen(Game game, EntityManagement em) 
 	{
 		super(game, new Stage(new ScreenViewport()));
 		Gdx.input.setInputProcessor(stage);
-		entityList = new EntityManager();
-		entityList.setList(el);
+		entityList = em;
 		collisionManager = new CollisionManager(entityList);
 		batch = new SpriteBatch();
 		font = new BitmapFont();
-	    this.collisionManager = new CollisionManager(this.entityList);
 	}
 	
 	@Override

@@ -3,15 +3,15 @@ package com.mygdx.game.pcm;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.game.entity.Circle;
-import com.mygdx.game.entity.EntityManager;
+import com.mygdx.game.entity.EntityManagement;
 import com.mygdx.game.entity.TextureObject;
 import com.mygdx.game.entity.Triangle;
 
 public class PlayerControlManager implements PlayerControlManagement {
-    private EntityManager entityManager;
+    private EntityManagement entityManager;
 
-    public PlayerControlManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public PlayerControlManager(EntityManagement entityList) {
+        this.entityManager = entityList;
     }
 
     public void handlingPlayerInput() {

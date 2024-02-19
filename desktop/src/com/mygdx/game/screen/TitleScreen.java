@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.entity.EntityManagement;
 import com.mygdx.game.entity.EntityManager;
 
 
@@ -21,13 +22,12 @@ public class TitleScreen extends Screens{
 	private TextButton playButton;
 	private TextButton creditsButton;
 	private TextButton settingsButton;
-	private EntityManager em;
+	private EntityManagement em;
 
-	public TitleScreen(Game game, EntityManager el) 
+	public TitleScreen(Game game, EntityManagement el) 
 	{
 		super(game, new Stage(new ScreenViewport()));
-		em = new EntityManager();
-		em.setList(el);
+		this.em = el;
 		Gdx.input.setInputProcessor(stage);
 	}
 	
