@@ -46,8 +46,8 @@ public class EntityManager implements EntityManagement{
     	return entities;
     }
     
-    public void setList(EntityManager el) {
-    	for (Entity  entity: el.getEntities()) {
+    public void setList(EntityManagement entityList) {
+    	for (Entity  entity: entityList.getEntities()) {
     		entities.add(entity);
     	}
     }
