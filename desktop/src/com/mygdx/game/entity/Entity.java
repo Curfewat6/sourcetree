@@ -1,9 +1,8 @@
 package com.mygdx.game.entity;
 
 import com.badlogic.gdx.graphics.Color;
-import com.mygdx.game.pcm.PlayerControlManagement;
 
-public abstract class Entity{
+public abstract class Entity {
     protected float posX, posY, speed, width, height;
     protected String entName;
     protected Color texColor;
@@ -22,6 +21,7 @@ public abstract class Entity{
         this.speed = speed;
 
     }
+    
     public float getPosX() {
         return posX;
     }

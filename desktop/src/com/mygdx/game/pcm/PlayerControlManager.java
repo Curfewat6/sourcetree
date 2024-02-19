@@ -14,24 +14,24 @@ public class PlayerControlManager implements PlayerControlManagement {
         this.entityManager = entityManager;
     }
 
-    public void handlingPlayerInput() {
+    public void handlingPlayerInput(String direction) {
         entityManager.getEntities().forEach(entity -> {
             if (entity instanceof TextureObject) {
                 TextureObject textureObject = (TextureObject) entity;
                 if (textureObject.getName().equals("bucket.png")) {
-                    handleBucketInput(textureObject);
+                    handleBucketInput(textureObject, direction);
                 }
             } else if (entity instanceof Circle) {
                 Circle circle = (Circle) entity;
-                handleCircleInput(circle);
+                handleCircleInput(circle, direction);
             } else if (entity instanceof Triangle) {
                 Triangle triangle = (Triangle) entity;
-                handleTriangleInput(triangle);
+                handleTriangleInput(triangle, direction);
             }
         });
     }
 
-    public void handleBucketInput(TextureObject bucket) {
+    public void handleBucketInput(TextureObject bucket, String direction) {
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             bucket.setPosX(bucket.getPosX() - (bucket.getSpeed() * Gdx.graphics.getDeltaTime()));
         }
@@ -46,7 +46,7 @@ public class PlayerControlManager implements PlayerControlManagement {
         }
     }
     
-    public void handleCircleInput(Circle circle) {
+    public void handleCircleInput(Circle circle, String direction) {
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             circle.setPosY(circle.getPosY() + (circle.getSpeed() * Gdx.graphics.getDeltaTime()));
         }
@@ -55,7 +55,7 @@ public class PlayerControlManager implements PlayerControlManagement {
         }
     }
     
-    public void handleTriangleInput(Triangle triangle) {
+    public void handleTriangleInput(Triangle triangle, String direction) {
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             //triangle.setPosX(triangle.getPosX() + (triangle.getSpeed() * Gdx.graphics.getDeltaTime()));
         	triangle.setX(-5);
