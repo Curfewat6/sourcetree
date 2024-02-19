@@ -24,7 +24,7 @@ public class GameMaster extends Game
 	private EntityManagement entityList;
 	private ScreenManagement screenList;
 	private LifeCycleManager lifeCycle;
-	private CollisionManagement collision;
+	
 
 
 	@Override
@@ -33,7 +33,7 @@ public class GameMaster extends Game
 		entityList = new EntityManager();
 		screenList = new ScreenManager();
 		lifeCycle = new LifeCycleManager();
-	    collision = new CollisionManager(entityList);
+	    
 
 		
 		int x = 10;
