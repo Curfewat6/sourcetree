@@ -35,18 +35,18 @@ public class Circle extends Entity {
     }
     
     
-    public void move(){
+   // public void move(){
         //moveUserControlled();
 
         // Handle input for the circle object using the PlayerControlManager
-        if (playerControl != null) {
-            playerControl.handleCircleInput(this);
-        } else {
+        //if (playerControl != null) {
+           // playerControl.handleCircleInput(this);
+       // } else {
         // For other objects, move them according to AI or other logic
-        moveAIControlled();
-    	}
+       // moveAIControlled();
+    	//}
  
-	}
+	//}
     
     public void dispose() {
     	shapeRenderer.dispose();

@@ -33,7 +33,7 @@ public class TitleScreen extends Screens{
 	
 	public void createUI()
 	{
-		title = new Label("Game Title", skin);
+		title = new Label("Demo", skin);
 		title.setPosition(Gdx.graphics.getWidth() / 2 - title.getWidth() / 2, Gdx.graphics.getHeight() / 2 + 100);
 		
 	    playButton = new TextButton("Play", skin);

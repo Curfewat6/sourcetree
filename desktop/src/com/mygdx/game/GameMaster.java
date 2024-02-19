@@ -15,20 +15,24 @@ import com.mygdx.game.lifecycle.LifeCycleManager;
 import com.mygdx.game.pcm.PlayerControlManagement;
 import com.mygdx.game.pcm.PlayerControlManager;
 import com.mygdx.game.screen.ScreenManagement;
+import com.mygdx.game.io.InputOutManagement;
+import com.mygdx.game.io.InputOutputManager;
 import com.mygdx.game.screen.ScreenManager;
 import com.mygdx.game.screen.TitleScreen;
 import com.badlogic.gdx.graphics.Color;
-
 import com.badlogic.gdx.math.MathUtils;
 
 
 public class GameMaster extends Game
 {	
+
 	private EntityManagement entityList;
 	private ScreenManagement screenList;
 	private LifeCycleManagement lifeCycle;
 	private CollisionManagement collision;
 	private PlayerControlManagement playerControl;
+	private InputOutManagement ioManager;
+
 
 	@Override
 	public void create() 
@@ -38,23 +42,11 @@ public class GameMaster extends Game
 		lifeCycle = new LifeCycleManager();
 	    collision = new CollisionManager(entityList);
 	    playerControl = new PlayerControlManager(entityList);
-		
-		int x = 10;
-		//ensure that the object is randomly place 
-		for (int i = 0; i < x; i++) {
-			float ranX = MathUtils.random(64,Gdx.graphics.getWidth()- 64);
-			float ranY = MathUtils.random(Gdx.graphics.getHeight()/2,Gdx.graphics.getHeight());
-			entityList.addEntity(new TextureObject("droplet.png",ranX,ranY,2));
-		}
-		//Creates all the Object needed
-		entityList.addEntity(new TextureObject("droplet.png", 400, 0,2));
-		entityList.addEntity(new TextureObject("bucket.png",280,20,300));
-		entityList.addEntity(new Triangle(150,250,350,50,150,50,Color.RED,200));
-		entityList.addEntity(new Circle(50,50,50,Color.GREEN,200));
-		
+		ioManager = new InputOutputManager(playerControl);
 		
 		screenList.addScreen(new TitleScreen(this, entityList));
 		lifeCycle.startSimulation(screenList, entityList);
+		
 	}
 		
 
@@ -62,6 +54,7 @@ public class GameMaster extends Game
 	public void render() 
 	{
 		playerControl.handlingPlayerInput();
+		ioManager.handleInput();
 		
 		//Refresh the screen to a blank canvas 
 		ScreenUtils.clear(0,0,0.2f,1);
@@ -88,9 +81,3 @@ public class GameMaster extends Game
 		
 	}
 }
-
-
-
-
-
-

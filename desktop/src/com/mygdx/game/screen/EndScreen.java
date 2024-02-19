@@ -11,27 +11,43 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.entity.EntityManagement;
 
 
 public class EndScreen extends Screens{
 	
 	private Label title;
 	private Skin skin;
+	private EntityManagement em;
+	private TextButton mainMenuButton;
 
-	public EndScreen(Game game) 
+	public EndScreen(Game game, EntityManagement entityList) 
 	{
 		super(game, new Stage(new ScreenViewport()));
 		Gdx.input.setInputProcessor(stage);
+		this.em = entityList;
 	}
 	
 	public void createUI()
 	{
 		title = new Label("GG NOOB", skin);
 		title.setPosition(Gdx.graphics.getWidth() / 2 - title.getWidth() / 2, Gdx.graphics.getHeight() / 2 + 100);
+		mainMenuButton = new TextButton("MainMenu", skin);
+		mainMenuButton.setPosition(Gdx.graphics.getWidth() / 2 - mainMenuButton.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+
+		 mainMenuButton.addListener(new ClickListener() 
+		    {
+		        @Override
+		        public void clicked(InputEvent event, float x, float y) 
+		        {
+		        		
+			            game.setScreen(new TitleScreen(game,em));
+		        }
+		    });
 		
 	    stage.addActor(title);
+	    stage.addActor(mainMenuButton);
 	}
-
 
 	@Override
 	public void show() {

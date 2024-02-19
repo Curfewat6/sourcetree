@@ -64,7 +64,7 @@ public class GameScreen extends Screens{
 		
 	    if (!isPaused) {
 	        // Update and draw entities only when the game is not paused
-	        entityList.move();
+	        //entityList.move();
 	        entityList.update();
 
 	        int collisionsThisFrame = collisionManager.checkCollision();
@@ -74,7 +74,7 @@ public class GameScreen extends Screens{
 		     // Check if there have been any collisions
 		     if (totalCollisions >= 200 ) {
 		    	 // Switch to end game scene
-		    	 game.setScreen(new EndScreen(game));
+		    	 game.setScreen(new EndScreen(game,entityList));
 		     } else {
 		         System.out.println(totalCollisions);
 		     }

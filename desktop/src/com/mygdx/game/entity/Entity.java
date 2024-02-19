@@ -53,7 +53,6 @@ public abstract class Entity {
 	public abstract void dispose();
 	public abstract void render();
 	public abstract void create();
-	public abstract void move();
 	public abstract void update();
 	
 

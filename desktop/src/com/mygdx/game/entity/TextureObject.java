@@ -34,9 +34,10 @@ public class TextureObject extends Entity {
     public void render() {   
     	batch.begin();
     		batch.draw(tex, posX, posY, tex.getWidth(), tex.getHeight());
+    		updateRecPos(posX, posY);
     	batch.end();
     }
-    @Override
+    
     public void move() {
         if (texName.equals("bucket.png")) {
             // Handle input for the bucket object using the PlayerControlManager

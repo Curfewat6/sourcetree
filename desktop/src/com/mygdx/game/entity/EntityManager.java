@@ -21,12 +21,6 @@ public class EntityManager implements EntityManagement{
         }
     }
 
-    public void move() {
-        for (Entity entity : entities) {
-            entity.move(); 
-        }
-    }
-
     public void update() {
         for (Entity entity : entities) {
             entity.update();

@@ -1,31 +1,21 @@
 package com.mygdx.game.io;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Input;
+import com.mygdx.game.pcm.PlayerControlManagement;
+import com.mygdx.game.pcm.PlayerControlManager;
 
-public class InputOutputManager{
-  private List<InputObserver> observers;
-  
-  public InputOutputManager() {
-    observers = new ArrayList<>();
-  }
-  
-  public void addObserver(InputObserver observer) {
-    observers.add(observer);
-  }
-  
-  public void update() {
-    if (Gdx.input.isKeyJustPressed(Keys.W)) {
-      notifyObservers(Keys.W);
+public class InputOutputManager implements InputOutManagement {
+    private Keyboard keyboard;
+
+    public InputOutputManager(PlayerControlManagement playerControl) {
+        this.keyboard = new Keyboard(playerControl);
     }
-  }
-  
-  private void notifyObservers(int key) {
-    for (InputObserver observer : observers) {
-      observer.onInput(key);
+    
+    public void handleInput() {
+        if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)) {
+            keyboard.handleKeyInput();
+        }
+        // If you want to add more input devices u can put them here <3
     }
-  }
 }

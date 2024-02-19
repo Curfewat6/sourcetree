@@ -33,16 +33,16 @@ public class Triangle extends Entity{
         shapeRenderer.triangle(x1, y1, x2, y2, x3, y3);
         shapeRenderer.end();
     }
-    @Override
-    public void move() {
+    
+   // public void move() {
         //moveUserControlled();
-    	if (playerControl != null) {
-            playerControl.handleTriangleInput(this);
-        } else {
+    	//if (playerControl != null) {
+            //playerControl.handleTriangleInput(this);
+        //} else {
         // For other objects, move them according to AI or other logic
-        moveAIControlled();
-    	}
-    }
+       // moveAIControlled();
+    	//}
+    //}
     
     @Override
     public void update() {
