@@ -45,7 +45,7 @@ public class TextureObject extends Entity {
     
     @Override
     public void update() {
-    	System.out.println("In " + texName + " at " + "(" + posX + ","+ posY +") with the speed of " + speed);
+    	//System.out.println("In " + texName + " at " + "(" + posX + ","+ posY +") with the speed of " + speed);
     }
 
     public Texture getTexture() {
@@ -62,7 +62,7 @@ public class TextureObject extends Entity {
 
 	
 	public void moveAIControlled() {
-		// TODO Auto-generated method stub
+		// // TODO Auto-generated method stub
 		float ranX = MathUtils.random(64,Gdx.graphics.getWidth() - 64);
 		if(getPosY() > 0 ) {
 			setPosY(getPosY() - getSpeed());
@@ -81,14 +81,14 @@ public class TextureObject extends Entity {
 	}
 
 	public void moveUserControlled() {
-		// TODO Auto-generated method stub
-		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-			setPosX(getPosX() - (getSpeed()*Gdx.graphics.getDeltaTime()));
-		}
-		if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			setPosX(getPosX() + (getSpeed()*Gdx.graphics.getDeltaTime()));
-		}
-	    updateRecPos(getPosX(), getPosY());
+		// // TODO Auto-generated method stub
+		// if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+		// 	setPosX(getPosX() - (getSpeed()*Gdx.graphics.getDeltaTime()));
+		// }
+		// if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+		// 	setPosX(getPosX() + (getSpeed()*Gdx.graphics.getDeltaTime()));
+		// }
+	    // updateRecPos(getPosX(), getPosY());
 	}
     
 	public void updateRecPos(float x, float y) {

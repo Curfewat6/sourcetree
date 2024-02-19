@@ -8,11 +8,13 @@ import com.mygdx.game.entity.Circle;
 import com.mygdx.game.entity.EntityManager;
 import com.mygdx.game.entity.TextureObject;
 import com.mygdx.game.entity.Triangle;
+import com.mygdx.game.io.InputOutputManager;
 import com.mygdx.game.lifecycle.LifeCycleManager;
 import com.mygdx.game.screen.ScreenManager;
 import com.mygdx.game.screen.TitleScreen;
 import com.badlogic.gdx.graphics.Color;
-
+import com.mygdx.game.pcm.PlayerControl;
+import com.mygdx.game.pcm.PlayerControlManager;
 import com.badlogic.gdx.math.MathUtils;
 
 
@@ -22,7 +24,8 @@ public class GameMaster extends Game
 	private ScreenManager screenList;
 	private LifeCycleManager lifeCycle;
 	private CollisionManager collision;
-
+	// private PlayerControlManager pcm;
+	private InputOutputManager ioManager;
 
 	@Override
 	public void create() 
@@ -31,8 +34,8 @@ public class GameMaster extends Game
 		screenList = new ScreenManager();
 		lifeCycle = new LifeCycleManager();
 	    collision = new CollisionManager(entityList);
+		// pcm = new PlayerControlManager(entityList);
 
-		
 		int x = 10;
 		//ensure that the object is randomly place 
 		for (int i = 0; i < x; i++) {
@@ -40,6 +43,7 @@ public class GameMaster extends Game
 			float ranY = MathUtils.random(Gdx.graphics.getHeight()/2,Gdx.graphics.getHeight());
 			entityList.addEntity(new TextureObject("droplet.png",ranX,ranY,2));
 		}
+		
 		//Creates all the Object needed
 		entityList.addEntity(new TextureObject("droplet.png", 400, 0,2));
 		entityList.addEntity(new TextureObject("bucket.png",280,20,300));

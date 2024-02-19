@@ -7,7 +7,6 @@ import com.mygdx.game.collision.CollisionManager;
 
 public class EntityManager implements EntityManagement{
 	private List<Entity> entities;
-	private CollisionManager collisionManager;
 	
 	public EntityManager() {
         entities = new ArrayList<>();
