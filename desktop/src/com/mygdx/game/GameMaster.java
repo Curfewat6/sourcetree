@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.collision.CollisionManager;
 import com.mygdx.game.entity.Circle;
 import com.mygdx.game.entity.EntityManager;
 import com.mygdx.game.entity.TextureObject;
@@ -20,6 +21,8 @@ public class GameMaster extends Game
 	private EntityManager entityList;
 	private ScreenManager screenList;
 	private LifeCycleManager lifeCycle;
+	private CollisionManager collision;
+
 
 	@Override
 	public void create() 
@@ -27,6 +30,8 @@ public class GameMaster extends Game
 		entityList = new EntityManager();
 		screenList = new ScreenManager();
 		lifeCycle = new LifeCycleManager();
+	    collision = new CollisionManager(entityList);
+
 		
 		int x = 10;
 		//ensure that the object is randomly place 
