@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.game.pcm.PlayerControlManager;
 
 
 public class TextureObject extends Entity {
@@ -13,6 +14,7 @@ public class TextureObject extends Entity {
     private Rectangle rectBound;
     private SpriteBatch batch;
     private String texName;
+    private PlayerControlManager playerControl;
     
 
     public TextureObject(String texPath, float posX, float posY, float speed) {
@@ -21,6 +23,7 @@ public class TextureObject extends Entity {
         // this rectBound is like a hit box for the texture objects
         this.rectBound = new Rectangle(posX, posY, tex.getWidth(), tex.getHeight());
         this.texName = texPath;
+        
     }
 
     @Override
@@ -35,12 +38,17 @@ public class TextureObject extends Entity {
     }
     @Override
     public void move() {
-    	if(texName == "bucket.png") {
-    		moveUserControlled();
-    	}
-    	else {
-    		moveAIControlled();
-    	}	
+        if (texName.equals("bucket.png")) {
+            // Handle input for the bucket object using the PlayerControlManager
+            if (playerControl != null) {
+                playerControl.handleBucketInput(this);
+            }
+        } else {
+            // For other objects, move them according to AI or other logic
+            moveAIControlled();
+        }
+        // Update the rectangle position
+        updateRecPos(posX, posY);
     }
     
     @Override
@@ -80,16 +88,16 @@ public class TextureObject extends Entity {
 	    updateRecPos(getPosX(), getPosY());
 	}
 
-	public void moveUserControlled() {
+	//public void moveUserControlled() {
 		// TODO Auto-generated method stub
-		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-			setPosX(getPosX() - (getSpeed()*Gdx.graphics.getDeltaTime()));
-		}
-		if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			setPosX(getPosX() + (getSpeed()*Gdx.graphics.getDeltaTime()));
-		}
-	    updateRecPos(getPosX(), getPosY());
-	}
+		//if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+			//setPosX(getPosX() - (getSpeed()*Gdx.graphics.getDeltaTime()));
+		//}
+		//if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+			//setPosX(getPosX() + (getSpeed()*Gdx.graphics.getDeltaTime()));
+		//}
+	    //updateRecPos(getPosX(), getPosY());
+	//}
     
 	public void updateRecPos(float x, float y) {
 		rectBound.setPosition(x, y);
@@ -101,5 +109,13 @@ public class TextureObject extends Entity {
 	
 	public String getName() {
 		return texName;
+	}
+
+	public PlayerControlManager getPlayerControl() {
+		return playerControl;
+	}
+
+	public void setPlayerControl(PlayerControlManager playerControl) {
+		this.playerControl = playerControl;
 	}
 }
