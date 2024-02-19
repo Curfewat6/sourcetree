@@ -53,30 +53,4 @@ public class EntityManager implements EntityManagement{
     	}
     }
     
-    public int checkCollide() {
-    	int collisionCount = 0;
-    	
-    	for (int i = 0; i < entities.size(); i++) {
-    		 Entity a = entities.get(i);
-             if (!(a instanceof TextureObject)) {
-                 continue;
-             }
-             TextureObject A = (TextureObject) a;
-    		    		
-    		for (int j = i + 1; j < entities.size() ; j++) {
-    			Entity b = entities.get(j);
-                if (!(b instanceof TextureObject)) {
-                    continue;
-                }
-                TextureObject B = (TextureObject) b;
-                
-        		if (collisionManager.checkCollision(A, B) == true) {
-        			collisionCount ++;
-        		}
-    		}
-
-    	}
-		return collisionCount;
-    }
-
 }

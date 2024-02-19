@@ -34,6 +34,7 @@ public class GameScreen extends Screens{
 		Gdx.input.setInputProcessor(stage);
 		entityList = new EntityManager();
 		entityList.setList(el);
+		collisionManager = new CollisionManager(entityList);
 		batch = new SpriteBatch();
 		font = new BitmapFont();
 	    this.collisionManager = new CollisionManager(this.entityList);
@@ -66,7 +67,7 @@ public class GameScreen extends Screens{
 	        entityList.move();
 	        entityList.update();
 
-	        int collisionsThisFrame = entityList.checkCollide();
+	        int collisionsThisFrame = collisionManager.checkCollision();
 	        totalCollisions += collisionsThisFrame;
 	        System.out.println("Total collisions so far: " + totalCollisions);
 	        
