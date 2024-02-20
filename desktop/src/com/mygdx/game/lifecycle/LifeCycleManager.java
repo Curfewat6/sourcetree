@@ -40,8 +40,5 @@ public class LifeCycleManager implements LifeCycleManagement{
 	    public void endSimulation(ScreenManagement screenManager,EntityManagement entityManager ) {
 	        entityManager.dispose();
 	        screenManager.dispose();
-	        //for (Scenes scenes: sceneManager.getSceneMap().values()) {
-	        //    scenes.dispose();
-	        //}
 	    }
 }

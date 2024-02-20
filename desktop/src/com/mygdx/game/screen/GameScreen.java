@@ -18,12 +18,19 @@ import com.mygdx.game.entity.EntityManagement;
 import com.mygdx.game.entity.EntityManager;
 import com.mygdx.game.entity.TextureObject;
 import com.mygdx.game.entity.Triangle;
+import com.mygdx.game.io.InputOutManagement;
+import com.mygdx.game.io.InputOutputManager;
+import com.mygdx.game.pcm.PlayerControlManagement;
+import com.mygdx.game.pcm.PlayerControlManager;
 
 
 public class GameScreen extends Screens{
 
 	private EntityManagement entityList;
 	private CollisionManagement collisionManager;
+	private PlayerControlManagement playerControl;
+	private InputOutManagement ioManager;
+	
 	private boolean isPaused = false;
     private SpriteBatch batch;
     private BitmapFont font;
@@ -35,6 +42,8 @@ public class GameScreen extends Screens{
 		super(game, new Stage(new ScreenViewport()));
 		Gdx.input.setInputProcessor(stage);
 		entityList = em;
+		playerControl = new PlayerControlManager(entityList);
+		ioManager = new InputOutputManager(playerControl);
 		collisionManager = new CollisionManager(entityList);
 		batch = new SpriteBatch();
 		font = new BitmapFont();
@@ -66,6 +75,8 @@ public class GameScreen extends Screens{
 	        // Update and draw entities only when the game is not paused
 	        //entityList.move();
 	        entityList.update();
+	        playerControl.handlingPlayerInput();
+			ioManager.handleInput();
 
 	        int collisionsThisFrame = collisionManager.checkCollision();
 	        totalCollisions += collisionsThisFrame;

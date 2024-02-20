@@ -34,11 +34,21 @@ public class EntityManager implements EntityManagement{
         entities.clear();
     }
     
+    public String getTexName() {
+    	for (Entity entity : entities) {
+    		if (!(entity instanceof TextureObject)) {
+                continue;
+            }
+    		return entity.getName();
+        }
+		return null;
+    }
+    
     public List<Entity> getEntities(){
     	return entities;
     }
     
-    public void setList(EntityManager el) {
+    public void setList(EntityManagement el) {
     	for (Entity  entity: el.getEntities()) {
     		entities.add(entity);
     	}

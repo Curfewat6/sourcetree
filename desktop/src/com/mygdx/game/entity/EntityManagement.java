@@ -8,7 +8,8 @@ public interface EntityManagement {
 	public abstract void draw();
 	public abstract void dispose();
 	public abstract void update();
-	public void setList(EntityManager el);
+	public String getTexName();
+	public void setList(EntityManagement em);
 	public List<Entity> getEntities();
 	
 }

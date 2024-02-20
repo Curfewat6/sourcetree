@@ -2,7 +2,7 @@ package com.mygdx.game.entity;
 
 import com.badlogic.gdx.graphics.Color;
 
-public abstract class Entity {
+public class Entity {
     protected float posX, posY, speed, width, height;
     protected String entName;
     protected Color texColor;
@@ -46,14 +46,14 @@ public abstract class Entity {
         speed = dp;
     }
     
-	public String getName() {
+	protected String getName() {
 		return entName;
 	}
 
-	public abstract void dispose();
-	public abstract void render();
-	public abstract void create();
-	public abstract void update();
+	protected void dispose() {};
+	protected void render() {};
+	protected void create() {};
+	protected void update() {};
 	
 
 }

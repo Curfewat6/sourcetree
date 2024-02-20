@@ -53,8 +53,8 @@ public class GameMaster extends Game
 	@Override
 	public void render() 
 	{
-		playerControl.handlingPlayerInput();
-		ioManager.handleInput();
+		//playerControl.handlingPlayerInput();
+		//ioManager.handleInput();
 		
 		//Refresh the screen to a blank canvas 
 		ScreenUtils.clear(0,0,0.2f,1);

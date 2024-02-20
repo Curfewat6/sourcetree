@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.game.collision.CollisionManagement;
 import com.mygdx.game.pcm.PlayerControlManager;
 
 
@@ -15,6 +16,7 @@ public class TextureObject extends Entity {
     private SpriteBatch batch;
     private String texName;
     private PlayerControlManager playerControl;
+    private CollisionManagement collisionManager;
     
 
     public TextureObject(String texPath, float posX, float posY, float speed) {
@@ -38,19 +40,19 @@ public class TextureObject extends Entity {
     	batch.end();
     }
     
-    public void move() {
-        if (texName.equals("bucket.png")) {
+   // public void move() {
+        //if (texName.equals("bucket.png")) {
             // Handle input for the bucket object using the PlayerControlManager
-            if (playerControl != null) {
-                playerControl.handleBucketInput(this);
-            }
-        } else {
+            //if (playerControl != null) {
+                //playerControl.handleBucketInput(this);
+            //}
+        //} else {
             // For other objects, move them according to AI or other logic
-            moveAIControlled();
-        }
+            //moveAIControlled();
+        //}
         // Update the rectangle position
-        updateRecPos(posX, posY);
-    }
+        //updateRecPos(posX, posY);
+    //}
     
     @Override
     public void update() {
@@ -100,6 +102,10 @@ public class TextureObject extends Entity {
 	    //updateRecPos(getPosX(), getPosY());
 	//}
     
+	//protected void collision(CollisionManagement collisionManager) {
+		//collisionManager.checkCollision(rectBound, getName());
+	//}
+	
 	public void updateRecPos(float x, float y) {
 		rectBound.setPosition(x, y);
 	}
@@ -108,7 +114,7 @@ public class TextureObject extends Entity {
 		return rectBound.overlaps(tex.getRectBound());
 	}
 	
-	public String getName() {
+	protected String getName() {
 		return texName;
 	}
 
