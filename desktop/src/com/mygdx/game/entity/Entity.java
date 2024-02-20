@@ -46,7 +46,7 @@ public class Entity {
         speed = dp;
     }
     
-	protected String getName() {
+	public String getName() {
 		return entName;
 	}
 

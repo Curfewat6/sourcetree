@@ -11,6 +11,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.ai.AIManagement;
+import com.mygdx.game.ai.AIManager;
 import com.mygdx.game.collision.CollisionManagement;
 import com.mygdx.game.collision.CollisionManager;
 import com.mygdx.game.entity.Circle;
@@ -30,6 +32,7 @@ public class GameScreen extends Screens{
 	private CollisionManagement collisionManager;
 	private PlayerControlManagement playerControl;
 	private InputOutManagement ioManager;
+	private AIManagement aiManager;
 	
 	private boolean isPaused = false;
     private SpriteBatch batch;
@@ -45,6 +48,8 @@ public class GameScreen extends Screens{
 		playerControl = new PlayerControlManager(entityList);
 		ioManager = new InputOutputManager(playerControl);
 		collisionManager = new CollisionManager(entityList);
+		aiManager = new AIManager(entityList);
+		
 		batch = new SpriteBatch();
 		font = new BitmapFont();
 	}
@@ -77,6 +82,7 @@ public class GameScreen extends Screens{
 	        entityList.update();
 	        playerControl.handlingPlayerInput();
 			ioManager.handleInput();
+			aiManager.aiMovement();
 
 	        int collisionsThisFrame = collisionManager.checkCollision();
 	        totalCollisions += collisionsThisFrame;

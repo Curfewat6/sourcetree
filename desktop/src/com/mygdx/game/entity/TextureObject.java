@@ -11,12 +11,12 @@ import com.mygdx.game.pcm.PlayerControlManager;
 
 
 public class TextureObject extends Entity {
+	
     private Texture tex;
     private Rectangle rectBound;
     private SpriteBatch batch;
     private String texName;
     private PlayerControlManager playerControl;
-    private CollisionManagement collisionManager;
     
 
     public TextureObject(String texPath, float posX, float posY, float speed) {
@@ -40,19 +40,6 @@ public class TextureObject extends Entity {
     	batch.end();
     }
     
-   // public void move() {
-        //if (texName.equals("bucket.png")) {
-            // Handle input for the bucket object using the PlayerControlManager
-            //if (playerControl != null) {
-                //playerControl.handleBucketInput(this);
-            //}
-        //} else {
-            // For other objects, move them according to AI or other logic
-            //moveAIControlled();
-        //}
-        // Update the rectangle position
-        //updateRecPos(posX, posY);
-    //}
     
     @Override
     public void update() {
@@ -71,7 +58,6 @@ public class TextureObject extends Entity {
         tex.dispose();
     }
 
-	
 	public void moveAIControlled() {
 		// TODO Auto-generated method stub
 		float ranX = MathUtils.random(64,Gdx.graphics.getWidth() - 64);
@@ -88,23 +74,7 @@ public class TextureObject extends Entity {
 				setPosX(ranX);
 			}
 		}
-	    updateRecPos(getPosX(), getPosY());
 	}
-
-	//public void moveUserControlled() {
-		// TODO Auto-generated method stub
-		//if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-			//setPosX(getPosX() - (getSpeed()*Gdx.graphics.getDeltaTime()));
-		//}
-		//if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			//setPosX(getPosX() + (getSpeed()*Gdx.graphics.getDeltaTime()));
-		//}
-	    //updateRecPos(getPosX(), getPosY());
-	//}
-    
-	//protected void collision(CollisionManagement collisionManager) {
-		//collisionManager.checkCollision(rectBound, getName());
-	//}
 	
 	public void updateRecPos(float x, float y) {
 		rectBound.setPosition(x, y);
@@ -114,7 +84,7 @@ public class TextureObject extends Entity {
 		return rectBound.overlaps(tex.getRectBound());
 	}
 	
-	protected String getName() {
+	public String getName() {
 		return texName;
 	}
 
