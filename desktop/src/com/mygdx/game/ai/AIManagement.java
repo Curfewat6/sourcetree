@@ -6,5 +6,6 @@ public interface AIManagement {
 	
 	public void aiMovement();
 	public void movementSet(TextureObject droplet);
+	public void collidePlayerAction(TextureObject droplet);
 
 }

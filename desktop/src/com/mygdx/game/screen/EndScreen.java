@@ -4,6 +4,8 @@ import org.lwjgl.opengl.GL20;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -11,7 +13,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.mygdx.game.entity.Circle;
 import com.mygdx.game.entity.EntityManagement;
+import com.mygdx.game.entity.TextureObject;
+import com.mygdx.game.entity.Triangle;
 
 
 public class EndScreen extends Screens{
@@ -53,6 +58,7 @@ public class EndScreen extends Screens{
 	public void show() {
 	    skin = new Skin(Gdx.files.internal("uiskin.json")); 
 	    createUI();
+	    resetEM();
 	}
 
 	@Override
@@ -90,5 +96,20 @@ public class EndScreen extends Screens{
 
 		
 	}
-
+	
+	public void resetEM() {
+		
+		em.dispose();
+		int x = 10;
+		//ensure that the object is randomly place 
+		for (int i = 0; i < x; i++) {
+			float ranX = MathUtils.random(64,Gdx.graphics.getWidth()- 64);
+			float ranY = MathUtils.random(Gdx.graphics.getHeight()/2,Gdx.graphics.getHeight());
+			em.addEntity(new TextureObject("droplet.png",ranX,ranY,2));
+		}
+		//Creates all the Object needed
+		em.addEntity(new TextureObject("bucket.png",280,20,300));
+		//em.addEntity(new Triangle(150,250,350,50,150,50,Color.RED,200));
+		//em.addEntity(new Circle(50,50,50,Color.GREEN,200));
+	}
 }
