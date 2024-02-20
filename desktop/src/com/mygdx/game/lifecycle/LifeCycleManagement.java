@@ -2,6 +2,7 @@ package com.mygdx.game.lifecycle;
 
 import com.mygdx.game.entity.EntityManagement;
 import com.mygdx.game.screen.ScreenManagement;
+import com.mygdx.game.screen.ScreenManager;
 
 public interface LifeCycleManagement {
 	

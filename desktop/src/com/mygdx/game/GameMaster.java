@@ -46,7 +46,6 @@ public class GameMaster extends Game
 		
 	}
 		
-
 	@Override
 	public void render() 
 	{

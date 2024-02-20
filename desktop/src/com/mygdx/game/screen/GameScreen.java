@@ -80,7 +80,7 @@ public class GameScreen extends Screens{
 	        // Update and draw entities only when the game is not paused
 	        //entityList.move();
 	        entityList.update();
-	        playerControl.handlingPlayerInput();
+	        //playerControl.handlingPlayerInput();
 			ioManager.handleInput();
 			aiManager.aiMovement();
 
