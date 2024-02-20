@@ -31,7 +31,7 @@ public class LifeCycleManager implements LifeCycleManagement{
 			//entityManager.addEntity(new Triangle(150,250,350,50,150,50,Color.RED,200));
 			//entityManager.addEntity(new Circle(50,50,50,Color.GREEN,200));
 	    	
-	    	game.setScreen(new TitleScreen(game, entityManager));		
+	    	game.setScreen(new TitleScreen(game));		
 			
 	    }
 

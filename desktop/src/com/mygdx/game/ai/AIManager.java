@@ -3,17 +3,26 @@ package com.mygdx.game.ai;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.entity.EntityManagement;
+import com.mygdx.game.entity.EntityManager;
 import com.mygdx.game.entity.TextureObject;
 
 public class AIManager implements AIManagement{
 	
     private EntityManagement entityManager;
+    private static AIManager instance;
 
-    public AIManager(EntityManagement entityList) {
-        this.entityManager = entityList;
-        
+    public AIManager() {
+        entityManager = EntityManager.getInstance();
     }
-
+    
+    public static AIManager getInstance() {
+		if(instance==null)
+		{
+			instance = new AIManager();
+		}
+		return instance;
+	}
+    
     public void aiMovement() {
         entityManager.getEntities().forEach(entity -> {
             if (entity instanceof TextureObject) {

@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.entity.Circle;
 import com.mygdx.game.entity.EntityManagement;
+import com.mygdx.game.entity.EntityManager;
 import com.mygdx.game.entity.TextureObject;
 import com.mygdx.game.entity.Triangle;
 
@@ -26,11 +27,11 @@ public class EndScreen extends Screens{
 	private EntityManagement em;
 	private TextButton mainMenuButton;
 
-	public EndScreen(Game game, EntityManagement entityList) 
+	public EndScreen(Game game) 
 	{
 		super(game, new Stage(new ScreenViewport()));
 		Gdx.input.setInputProcessor(stage);
-		this.em = entityList;
+		em = EntityManager.getInstance();
 	}
 	
 	public void createUI()
@@ -46,7 +47,7 @@ public class EndScreen extends Screens{
 		        public void clicked(InputEvent event, float x, float y) 
 		        {
 		        		
-			            game.setScreen(new TitleScreen(game,em));
+			            game.setScreen(new TitleScreen(game));
 		        }
 		    });
 		

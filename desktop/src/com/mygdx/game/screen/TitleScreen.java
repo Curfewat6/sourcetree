@@ -24,10 +24,10 @@ public class TitleScreen extends Screens{
 	private TextButton settingsButton;
 	private EntityManagement em;
 
-	public TitleScreen(Game game, EntityManagement el) 
+	public TitleScreen(Game game) 
 	{
 		super(game, new Stage(new ScreenViewport()));
-		this.em = el;
+		em = EntityManager.getInstance();
 		Gdx.input.setInputProcessor(stage);
 	}
 	
@@ -44,7 +44,7 @@ public class TitleScreen extends Screens{
 	        @Override
 	        public void clicked(InputEvent event, float x, float y) 
 	        {
-		            game.setScreen(new GameScreen(game,em));
+		            game.setScreen(new GameScreen(game));
 	        }
 	    });
 	    

@@ -2,18 +2,30 @@ package com.mygdx.game.pcm;
 import com.badlogic.gdx.Gdx;
 import com.mygdx.game.entity.Circle;
 import com.mygdx.game.entity.EntityManagement;
+import com.mygdx.game.entity.EntityManager;
 import com.mygdx.game.entity.TextureObject;
 import com.mygdx.game.entity.Triangle;
+import com.mygdx.game.screen.ScreenManager;
 
 public class PlayerControlManager implements PlayerControlManagement {
 	
     private EntityManagement entityManager;
     private String direction;
+    private static PlayerControlManager instance;
 
-    public PlayerControlManager(EntityManagement entityList) {
-        this.entityManager = entityList;
+    public PlayerControlManager() {
+        entityManager = EntityManager.getInstance();
         this.direction = null;
     }
+    
+    public static PlayerControlManager getInstance() {
+		if(instance==null)
+		{
+			instance = new PlayerControlManager();
+		}
+		return instance;
+	}
+    
 
     public void handlingPlayerInput() {
         entityManager.getEntities().forEach(entity -> {

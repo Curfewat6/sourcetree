@@ -40,15 +40,15 @@ public class GameScreen extends Screens{
     private int totalCollisions = 0;
 
 	
-	public GameScreen(Game game, EntityManagement em) 
+	public GameScreen(Game game) 
 	{
 		super(game, new Stage(new ScreenViewport()));
 		Gdx.input.setInputProcessor(stage);
-		entityList = em;
-		playerControl = new PlayerControlManager(entityList);
-		ioManager = new InputOutputManager(playerControl);
-		collisionManager = new CollisionManager(entityList);
-		aiManager = new AIManager(entityList);
+		entityList = EntityManager.getInstance();
+		playerControl = PlayerControlManager.getInstance();
+		ioManager = InputOutputManager.getInstance();
+		collisionManager = CollisionManager.getInstance();
+		aiManager = AIManager.getInstance();
 		
 		batch = new SpriteBatch();
 		font = new BitmapFont();
@@ -89,9 +89,9 @@ public class GameScreen extends Screens{
 	        System.out.println("Total collisions so far: " + totalCollisions);
 	        
 		     // Check if there have been any collisions
-		     if (totalCollisions >= 200 ) {
+		     if (totalCollisions >= 50 ) {
 		    	 // Switch to end game scene
-		    	 game.setScreen(new EndScreen(game,entityList));
+		    	 game.setScreen(new EndScreen(game));
 		     } else {
 		         System.out.println(totalCollisions);
 		     }
@@ -104,7 +104,7 @@ public class GameScreen extends Screens{
         
 		if (isPaused) {
 		    // Example: Display a simple pause overlay
-		    batch.begin();;
+		    batch.begin();
 			font.draw(batch, "Paused - Press P to Resume", 100, 150);
 		    batch.end();
 		}

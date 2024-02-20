@@ -1,15 +1,11 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.collision.CollisionManagement;
 import com.mygdx.game.collision.CollisionManager;
-import com.mygdx.game.entity.Circle;
 import com.mygdx.game.entity.EntityManagement;
 import com.mygdx.game.entity.EntityManager;
-import com.mygdx.game.entity.TextureObject;
-import com.mygdx.game.entity.Triangle;
 import com.mygdx.game.lifecycle.LifeCycleManagement;
 import com.mygdx.game.lifecycle.LifeCycleManager;
 import com.mygdx.game.pcm.PlayerControlManagement;
@@ -19,8 +15,7 @@ import com.mygdx.game.io.InputOutManagement;
 import com.mygdx.game.io.InputOutputManager;
 import com.mygdx.game.screen.ScreenManager;
 import com.mygdx.game.screen.TitleScreen;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.MathUtils;
+
 
 
 public class GameMaster extends Game
@@ -37,14 +32,16 @@ public class GameMaster extends Game
 	@Override
 	public void create() 
 	{
-		entityList = new EntityManager();
-		screenList = new ScreenManager();
-		lifeCycle = new LifeCycleManager();
-	    collision = new CollisionManager(entityList);
-	    playerControl = new PlayerControlManager(entityList);
-		ioManager = new InputOutputManager(playerControl);
 		
-		screenList.addScreen(new TitleScreen(this, entityList));
+		lifeCycle = new LifeCycleManager();
+		entityList = EntityManager.getInstance();
+		screenList = ScreenManager.getInstance();
+	    collision = CollisionManager.getInstance();
+	    playerControl = PlayerControlManager.getInstance();
+		ioManager = InputOutputManager.getInstance();
+		
+		
+		screenList.addScreen(new TitleScreen(this));
 		lifeCycle.startSimulation(screenList, entityList);
 		
 	}

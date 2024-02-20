@@ -5,16 +5,26 @@ import com.mygdx.game.ai.AIManagement;
 import com.mygdx.game.ai.AIManager;
 import com.mygdx.game.entity.Entity;
 import com.mygdx.game.entity.EntityManagement;
+import com.mygdx.game.entity.EntityManager;
 import com.mygdx.game.entity.TextureObject;
 
 public class CollisionManager implements CollisionManagement{
 	
 	private EntityManagement em;
 	private AIManagement ai;
+	private static CollisionManager instance;
 	
-	public CollisionManager(EntityManagement entityList) {
-	    this.em = entityList;
-	    ai = new AIManager(entityList);
+	public CollisionManager() {
+	    em = EntityManager.getInstance();
+	    ai = AIManager.getInstance();
+	}
+	
+	public static CollisionManager getInstance() {
+		if(instance==null)
+		{
+			instance = new CollisionManager();
+		}
+		return instance;
 	}
 	
     public int checkCollision() {

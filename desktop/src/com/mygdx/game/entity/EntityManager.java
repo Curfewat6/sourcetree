@@ -5,10 +5,20 @@ import java.util.List;
 
 public class EntityManager implements EntityManagement{
 	private List<Entity> entities;
+	private static EntityManager instance;
 	
 	public EntityManager() {
+		instance = this;
         entities = new ArrayList<>();
     }
+	
+	public static EntityManager getInstance() {
+		if(instance==null)
+		{
+			instance = new EntityManager();
+		}
+		return instance;
+	}
 	
     public void addEntity(Entity entity) {
         entities.add(entity);
@@ -32,16 +42,6 @@ public class EntityManager implements EntityManagement{
             entity.dispose();
         }
         entities.clear();
-    }
-    
-    public String getTexName() {
-    	for (Entity entity : entities) {
-    		if (!(entity instanceof TextureObject)) {
-                continue;
-            }
-    		return entity.getName();
-        }
-		return null;
     }
     
     public List<Entity> getEntities(){

@@ -4,13 +4,23 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.game.pcm.PlayerControlManagement;
 import com.mygdx.game.pcm.PlayerControlManager;
+import com.mygdx.game.screen.ScreenManager;
 
 public class InputOutputManager implements InputOutManagement {
     private Keyboard keyboard;
+    private static InputOutputManager instance;
 
-    public InputOutputManager(PlayerControlManagement playerControl) {
-        this.keyboard = new Keyboard(playerControl);
+    public InputOutputManager() {
+        this.keyboard = new Keyboard(PlayerControlManager.getInstance());
     }
+    
+    public static InputOutputManager getInstance() {
+		if(instance==null)
+		{
+			instance = new InputOutputManager();
+		}
+		return instance;
+	}
     
     public void handleInput() {
         if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)) {

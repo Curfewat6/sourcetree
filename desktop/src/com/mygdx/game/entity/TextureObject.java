@@ -57,24 +57,6 @@ public class TextureObject extends Entity {
     public void dispose() {
         tex.dispose();
     }
-
-	public void moveAIControlled() {
-		// TODO Auto-generated method stub
-		float ranX = MathUtils.random(64,Gdx.graphics.getWidth() - 64);
-		if(getPosY() > 0 ) {
-			setPosY(getPosY() - getSpeed());
-			
-		}else if(getPosY() <= 0) {
-			if(getSpeed() < 10) {
-				setSpeed(getSpeed() + 2);
-				setPosY(400);
-				setPosX(ranX);
-			}else {
-				setPosY(400);
-				setPosX(ranX);
-			}
-		}
-	}
 	
 	public void updateRecPos(float x, float y) {
 		rectBound.setPosition(x, y);
