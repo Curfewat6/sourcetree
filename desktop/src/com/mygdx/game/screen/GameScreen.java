@@ -74,7 +74,7 @@ public class GameScreen extends Screens{
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		if (ioManager.handlePause()){
+		if (ioManager.handleInput()){
 			isPaused = !isPaused;
 		}
 	    if (!isPaused) {

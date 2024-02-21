@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.game.pcm.PlayerControlManagement;
+import com.mygdx.game.screen.GameScreen;
 
 //This class is only here to process keyboard input. Something like keybinds in games
 public class Keyboard {
@@ -16,11 +17,17 @@ public class Keyboard {
         this.pcm = playerControl;
     }
 
-    public void handleKeyInput() {
+    public boolean handleKeyInput() {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
+            movement = false;
+            return true;
+        }
+        if (movement == false){
+            return false;
+        }
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             pcm.setDirection("right");
             movement = true;
-            
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             pcm.setDirection("left");
@@ -51,9 +58,12 @@ public class Keyboard {
             movement = true;
         }
 
+        
         if (movement){
             movement = false;
             pcm.handlingPlayerInput();
         }
+
+        return movement;
     }
 }
