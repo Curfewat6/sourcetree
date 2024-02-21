@@ -20,8 +20,6 @@ public class TitleScreen extends Screens{
 	private Skin skin;
 	private Label title;
 	private TextButton playButton;
-	private TextButton creditsButton;
-	private TextButton settingsButton;
 	private EntityManagement em;
 
 	public TitleScreen(Game game) 
