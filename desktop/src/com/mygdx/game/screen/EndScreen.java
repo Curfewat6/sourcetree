@@ -37,7 +37,7 @@ public class EndScreen extends Screens{
 	
 	public void createUI()
 	{
-		title = new Label("GG NOOB", skin);
+		title = new Label("YAYYYY YOU WIN!!!", skin);
 		title.setPosition(Gdx.graphics.getWidth() / 2 - title.getWidth() / 2, Gdx.graphics.getHeight() / 2 + 100);
 		mainMenuButton = new TextButton("MainMenu", skin);
 		mainMenuButton.setPosition(Gdx.graphics.getWidth() / 2 - mainMenuButton.getWidth() / 2, Gdx.graphics.getHeight() / 2);

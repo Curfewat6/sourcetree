@@ -6,6 +6,6 @@ public interface AIManagement {
 	
 	public void aiMovement();
 	public void movementSet(NonPlayable droplet);
-	public void collidePlayerAction(NonPlayable b);
+	public void resetMovement(NonPlayable b);
 
 }

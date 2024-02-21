@@ -47,7 +47,7 @@ public class CollisionManager implements CollisionManagement{
                NonPlayable B = (NonPlayable) b;
     	if( A.collideEntity(B)) {
     		collisionCount ++;
-    		ai.collidePlayerAction(B);
+    		ai.resetMovement(B);
     			}
    			}
     	}

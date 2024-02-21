@@ -51,7 +51,7 @@ public class AIManager implements AIManagement{
     	
     }
     
-    public void collidePlayerAction(NonPlayable droplet) {
+    public void resetMovement(NonPlayable droplet) {
     	float ranX = MathUtils.random(64,Gdx.graphics.getWidth() - 64);
     	if(droplet.getSpeed() < 10) {
 			droplet.setSpeed(droplet.getSpeed() + 2);
@@ -62,5 +62,4 @@ public class AIManager implements AIManagement{
 			droplet.setPosX(ranX);
 		}
     }
-
 }
