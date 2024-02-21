@@ -10,7 +10,7 @@ import com.mygdx.game.collision.CollisionManagement;
 import com.mygdx.game.pcm.PlayerControlManager;
 
 
-public class TextureObject extends Entity {
+public class Player extends Entity implements Collision{
 	
     private Texture tex;
     private Rectangle rectBound;
@@ -19,7 +19,7 @@ public class TextureObject extends Entity {
     private PlayerControlManager playerControl;
     
 
-    public TextureObject(String texPath, float posX, float posY, float speed) {
+    public Player(String texPath, float posX, float posY, float speed) {
         super(posX, posY, speed);
         this.tex = new Texture(Gdx.files.internal(texPath));
         // this rectBound is like a hit box for the texture objects
@@ -62,10 +62,6 @@ public class TextureObject extends Entity {
 		rectBound.setPosition(x, y);
 	}
 	
-	public boolean collide(TextureObject tex) {
-		return rectBound.overlaps(tex.getRectBound());
-	}
-	
 	public String getName() {
 		return texName;
 	}
@@ -77,4 +73,15 @@ public class TextureObject extends Entity {
 	public void setPlayerControl(PlayerControlManager playerControl) {
 		this.playerControl = playerControl;
 	}
+
+	@Override
+	public boolean collideEntity(Entity tex) {
+		// TODO Auto-generated method stub
+		if (tex instanceof NonPlayable) {
+			NonPlayable t = (NonPlayable) tex;
+			return rectBound.overlaps(t.getRectBound());
+		}
+		return false;
+	}
+
 }

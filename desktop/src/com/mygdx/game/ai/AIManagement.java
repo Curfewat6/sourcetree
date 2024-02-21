@@ -1,11 +1,11 @@
 package com.mygdx.game.ai;
 
-import com.mygdx.game.entity.TextureObject;
+import com.mygdx.game.entity.NonPlayable;
 
 public interface AIManagement {
 	
 	public void aiMovement();
-	public void movementSet(TextureObject droplet);
-	public void collidePlayerAction(TextureObject droplet);
+	public void movementSet(NonPlayable droplet);
+	public void collidePlayerAction(NonPlayable b);
 
 }

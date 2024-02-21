@@ -16,7 +16,8 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.entity.Circle;
 import com.mygdx.game.entity.EntityManagement;
 import com.mygdx.game.entity.EntityManager;
-import com.mygdx.game.entity.TextureObject;
+import com.mygdx.game.entity.NonPlayable;
+import com.mygdx.game.entity.Player;
 import com.mygdx.game.entity.Triangle;
 
 
@@ -106,10 +107,10 @@ public class EndScreen extends Screens{
 		for (int i = 0; i < x; i++) {
 			float ranX = MathUtils.random(64,Gdx.graphics.getWidth()- 64);
 			float ranY = MathUtils.random(Gdx.graphics.getHeight()/2,Gdx.graphics.getHeight());
-			em.addEntity(new TextureObject("droplet.png",ranX,ranY,2));
+			em.addEntity(new NonPlayable("droplet.png",ranX,ranY,2));
 		}
 		//Creates all the Object needed
-		em.addEntity(new TextureObject("bucket.png",280,20,300));
+		em.addEntity(new Player("bucket.png",280,20,300));
 		//em.addEntity(new Triangle(150,250,350,50,150,50,Color.RED,200));
 		//em.addEntity(new Circle(50,50,50,Color.GREEN,200));
 	}

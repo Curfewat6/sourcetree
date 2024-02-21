@@ -18,7 +18,6 @@ import com.mygdx.game.collision.CollisionManager;
 import com.mygdx.game.entity.Circle;
 import com.mygdx.game.entity.EntityManagement;
 import com.mygdx.game.entity.EntityManager;
-import com.mygdx.game.entity.TextureObject;
 import com.mygdx.game.entity.Triangle;
 import com.mygdx.game.io.InputOutManagement;
 import com.mygdx.game.io.InputOutputManager;

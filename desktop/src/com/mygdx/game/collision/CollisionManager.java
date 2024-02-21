@@ -6,7 +6,8 @@ import com.mygdx.game.ai.AIManager;
 import com.mygdx.game.entity.Entity;
 import com.mygdx.game.entity.EntityManagement;
 import com.mygdx.game.entity.EntityManager;
-import com.mygdx.game.entity.TextureObject;
+import com.mygdx.game.entity.NonPlayable;
+import com.mygdx.game.entity.Player;
 
 public class CollisionManager implements CollisionManagement{
 	
@@ -33,25 +34,20 @@ public class CollisionManager implements CollisionManagement{
     	
     	for (int i = 0; i < em.getEntities().size(); i++) {
    		 Entity a = em.getEntities().get(i);
-            if (!(a instanceof TextureObject)) {
+            if (!(a instanceof Player)) {
                 continue;
             }	
-            TextureObject A = (TextureObject) a;
+            Player A = (Player) a;
             
-   		for (int j = i + 1; j < em.getEntities().size() ; j++) {
+   		for (int j = 1; j < em.getEntities().size() ; j++) {
    			Entity b = em.getEntities().get(j);
-               if (!(b instanceof TextureObject)) {
+               if (!(b instanceof NonPlayable)) {
                    continue;
                }
-               TextureObject B = (TextureObject) b;
-    	if(!a.getName().equals(b.getName()) && A.collide(B)) {
+               NonPlayable B = (NonPlayable) b;
+    	if( A.collideEntity(B)) {
     		collisionCount ++;
-    			if(a.getName() == "droplet.png") {
-    				ai.collidePlayerAction(A);
-    			}
-    			else if(b.getName() == "droplet.png"){
-    				ai.collidePlayerAction(B);
-    			}
+    		ai.collidePlayerAction(B);
     			}
    			}
     	}

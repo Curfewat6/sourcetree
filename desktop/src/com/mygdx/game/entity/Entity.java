@@ -50,10 +50,8 @@ public class Entity {
 		return entName;
 	}
 
-	protected void dispose() {};
-	protected void render() {};
-	protected void create() {};
-	protected void update() {};
-	
-
+	public void dispose() {};
+	public void render() {};
+	public void create() {};
+	public void update() {};
 }

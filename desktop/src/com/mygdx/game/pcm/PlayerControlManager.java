@@ -3,7 +3,7 @@ import com.badlogic.gdx.Gdx;
 import com.mygdx.game.entity.Circle;
 import com.mygdx.game.entity.EntityManagement;
 import com.mygdx.game.entity.EntityManager;
-import com.mygdx.game.entity.TextureObject;
+import com.mygdx.game.entity.Player;
 import com.mygdx.game.entity.Triangle;
 import com.mygdx.game.screen.ScreenManager;
 
@@ -29,11 +29,9 @@ public class PlayerControlManager implements PlayerControlManagement {
 
     public void handlingPlayerInput() {
         entityManager.getEntities().forEach(entity -> {
-            if (entity instanceof TextureObject) {
-                TextureObject textureObject = (TextureObject) entity;
-                if (textureObject.getName().equals("bucket.png")) {
+            if (entity instanceof Player) {
+                Player textureObject = (Player) entity;
                     handleBucketInput(textureObject);
-                }
             } else if (entity instanceof Circle) {
                 Circle circle = (Circle) entity;
                 handleCircleInput(circle);
@@ -50,21 +48,21 @@ public class PlayerControlManager implements PlayerControlManagement {
 		this.direction = dir;
 	}
 
-    public void handleBucketInput(TextureObject bucket) {
+    public void handleBucketInput(Player textureObject) {
         if (this.direction == "arrow-left") {
-            bucket.setPosX(bucket.getPosX() - (bucket.getSpeed() * Gdx.graphics.getDeltaTime()));
+            textureObject.setPosX(textureObject.getPosX() - (textureObject.getSpeed() * Gdx.graphics.getDeltaTime()));
             this.direction = null;
         }
         if (this.direction == "arrow-right") {
-            bucket.setPosX(bucket.getPosX() + (bucket.getSpeed() * Gdx.graphics.getDeltaTime()));
+            textureObject.setPosX(textureObject.getPosX() + (textureObject.getSpeed() * Gdx.graphics.getDeltaTime()));
             this.direction = null;
         }
         if (this.direction == "arrow-up") {
-            bucket.setPosY(bucket.getPosY() + (bucket.getSpeed() * Gdx.graphics.getDeltaTime()));
+            textureObject.setPosY(textureObject.getPosY() + (textureObject.getSpeed() * Gdx.graphics.getDeltaTime()));
             this.direction = null;
         }
         if (this.direction == "arrow-down") {
-            bucket.setPosY(bucket.getPosY() - (bucket.getSpeed() * Gdx.graphics.getDeltaTime()));
+            textureObject.setPosY(textureObject.getPosY() - (textureObject.getSpeed() * Gdx.graphics.getDeltaTime()));
             this.direction = null;
         }
     }
