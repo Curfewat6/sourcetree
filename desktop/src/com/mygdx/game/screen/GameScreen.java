@@ -74,7 +74,9 @@ public class GameScreen extends Screens{
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
+		if (ioManager.handleInput()){
+			isPaused = !isPaused;
+		}
 	    if (!isPaused) {
 	        // Update and draw entities only when the game is not paused
 	        //entityList.move();
@@ -107,10 +109,6 @@ public class GameScreen extends Screens{
 			font.draw(batch, "Paused - Press P to Resume", 100, 150);
 		    batch.end();
 		}
-        
-        if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
-            isPaused = !isPaused; // Toggle the pause state
-        }
 
 	}
 

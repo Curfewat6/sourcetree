@@ -21,11 +21,23 @@ public class InputOutputManager implements InputOutManagement {
 		}
 		return instance;
 	}
-    
-    public void handleInput() {
+
+    public boolean handleInput() {
         if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)) {
-            keyboard.handleKeyInput();
+            boolean returnValue = keyboard.handleKeyInput();
+            return returnValue;
         }
         // If you want to add more input devices u can put them here <3
+        return false;
     }
+
+
+
+    // @Override
+    // public void handleInput() {
+    //     if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)) {
+    //         keyboard.handleKeyInput();
+    //     }
+    //     // If you want to add more input devices u can put them here <3
+    // }
 }
