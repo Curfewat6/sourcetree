@@ -25,7 +25,7 @@ import com.mygdx.game.pcm.PlayerControlManagement;
 import com.mygdx.game.pcm.PlayerControlManager;
 
 
-public class GameScreen extends Screens{
+public class GameScreen extends Screens implements PauseCallBack{
 
 	private EntityManagement entityList;
 	private CollisionManagement collisionManager;
@@ -46,6 +46,7 @@ public class GameScreen extends Screens{
 		entityList = EntityManager.getInstance();
 		playerControl = PlayerControlManager.getInstance();
 		ioManager = InputOutputManager.getInstance();
+		ioManager.setPauseCallback(this);
 		collisionManager = CollisionManager.getInstance();
 		aiManager = AIManager.getInstance();
 		
@@ -74,15 +75,15 @@ public class GameScreen extends Screens{
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		if (ioManager.handleInput()){
-			isPaused = !isPaused;
-		}
+		//if (ioManager.handleInput()){
+			//isPaused = !isPaused;
+		//}
+		ioManager.handleInput();
 	    if (!isPaused) {
 	        // Update and draw entities only when the game is not paused
 	        //entityList.move();
 	        entityList.update();
-	        //playerControl.handlingPlayerInput();
-			ioManager.handleInput();
+	        //playerControl.handlingPlayerInput();			
 			aiManager.aiMovement();
 
 	        int collisionsThisFrame = collisionManager.checkCollision();
@@ -128,6 +129,12 @@ public class GameScreen extends Screens{
 	public void dispose() {
 
 		
+	}
+
+	@Override
+	public void togglePause() {
+		// TODO Auto-generated method stub
+		isPaused = !isPaused;
 	}
 	
 }
