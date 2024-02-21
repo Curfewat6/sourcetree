@@ -3,16 +3,17 @@ package com.mygdx.game.screen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public abstract class Screens implements Screen
 {
-	Game game;
-	Stage stage;
+	private Game game;
+	private Stage stage;
 	
-	public Screens(Game game, Stage stage)
+	public Screens(Game game)
 	{
 		this.game = game;
-		this.stage = stage;
+		stage = new Stage(new ScreenViewport());
 	}
 	
     public Game getGame() {

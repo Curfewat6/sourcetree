@@ -41,8 +41,8 @@ public class GameScreen extends Screens{
 	
 	public GameScreen(Game game) 
 	{
-		super(game, new Stage(new ScreenViewport()));
-		Gdx.input.setInputProcessor(stage);
+		super(game);
+		Gdx.input.setInputProcessor(getStage());
 		entityList = EntityManager.getInstance();
 		playerControl = PlayerControlManager.getInstance();
 		ioManager = InputOutputManager.getInstance();
@@ -90,14 +90,14 @@ public class GameScreen extends Screens{
 		     // Check if there have been any collisions
 		     if (totalCollisions >= 50 ) {
 		    	 // Switch to end game scene
-		    	 game.setScreen(new EndScreen(game));
+		    	 getGame().setScreen(new EndScreen(getGame()));
 		     } else {
 		         System.out.println(totalCollisions);
 		     }
 	    }
 		
-		stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-		stage.draw();
+		getStage().act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+		getStage().draw();
 		entityList.draw();
 
         
@@ -116,7 +116,7 @@ public class GameScreen extends Screens{
 
 	@Override
 	public void resize(int width, int height) {
-		stage.getViewport().update(width, height, true);
+		getStage().getViewport().update(width, height, true);
 	}
 
 

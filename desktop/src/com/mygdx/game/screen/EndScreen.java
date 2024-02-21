@@ -30,8 +30,8 @@ public class EndScreen extends Screens{
 
 	public EndScreen(Game game) 
 	{
-		super(game, new Stage(new ScreenViewport()));
-		Gdx.input.setInputProcessor(stage);
+		super(game);
+		Gdx.input.setInputProcessor(getStage());
 		em = EntityManager.getInstance();
 	}
 	
@@ -48,12 +48,12 @@ public class EndScreen extends Screens{
 		        public void clicked(InputEvent event, float x, float y) 
 		        {
 		        		
-			            game.setScreen(new TitleScreen(game));
+			            getGame().setScreen(new TitleScreen(getGame()));
 		        }
 		    });
 		
-	    stage.addActor(title);
-	    stage.addActor(mainMenuButton);
+	    getStage().addActor(title);
+	    getStage().addActor(mainMenuButton);
 	}
 
 	@Override
@@ -66,13 +66,13 @@ public class EndScreen extends Screens{
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-		stage.draw();
+		getStage().act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+		getStage().draw();
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		stage.getViewport().update(width, height, true);
+		getStage().getViewport().update(width, height, true);
 	}
 
 	@Override

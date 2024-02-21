@@ -24,9 +24,10 @@ public class TitleScreen extends Screens{
 
 	public TitleScreen(Game game) 
 	{
-		super(game, new Stage(new ScreenViewport()));
+		super(game);
+		setStage(new Stage(new ScreenViewport()));
 		em = EntityManager.getInstance();
-		Gdx.input.setInputProcessor(stage);
+		Gdx.input.setInputProcessor(getStage());
 	}
 	
 	public void createUI()
@@ -42,12 +43,12 @@ public class TitleScreen extends Screens{
 	        @Override
 	        public void clicked(InputEvent event, float x, float y) 
 	        {
-		            game.setScreen(new GameScreen(game));
+		            getGame().setScreen(new GameScreen(getGame()));
 	        }
 	    });
 	    
-	    stage.addActor(title);
-	    stage.addActor(playButton);
+	    getStage().addActor(title);
+	    getStage().addActor(playButton);
 
 	}
 
@@ -61,13 +62,13 @@ public class TitleScreen extends Screens{
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-		stage.draw();
+		getStage().act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+		getStage().draw();
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		stage.getViewport().update(width, height, true);
+		getStage().getViewport().update(width, height, true);
 	}
 
 	@Override
