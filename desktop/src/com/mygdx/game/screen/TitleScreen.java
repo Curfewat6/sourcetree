@@ -4,8 +4,13 @@ import org.lwjgl.opengl.GL20;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -22,15 +27,16 @@ public class TitleScreen extends Screens{
 	private TextButton playButton;
 	private EntityManagement em;
 
+
 	public TitleScreen(Game game) 
 	{
-		super(game);
-		setStage(new Stage(new ScreenViewport()));
+		super(game); 
+	    Gdx.input.setInputProcessor(getStage());
 		em = EntityManager.getInstance();
-		Gdx.input.setInputProcessor(getStage());
+
 	}
 	
-	public void createUI()
+	public void create()
 	{
 		title = new Label("Demo", skin);
 		title.setPosition(Gdx.graphics.getWidth() / 2 - title.getWidth() / 2, Gdx.graphics.getHeight() / 2 + 100);
@@ -47,6 +53,11 @@ public class TitleScreen extends Screens{
 	        }
 	    });
 	    
+        setBackgroundImage(new Image(getTexture()));
+        getBackgroundImage().setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+	    
+        getStage().addActor(getBackgroundImage());
 	    getStage().addActor(title);
 	    getStage().addActor(playButton);
 
@@ -56,7 +67,8 @@ public class TitleScreen extends Screens{
 	@Override
 	public void show() {
 	    skin = new Skin(Gdx.files.internal("uiskin.json")); 
-	    createUI();
+	    setTexture(new Texture(Gdx.files.internal("background.jpg")));
+	    create();
 	}
 
 	@Override
@@ -69,6 +81,7 @@ public class TitleScreen extends Screens{
 	@Override
 	public void resize(int width, int height) {
 		getStage().getViewport().update(width, height, true);
+
 	}
 
 	@Override

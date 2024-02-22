@@ -5,9 +5,11 @@ import org.lwjgl.opengl.GL20;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -35,7 +37,7 @@ public class EndScreen extends Screens{
 		em = EntityManager.getInstance();
 	}
 	
-	public void createUI()
+	public void create()
 	{
 		title = new Label("YAYYYY YOU WIN!!!", skin);
 		title.setPosition(Gdx.graphics.getWidth() / 2 - title.getWidth() / 2, Gdx.graphics.getHeight() / 2 + 100);
@@ -51,7 +53,12 @@ public class EndScreen extends Screens{
 			            getGame().setScreen(new TitleScreen(getGame()));
 		        }
 		    });
-		
+		 
+        setBackgroundImage(new Image(getTexture()));
+        getBackgroundImage().setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+		 
+	    getStage().addActor(getBackgroundImage());
 	    getStage().addActor(title);
 	    getStage().addActor(mainMenuButton);
 	}
@@ -59,7 +66,8 @@ public class EndScreen extends Screens{
 	@Override
 	public void show() {
 	    skin = new Skin(Gdx.files.internal("uiskin.json")); 
-	    createUI();
+	    setTexture(new Texture(Gdx.files.internal("background.jpg")));
+	    create();
 	    resetEM();
 	}
 
