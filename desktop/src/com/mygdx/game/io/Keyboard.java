@@ -12,6 +12,7 @@ import com.mygdx.game.screen.PauseCallBack;
 //This class is only here to process keyboard input. Something like keybinds in games
 public class Keyboard {
     private PlayerControlManagement pcm;
+    private boolean isPaused = false;
 
     public Keyboard(PlayerControlManagement playerControl) {
         this.pcm = playerControl;
@@ -23,8 +24,9 @@ public class Keyboard {
         if (Gdx.input.isKeyJustPressed(Keys.P)) {
             if (pcb != null) {
                 pcb.togglePause();
+                isPaused = !isPaused;
             }
-        } else { 
+        } else if(!isPaused){ 
             if (Gdx.input.isKeyPressed(Keys.D)) {
                 pcm.setDirection("right");
                 directionKeyPressed = true;
