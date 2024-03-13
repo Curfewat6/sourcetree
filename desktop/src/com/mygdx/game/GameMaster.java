@@ -2,19 +2,19 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.mygdx.game.collision.CollisionManagement;
-import com.mygdx.game.collision.CollisionManager;
-import com.mygdx.game.entity.EntityManagement;
-import com.mygdx.game.entity.EntityManager;
-import com.mygdx.game.lifecycle.LifeCycleManagement;
-import com.mygdx.game.lifecycle.LifeCycleManager;
-import com.mygdx.game.pcm.PlayerControlManagement;
-import com.mygdx.game.pcm.PlayerControlManager;
-import com.mygdx.game.screen.ScreenManagement;
-import com.mygdx.game.io.InputOutManagement;
-import com.mygdx.game.io.InputOutputManager;
-import com.mygdx.game.screen.ScreenManager;
-import com.mygdx.game.screen.TitleScreen;
+import com.mygdx.game.gameEngine.collision.CollisionManagement;
+import com.mygdx.game.gameEngine.collision.CollisionManager;
+import com.mygdx.game.gameEngine.entity.EntityManagement;
+import com.mygdx.game.gameEngine.entity.EntityManager;
+import com.mygdx.game.gameEngine.lifecycle.LifeCycleManagement;
+import com.mygdx.game.gameEngine.lifecycle.LifeCycleManager;
+import com.mygdx.game.gameEngine.pcm.PlayerControlManagement;
+import com.mygdx.game.gameEngine.pcm.PlayerControlManager;
+import com.mygdx.game.gameEngine.screen.ScreenManagement;
+import com.mygdx.game.gameEngine.io.InputOutManagement;
+import com.mygdx.game.gameEngine.io.InputOutputManager;
+import com.mygdx.game.gameEngine.screen.ScreenManager;
+import com.mygdx.game.gameEngine.screen.TitleScreen;
 
 
 
