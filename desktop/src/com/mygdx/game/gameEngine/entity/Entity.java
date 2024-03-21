@@ -46,10 +46,7 @@ public abstract class Entity {
         speed = dp;
     }
     
-	public String getName() {
-		return entName;
-	}
-
+	public abstract String getName();
 	public abstract void dispose();
 	public abstract void render();
 	public abstract void create();
