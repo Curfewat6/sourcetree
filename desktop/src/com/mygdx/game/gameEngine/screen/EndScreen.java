@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.gameEngine.entity.Circle;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
@@ -29,20 +30,27 @@ public class EndScreen extends Screens{
 	private Skin skin;
 	private EntityManagement em;
 	private TextButton mainMenuButton;
+	private FitViewport fitViewport;
+
 
 	public EndScreen(Game game) 
 	{
-		super(game);
-		Gdx.input.setInputProcessor(getStage());
+		super(game, Width, Height); 
 		em = EntityManager.getInstance();
 	}
 	
 	public void create()
 	{
+		fitViewport = new FitViewport(Screens.Width, Screens.Height);
+		Stage newStage = new Stage(fitViewport);
+		setStage(newStage);
+		
+		Gdx.input.setInputProcessor(getStage());
+
 		title = new Label("YAYYYY YOU WIN!!!", skin);
-		title.setPosition(Gdx.graphics.getWidth() / 2 - title.getWidth() / 2, Gdx.graphics.getHeight() / 2 + 100);
+		title.setPosition(Screens.Width / 2 - title.getWidth() / 2, Screens.Height / 2 + 100);
 		mainMenuButton = new TextButton("MainMenu", skin);
-		mainMenuButton.setPosition(Gdx.graphics.getWidth() / 2 - mainMenuButton.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+		mainMenuButton.setPosition(Screens.Width / 2 - mainMenuButton.getWidth() / 2, Screens.Height / 2);
 
 		 mainMenuButton.addListener(new ClickListener() 
 		    {
@@ -55,7 +63,7 @@ public class EndScreen extends Screens{
 		    });
 		 
         setBackgroundImage(new Image(getTexture()));
-        getBackgroundImage().setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        getBackgroundImage().setSize(Screens.Width, Screens.Height);
 
 		 
 	    getStage().addActor(getBackgroundImage());

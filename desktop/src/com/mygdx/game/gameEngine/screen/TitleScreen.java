@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.entity.EntityManager;
@@ -26,23 +27,30 @@ public class TitleScreen extends Screens{
 	private Label title;
 	private TextButton playButton;
 	private EntityManagement em;
+	private FitViewport fitViewport;
+
 
 
 	public TitleScreen(Game game) 
 	{
-		super(game); 
-	    Gdx.input.setInputProcessor(getStage());
+		super(game, Width, Height); 
 		em = EntityManager.getInstance();
 
 	}
 	
 	public void create()
 	{
+		fitViewport = new FitViewport(Screens.Width, Screens.Height);
+		Stage newStage = new Stage(fitViewport);
+		setStage(newStage);
+		
+	    Gdx.input.setInputProcessor(getStage());
+		
 		title = new Label("Demo", skin);
-		title.setPosition(Gdx.graphics.getWidth() / 2 - title.getWidth() / 2, Gdx.graphics.getHeight() / 2 + 100);
+		title.setPosition(Screens.Width / 2 - title.getWidth() / 2, Screens.Height / 2 + 100);
 		
 	    playButton = new TextButton("Play", skin);
-	    playButton.setPosition(Gdx.graphics.getWidth() / 2 - playButton.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+	    playButton.setPosition(Screens.Width / 2 - playButton.getWidth() / 2, Screens.Height / 2);
 
 	    playButton.addListener(new ClickListener() 
 	    {
@@ -54,7 +62,7 @@ public class TitleScreen extends Screens{
 	    });
 	    
         setBackgroundImage(new Image(getTexture()));
-        getBackgroundImage().setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        getBackgroundImage().setSize(Screens.Width, Screens.Height);
 
 	    
         getStage().addActor(getBackgroundImage());
@@ -74,12 +82,19 @@ public class TitleScreen extends Screens{
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		if (Gdx.input.isTouched()) {
+		    System.out.println("Screen touched at: " + Gdx.input.getX() + ", " + Gdx.input.getY());
+		}
+		fitViewport.apply();
 		getStage().act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 		getStage().draw();
+
 	}
 
 	@Override
 	public void resize(int width, int height) {
+	    System.out.println("Resizing to: " + width + "x" + height);
+
 		getStage().getViewport().update(width, height, true);
 
 	}

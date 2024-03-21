@@ -13,11 +13,15 @@ public abstract class Screens implements Screen
 	private Stage stage;
     private Image backgroundImage;
     private Texture texture;
+    protected static float Width = 800;
+	protected static float Height = 600;
 	
-	public Screens(Game game)
+	public Screens(Game game, float Width, float Height)
 	{
 		this.game = game;
-		stage = new Stage(new ScreenViewport());
+		stage = new Stage();
+		Screens.Width = Width;
+		Screens.Height = Height;
 	}
 	
     public Game getGame() 
