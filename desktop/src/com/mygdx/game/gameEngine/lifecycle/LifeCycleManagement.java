@@ -6,7 +6,7 @@ import com.mygdx.game.gameEngine.screen.ScreenManager;
 
 public interface LifeCycleManagement {
 	
-	public void startSimulation(ScreenManagement screenList, EntityManagement entityList);
-	public void endSimulation(ScreenManagement screenManager,EntityManagement entityManager);
+	public void startSimulation(EntityManagement entityList);
+	public void endSimulation(EntityManagement entityManager);
 
 }

@@ -19,6 +19,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.entity.EntityManager;
+import com.mygdx.game.gameEngine.screen.*;
+
 
 
 public class TitleScreen extends Screens{
@@ -28,6 +30,8 @@ public class TitleScreen extends Screens{
 	private TextButton playButton;
 	private EntityManagement em;
 	private FitViewport fitViewport;
+	private ScreenManagement screenList;
+
 
 
 
@@ -35,6 +39,8 @@ public class TitleScreen extends Screens{
 	{
 		super(game, Width, Height); 
 		em = EntityManager.getInstance();
+		screenList = ScreenManager.getInstance();
+
 
 	}
 	
@@ -57,7 +63,12 @@ public class TitleScreen extends Screens{
 	        @Override
 	        public void clicked(InputEvent event, float x, float y) 
 	        {
-		            getGame().setScreen(new GameScreen(getGame()));
+		            //getGame().setScreen(new GameScreen(getGame()));
+		            
+		    	    // Prepare the game screen
+		    	    String[] Game = {"GameScreen"};
+		    	    
+		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList);
 	        }
 	    });
 	    
