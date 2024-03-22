@@ -4,7 +4,7 @@ import com.mygdx.game.gameEngine.screen.PauseCallBack;
 
 public interface InputOutManagement {
 	
-	public void handleInput();
+	public String handleInput();
 	public void setPauseCallback(PauseCallBack pcb);
 
 }

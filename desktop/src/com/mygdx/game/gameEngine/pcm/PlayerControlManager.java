@@ -58,5 +58,10 @@ public class PlayerControlManager implements PlayerControlManagement {
             this.direction = null;
         }
     }
+
+    public void movePlayerBasedOnDirection() {
+        // Assuming you've set the direction before calling this method
+        handlingPlayerInput(); // This now immediately moves the player based on the latest direction
+    }
 }
 

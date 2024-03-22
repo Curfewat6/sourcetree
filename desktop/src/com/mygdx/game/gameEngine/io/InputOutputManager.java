@@ -11,6 +11,7 @@ public class InputOutputManager implements InputOutManagement {
     private Keyboard keyboard;
     private static InputOutputManager instance;
     private PauseCallBack pcb;
+    private String keyPressed;
 
     public InputOutputManager() {
         this.keyboard = new Keyboard(PlayerControlManager.getInstance());
@@ -28,20 +29,12 @@ public class InputOutputManager implements InputOutManagement {
         this.pcb = pcb;
     }
 
-    //public boolean handleInput() {
-        //if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)) {
-            //boolean returnValue = keyboard.handleKeyInput();
-            //return returnValue;
-        //}
-        // If you want to add more input devices u can put them here <3
-        //return false;
-    //}
-
      @Override
-     public void handleInput() {
+     public String handleInput() {
          if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)) {
-             keyboard.handleKeyInput(pcb);
+            return keyboard.handleKeyInput(pcb);
          }
+         return "no-input";
          // If you want to add more input devices u can put them here <3
      }
 }

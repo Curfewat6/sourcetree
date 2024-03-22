@@ -41,6 +41,7 @@ public class GameScreen extends Screens implements PauseCallBack{
     private BitmapFont font;
     private int totalCollisions = 0;
 	private FitViewport fitViewport;
+	private String keyPressed;
 
 
 	
@@ -118,8 +119,12 @@ public class GameScreen extends Screens implements PauseCallBack{
 		//if (ioManager.handleInput()){
 			//isPaused = !isPaused;
 		//}
-		ioManager.handleInput();
+		keyPressed = ioManager.handleInput();
 	    if (!isPaused) {
+			if(!keyPressed.equals("no-input")){
+				playerControl.setDirection(keyPressed); // Set the direction based on input
+				playerControl.movePlayerBasedOnDirection(); 
+			}
 	        // Update and draw entities only when the game is not paused
 	        //entityList.move();
 	        entityList.update();
