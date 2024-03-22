@@ -21,6 +21,7 @@ public class Colliable extends Entity implements Collision{
         // this rectBound is like a hit box for the texture objects
         this.rectBound = new Rectangle(posX, posY, tex.getWidth(), tex.getHeight());
         this.texName = texPath;
+		this.isAI = true;
 	}
 
 	@Override
@@ -57,6 +58,12 @@ public class Colliable extends Entity implements Collision{
 	
 	public String getName() {
 		return texName;
+	}
+	public void setAI(boolean isAI) {
+		this.isAI = isAI;
+	}
+	public boolean getAI() {
+		return isAI;
 	}
 
 	public PlayerControlManager getPlayerControl() {

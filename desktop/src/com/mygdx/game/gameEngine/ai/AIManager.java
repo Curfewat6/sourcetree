@@ -66,15 +66,15 @@ public class AIManager implements AIManagement{
 	// 		droplet.setPosX(ranX);
 	// 	}
     // }
+	@Override
 	public boolean checkAI(Entity a) {
 
 		if ((a instanceof Colliable)) {
 			Colliable A = (Colliable) a;
-			if(A.get)
-		}	
-		
-
-		
-		return true;
+			if(A.getAI() == true) {
+				return true;
+			}
+		}		
+		return false;
 	}
 }
