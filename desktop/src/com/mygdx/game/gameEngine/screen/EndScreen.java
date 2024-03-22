@@ -14,11 +14,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.entity.EntityManager;
-import com.mygdx.game.gameEngine.entity.NonPlayable;
-import com.mygdx.game.gameEngine.entity.Player;
+import com.mygdx.game.gameLogic.entity.Target;
+import com.mygdx.game.gameLogic.entity.Player;
 
 
 public class EndScreen extends Screens{
@@ -27,20 +28,27 @@ public class EndScreen extends Screens{
 	private Skin skin;
 	private EntityManagement em;
 	private TextButton mainMenuButton;
+	private FitViewport fitViewport;
+
 
 	public EndScreen(Game game) 
 	{
-		super(game);
-		Gdx.input.setInputProcessor(getStage());
+		super(game, Width, Height); 
 		em = EntityManager.getInstance();
 	}
 	
 	public void create()
 	{
+		fitViewport = new FitViewport(Screens.Width, Screens.Height);
+		Stage newStage = new Stage(fitViewport);
+		setStage(newStage);
+		
+		Gdx.input.setInputProcessor(getStage());
+
 		title = new Label("YAYYYY YOU WIN!!!", skin);
-		title.setPosition(Gdx.graphics.getWidth() / 2 - title.getWidth() / 2, Gdx.graphics.getHeight() / 2 + 100);
+		title.setPosition(Screens.Width / 2 - title.getWidth() / 2, Screens.Height / 2 + 100);
 		mainMenuButton = new TextButton("MainMenu", skin);
-		mainMenuButton.setPosition(Gdx.graphics.getWidth() / 2 - mainMenuButton.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+		mainMenuButton.setPosition(Screens.Width / 2 - mainMenuButton.getWidth() / 2, Screens.Height / 2);
 
 		 mainMenuButton.addListener(new ClickListener() 
 		    {
@@ -53,7 +61,7 @@ public class EndScreen extends Screens{
 		    });
 		 
         setBackgroundImage(new Image(getTexture()));
-        getBackgroundImage().setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        getBackgroundImage().setSize(Screens.Width, Screens.Height);
 
 		 
 	    getStage().addActor(getBackgroundImage());
@@ -113,10 +121,10 @@ public class EndScreen extends Screens{
 		for (int i = 0; i < x; i++) {
 			float ranX = MathUtils.random(64,Gdx.graphics.getWidth()- 64);
 			float ranY = MathUtils.random(Gdx.graphics.getHeight()/2,Gdx.graphics.getHeight());
-			em.addEntity(new NonPlayable("droplet.png",ranX,ranY,2));
+			//em.addEntity(new Target("droplet.png",ranX,ranY,2));
 		}
 		//Creates all the Object needed
-		em.addEntity(new Player("bucket.png",280,20,300));
+		//em.addEntity(new Player("bucket.png",280,20,300));
 		//em.addEntity(new Triangle(150,250,350,50,150,50,Color.RED,200));
 		//em.addEntity(new Circle(50,50,50,Color.GREEN,200));
 	}

@@ -37,17 +37,17 @@ public class CollisionManager implements CollisionManagement{
             }	
             Player A = (Player) a;
             
-   		for (int j = 1; j < em.getEntities().size() ; j++) {
-   			Entity b = em.getEntities().get(j);
-               if (!(b instanceof NonPlayable)) {
-                   continue;
-               }
-               NonPlayable B = (NonPlayable) b;
-    	if( A.collideEntity(B)) {
-    		collisionCount ++;
-    		ai.resetMovement(B);
-    			}
-   			}
+   		// for (int j = 1; j < em.getEntities().size() ; j++) {
+   		// 	Entity b = em.getEntities().get(j);
+        //        if (!(b instanceof NonPlayable)) {
+        //            continue;
+        //        }
+        //        NonPlayable B = (NonPlayable) b;
+    	// if( A.collideEntity(B)) {
+    	// 	collisionCount ++;
+    	// 	ai.resetMovement(B);
+    	// 		}
+   		// 	}
     	}
 		return collisionCount;
     }

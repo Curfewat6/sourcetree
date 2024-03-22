@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.gameEngine.ai.AIManagement;
 import com.mygdx.game.gameEngine.ai.AIManager;
@@ -20,7 +21,7 @@ import com.mygdx.game.gameEngine.collision.CollisionManager;
 import com.mygdx.game.gameEngine.entity.Entity;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.entity.EntityManager;
-import com.mygdx.game.gameEngine.entity.Player;
+import com.mygdx.game.gameLogic.entity.Player;
 import com.mygdx.game.gameEngine.io.InputOutManagement;
 import com.mygdx.game.gameEngine.io.InputOutputManager;
 import com.mygdx.game.gameEngine.pcm.PlayerControlManagement;
@@ -39,12 +40,13 @@ public class GameScreen extends Screens implements PauseCallBack{
     private SpriteBatch batch;
     private BitmapFont font;
     private int totalCollisions = 0;
+	private FitViewport fitViewport;
+
 
 	
 	public GameScreen(Game game) 
 	{
-		super(game);
-		Gdx.input.setInputProcessor(getStage());
+		super(game, Width, Height);
 		entityList = EntityManager.getInstance();
 		playerControl = PlayerControlManager.getInstance();
 		ioManager = InputOutputManager.getInstance();
@@ -58,8 +60,14 @@ public class GameScreen extends Screens implements PauseCallBack{
 	
 	public void create()
 	{
+		fitViewport = new FitViewport(Screens.Width, Screens.Height);
+		Stage newStage = new Stage(fitViewport);
+		setStage(newStage);
+		Gdx.input.setInputProcessor(getStage());
+
+		
         setBackgroundImage(new Image(getTexture()));
-        getBackgroundImage().setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        getBackgroundImage().setSize(Screens.Width, Screens.Height);
         
         getStage().addActor(getBackgroundImage());
 
@@ -106,6 +114,7 @@ public class GameScreen extends Screens implements PauseCallBack{
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		fitViewport.apply();
 		//if (ioManager.handleInput()){
 			//isPaused = !isPaused;
 		//}
@@ -137,6 +146,7 @@ public class GameScreen extends Screens implements PauseCallBack{
 		getStage().draw();
 		entityList.draw();
 
+
         
 		if (isPaused) {
 		    // Example: Display a simple pause overlay
@@ -150,7 +160,6 @@ public class GameScreen extends Screens implements PauseCallBack{
 	@Override
 	public void resize(int width, int height) {
 		getStage().getViewport().update(width, height, true);
-		getStage().draw();
 	}
 
 
