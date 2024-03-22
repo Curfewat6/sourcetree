@@ -1,11 +1,10 @@
 package com.mygdx.game.gameLogic.entity;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.game.gameEngine.ai.AIManager;
 import com.mygdx.game.gameEngine.entity.*;
-import com.mygdx.game.gameEngine.pcm.PlayerControlManager;
 
 public class Bullet extends Colliable{
 	
@@ -13,10 +12,11 @@ public class Bullet extends Colliable{
     private Rectangle rectBound;
     private SpriteBatch batch;
     private String texName;
-    private PlayerControlManager playerControl;
-
-	public Bullet(String texPath, float posX, float posY, float speed) {
+    private AIManager aiManager;
+    
+	public Bullet(String texPath, float posX, float posY, float speed,SpriteBatch batch) {
 		super(texPath, posX, posY, speed);
+		this.batch = batch;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -26,4 +26,13 @@ public class Bullet extends Colliable{
     		updateRecPos(posX, posY);
     	batch.end();
     }
+	
+	public AIManager getAImanager() {
+		return aiManager;
+	}
+
+	public void setAIManager(AIManager aiManager) {
+		this.aiManager = aiManager;
+	}
+	
 }

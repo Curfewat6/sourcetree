@@ -2,9 +2,9 @@ package com.mygdx.game.gameEngine.ai;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
+import com.mygdx.game.gameEngine.entity.Colliable;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.entity.EntityManager;
-import com.mygdx.game.gameEngine.entity.NonPlayable;
 
 public class AIManager implements AIManagement{
 	
@@ -25,14 +25,14 @@ public class AIManager implements AIManagement{
     
     public void aiMovement() {
         entityManager.getEntities().forEach(entity -> {
-            if (entity instanceof NonPlayable) {
-                NonPlayable textureObject = (NonPlayable) entity;
+            if (entity instanceof Colliable) {
+                Colliable textureObject = (Colliable) entity;
                 movementSet(textureObject);
             } 
         });	
     }
     
-    public void movementSet(NonPlayable droplet) {
+    public void movementSet(Colliable droplet) {
     	
 		float ranX = MathUtils.random(64,Gdx.graphics.getWidth() - 64);
 		if(droplet.getPosY() > 0 ) {
@@ -51,7 +51,7 @@ public class AIManager implements AIManagement{
     	
     }
     
-    public void resetMovement(NonPlayable droplet) {
+    public void resetMovement(Colliable droplet) {
     	float ranX = MathUtils.random(64,Gdx.graphics.getWidth() - 64);
     	if(droplet.getSpeed() < 10) {
 			droplet.setSpeed(droplet.getSpeed() + 2);
