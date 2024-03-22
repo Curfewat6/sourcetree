@@ -30,12 +30,12 @@ public class CollisionManager implements CollisionManagement{
     	int collisionCount = 0;
     	float ranX = MathUtils.random(64,Gdx.graphics.getWidth() - 64);
     	
-    	for (int i = 0; i < em.getEntities().size(); i++) {
-   		 Entity a = em.getEntities().get(i);
-            if (!(a instanceof Player)) {
-                continue;
-            }	
-            Player A = (Player) a;
+    	// for (int i = 0; i < em.getEntities().size(); i++) {
+   		//  Entity a = em.getEntities().get(i);
+        //     if (!(a instanceof Player)) {
+        //         continue;
+        //     }	
+        //     Player A = (Player) a;
             
    		// for (int j = 1; j < em.getEntities().size() ; j++) {
    		// 	Entity b = em.getEntities().get(j);
@@ -48,7 +48,7 @@ public class CollisionManager implements CollisionManagement{
     	// 	ai.resetMovement(B);
     	// 		}
    		// 	}
-    	}
+    	//}
 		return collisionCount;
     }
 }

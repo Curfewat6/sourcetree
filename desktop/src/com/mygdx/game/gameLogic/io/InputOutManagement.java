@@ -1,4 +1,4 @@
-package com.mygdx.game.gameEngine.io;
+package com.mygdx.game.gameLogic.io;
 
 import com.mygdx.game.gameEngine.screen.PauseCallBack;
 

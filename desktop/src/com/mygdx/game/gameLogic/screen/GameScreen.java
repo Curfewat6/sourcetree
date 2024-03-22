@@ -1,4 +1,4 @@
-package com.mygdx.game.gameEngine.screen;
+package com.mygdx.game.gameLogic.screen;
 
 import org.lwjgl.opengl.GL20;
 
@@ -22,8 +22,8 @@ import com.mygdx.game.gameEngine.entity.Entity;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.entity.EntityManager;
 import com.mygdx.game.gameLogic.entity.Player;
-import com.mygdx.game.gameEngine.io.InputOutManagement;
-import com.mygdx.game.gameEngine.io.InputOutputManager;
+import com.mygdx.game.gameLogic.io.InputOutManagement;
+import com.mygdx.game.gameLogic.io.InputOutputManager;
 import com.mygdx.game.gameEngine.pcm.PlayerControlManagement;
 import com.mygdx.game.gameEngine.pcm.PlayerControlManager;
 
@@ -51,7 +51,7 @@ public class GameScreen extends Screens implements PauseCallBack{
 		entityList = EntityManager.getInstance();
 		playerControl = PlayerControlManager.getInstance();
 		ioManager = InputOutputManager.getInstance();
-		ioManager.setPauseCallback(this);
+		//ioManager.setPauseCallback(this);
 		collisionManager = CollisionManager.getInstance();
 		aiManager = AIManager.getInstance();
 		

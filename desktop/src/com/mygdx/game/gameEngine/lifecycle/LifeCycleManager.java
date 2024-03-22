@@ -17,8 +17,8 @@ public class LifeCycleManager implements LifeCycleManagement{
 
 	    // Start the simulation and initialize the first scene
 	    public void startSimulation(ScreenManagement screenManager, EntityManagement entityManager) {
-			batch = new SpriteBatch();
-	    	game = screenManager.getScreen();
+	    	batch = new SpriteBatch();
+			game = screenManager.getScreen();
 			int x = 10;
 			//ensure that the object is randomly place 
 			for (int i = 0; i < x; i++) {
@@ -27,7 +27,7 @@ public class LifeCycleManager implements LifeCycleManagement{
 				//entityManager.addEntity(new NonPlayable("droplet.png",ranX,ranY,2));
 			}
 			//Creates all the Object needed
-			entityManager.addEntity(new Player("bucket.png",280,20,300,batch));
+			entityManager.addEntity(new Player("sukuna.png",280,0,300, batch));
 			//entityManager.addEntity(new Triangle(150,250,350,50,150,50,Color.RED,200));
 			//entityManager.addEntity(new Circle(50,50,50,Color.GREEN,200));
 	    	
