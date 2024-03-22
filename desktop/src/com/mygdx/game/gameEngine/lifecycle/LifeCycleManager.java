@@ -3,11 +3,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
-import com.mygdx.game.gameEngine.entity.Circle;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
-import com.mygdx.game.gameEngine.entity.NonPlayable;
-import com.mygdx.game.gameEngine.entity.Player;
-import com.mygdx.game.gameEngine.entity.Triangle;
 import com.mygdx.game.gameEngine.screen.ScreenManagement;
 import com.mygdx.game.gameEngine.screen.TitleScreen;
 
@@ -25,10 +21,10 @@ public class LifeCycleManager implements LifeCycleManagement{
 			for (int i = 0; i < x; i++) {
 				float ranX = MathUtils.random(64,Gdx.graphics.getWidth()- 64);
 				float ranY = MathUtils.random(Gdx.graphics.getHeight()/2,Gdx.graphics.getHeight());
-				entityManager.addEntity(new NonPlayable("droplet.png",ranX,ranY,2));
+				//entityManager.addEntity(new NonPlayable("droplet.png",ranX,ranY,2));
 			}
 			//Creates all the Object needed
-			entityManager.addEntity(new Player("bucket.png",280,20,300));
+			//entityManager.addEntity(new Player("bucket.png",280,20,300));
 			//entityManager.addEntity(new Triangle(150,250,350,50,150,50,Color.RED,200));
 			//entityManager.addEntity(new Circle(50,50,50,Color.GREEN,200));
 	    	
