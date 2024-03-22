@@ -55,9 +55,7 @@ public class GameMaster extends Game
 		//Refresh the screen to a blank canvas 
 		ScreenUtils.clear(0,0,0.2f,1);
 		//Render all the Object 
-		
 		super.render();
-		
 	}
 	public void dispose() {
 		//clear all object render
