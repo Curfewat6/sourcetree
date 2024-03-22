@@ -131,30 +131,25 @@ public class GameScreen extends Screens implements PauseCallBack{
 	        //entityList.move();
 	        entityList.update();
 	        //playerControl.handlingPlayerInput();			
-			aiManager.aiMovement();
+			//aiManager.aiMovement();
 			// Enforce bounds after updates
 			ScreenBounds();
 
 
-	        int collisionsThisFrame = collisionManager.checkCollision();
-	        totalCollisions += collisionsThisFrame;
+	        //int collisionsThisFrame = collisionManager.checkCollision();
+	        //totalCollisions += collisionsThisFrame;
 
 			// [ATTENTION!] Hi i commented this out to test my IO. You can uncomment it if need be. ~ Lucas <3
 	        //System.out.println("Total collisions so far: " + totalCollisions);
 	        
 		     // Check if there have been any collisions
-		     if (totalCollisions >= 50 ) {
+		     //if (totalCollisions >= 50 ) {
 		    	 // Switch to end game scene
-		    	 getGame().setScreen(new EndScreen(getGame()));
+		    	 //getGame().setScreen(new EndScreen(getGame()));
 		    	 
 		    	 
-		     } else {
-
-				// [ATTENTION!] Hi i commented this one too LOL. Can uncomment if need be. ~ Lucas <3
-		        // System.out.println(totalCollisions);
 		     }
-	    }
-		
+	    
 		getStage().act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 		getStage().draw();
 		entityList.draw();

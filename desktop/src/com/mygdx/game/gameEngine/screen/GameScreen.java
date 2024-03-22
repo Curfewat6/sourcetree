@@ -129,7 +129,7 @@ public class GameScreen extends Screens implements PauseCallBack{
 	        //entityList.move();
 	        entityList.update();
 	        //playerControl.handlingPlayerInput();			
-			aiManager.aiMovement();
+			//aiManager.aiMovement();
 			// Enforce bounds after updates
 			ScreenBounds();
 
