@@ -6,8 +6,6 @@ import com.mygdx.game.gameEngine.ai.AIManager;
 import com.mygdx.game.gameEngine.entity.Entity;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.entity.EntityManager;
-import com.mygdx.game.gameEngine.entity.NonPlayable;
-import com.mygdx.game.gameEngine.entity.Player;
 
 public class CollisionManager implements CollisionManagement{
 	
