@@ -20,6 +20,8 @@ import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.entity.EntityManager;
 import com.mygdx.game.gameLogic.entity.Target;
 import com.mygdx.game.gameLogic.entity.Player;
+import com.mygdx.game.gameEngine.screen.*;
+
 
 
 public class EndScreen extends Screens{
@@ -29,12 +31,16 @@ public class EndScreen extends Screens{
 	private EntityManagement em;
 	private TextButton mainMenuButton;
 	private FitViewport fitViewport;
+	private ScreenManagement screenList;
+
 
 
 	public EndScreen(Game game) 
 	{
 		super(game, Width, Height); 
 		em = EntityManager.getInstance();
+		screenList = ScreenManager.getInstance();
+
 	}
 	
 	public void create()
@@ -55,8 +61,12 @@ public class EndScreen extends Screens{
 		        @Override
 		        public void clicked(InputEvent event, float x, float y) 
 		        {
-		        		
-			            getGame().setScreen(new TitleScreen(getGame()));
+		    	    // Prepare the initial screen
+		    	    String[] Game = {"TitleScreen"};
+		    	    
+		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList);
+			        //getGame().setScreen(new TitleScreen(getGame()));
+		        	
 		        }
 		    });
 		 

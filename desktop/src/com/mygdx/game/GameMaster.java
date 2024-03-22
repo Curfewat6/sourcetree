@@ -14,7 +14,7 @@ import com.mygdx.game.gameEngine.screen.ScreenManagement;
 import com.mygdx.game.gameEngine.io.InputOutManagement;
 import com.mygdx.game.gameEngine.io.InputOutputManager;
 import com.mygdx.game.gameEngine.screen.ScreenManager;
-import com.mygdx.game.gameEngine.screen.TitleScreen;
+import com.mygdx.game.gameLogic.screen.ScreenCreate;
 
 
 
@@ -40,9 +40,11 @@ public class GameMaster extends Game
 	    playerControl = PlayerControlManager.getInstance();
 		ioManager = InputOutputManager.getInstance();
 		
-		
-		screenList.addScreen(new TitleScreen(this));
-		lifeCycle.startSimulation(screenList, entityList);
+	    // Prepare the initial screen
+	    String[] initialScreen = {"TitleScreen"};
+	    
+	    new ScreenCreate().createScreen(initialScreen, this, (ScreenManager) screenList);
+		lifeCycle.startSimulation(entityList);
 		
 	}
 		
@@ -59,7 +61,7 @@ public class GameMaster extends Game
 	}
 	public void dispose() {
 		//clear all object render
-		lifeCycle.endSimulation(screenList, entityList);
+		lifeCycle.endSimulation(entityList);
 		
 	}
 	@Override

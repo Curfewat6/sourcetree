@@ -26,6 +26,8 @@ import com.mygdx.game.gameLogic.io.InputOutManagement;
 import com.mygdx.game.gameLogic.io.InputOutputManager;
 import com.mygdx.game.gameEngine.pcm.PlayerControlManagement;
 import com.mygdx.game.gameEngine.pcm.PlayerControlManager;
+import com.mygdx.game.gameEngine.screen.*;
+
 
 
 public class GameScreen extends Screens implements PauseCallBack{
@@ -144,6 +146,8 @@ public class GameScreen extends Screens implements PauseCallBack{
 		     if (totalCollisions >= 50 ) {
 		    	 // Switch to end game scene
 		    	 getGame().setScreen(new EndScreen(getGame()));
+		    	 
+		    	 
 		     } else {
 
 				// [ATTENTION!] Hi i commented this one too LOL. Can uncomment if need be. ~ Lucas <3
