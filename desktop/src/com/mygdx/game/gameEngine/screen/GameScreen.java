@@ -129,17 +129,17 @@ public class GameScreen extends Screens implements PauseCallBack{
 			ScreenBounds();
 
 
-	        int collisionsThisFrame = collisionManager.checkCollision();
-	        totalCollisions += collisionsThisFrame;
-	        System.out.println("Total collisions so far: " + totalCollisions);
-	        
-		     // Check if there have been any collisions
-		     if (totalCollisions >= 50 ) {
-		    	 // Switch to end game scene
-		    	 getGame().setScreen(new EndScreen(getGame()));
-		     } else {
-		         System.out.println(totalCollisions);
-		     }
+//	        int collisionsThisFrame = collisionManager.checkCollision();
+//	        totalCollisions += collisionsThisFrame;
+//	        System.out.println("Total collisions so far: " + totalCollisions);
+//	        
+//		     // Check if there have been any collisions
+//		     if (totalCollisions >= 50 ) {
+//		    	 // Switch to end game scene
+//		    	 getGame().setScreen(new EndScreen(getGame()));
+//		     } else {
+//		         System.out.println(totalCollisions);
+//		     }
 	    }
 		
 		getStage().act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));

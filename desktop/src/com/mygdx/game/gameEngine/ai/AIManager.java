@@ -52,15 +52,15 @@ public class AIManager implements AIManagement{
     	
     }
     
-    public void resetMovement(Target droplet) {
-    	float ranX = MathUtils.random(64,Gdx.graphics.getWidth() - 64);
-    	if(droplet.getSpeed() < 10) {
-			droplet.setSpeed(droplet.getSpeed() + 2);
-			droplet.setPosY(400);
-			droplet.setPosX(ranX);
-		}else {
-			droplet.setPosY(400);
-			droplet.setPosX(ranX);
-		}
-    }
+//    public void resetMovement(Target droplet) {
+//    	float ranX = MathUtils.random(64,Gdx.graphics.getWidth() - 64);
+//    	if(droplet.getSpeed() < 10) {
+//			droplet.setSpeed(droplet.getSpeed() + 2);
+//			droplet.setPosY(400);
+//			droplet.setPosX(ranX);
+//		}else {
+//			droplet.setPosY(400);
+//			droplet.setPosX(ranX);
+//		}
+//    }
 }
