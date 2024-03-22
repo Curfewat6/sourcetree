@@ -4,7 +4,6 @@ import com.mygdx.game.gameEngine.entity.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.game.gameEngine.pcm.PlayerControlManager;
 
 
@@ -16,18 +15,15 @@ public class Player extends NonColliable{
     private PlayerControlManager playerControl;
     
 
-    public Player(String texPath, float posX, float posY, float speed) {
+    public Player(String texPath, float posX, float posY, float speed, SpriteBatch batch) {
         super(texPath, posX, posY, speed);
+        this.batch = batch;
         this.tex = new Texture(Gdx.files.internal(texPath));
         // this rectBound is like a hit box for the texture objects
         this.texName = texPath;
         
     }
-
-    @Override
-    public void create() {
-    	batch = new SpriteBatch();
-    }
+ 
     @Override
     public void render() {   
     	batch.begin();
