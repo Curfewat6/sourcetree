@@ -28,13 +28,14 @@ public class TitleScreen extends Screens{
 	private TextButton playButton;
 	private EntityManagement em;
 	private FitViewport fitViewport;
-
+	private ScreenManagement sm;
 
 
 	public TitleScreen(Game game) 
 	{
 		super(game, Width, Height); 
 		em = EntityManager.getInstance();
+		sm = ScreenManager.getInstance();
 
 	}
 	
@@ -57,7 +58,8 @@ public class TitleScreen extends Screens{
 	        @Override
 	        public void clicked(InputEvent event, float x, float y) 
 	        {
-		            getGame().setScreen(new GameScreen(getGame()));
+	        	sm.changeScreen(new GameScreen(getGame()));
+
 	        }
 	    });
 	    
