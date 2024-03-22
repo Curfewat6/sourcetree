@@ -41,20 +41,12 @@ public class PlayerControlManager implements PlayerControlManagement {
 	}
 
     public void handleBucketInput(Player textureObject) {
-        if (this.direction == "arrow-left") {
+        if (this.direction == "left") {
             textureObject.setPosX(textureObject.getPosX() - (textureObject.getSpeed() * Gdx.graphics.getDeltaTime()));
             this.direction = null;
         }
-        if (this.direction == "arrow-right") {
+        if (this.direction == "right") {
             textureObject.setPosX(textureObject.getPosX() + (textureObject.getSpeed() * Gdx.graphics.getDeltaTime()));
-            this.direction = null;
-        }
-        if (this.direction == "arrow-up") {
-            textureObject.setPosY(textureObject.getPosY() + (textureObject.getSpeed() * Gdx.graphics.getDeltaTime()));
-            this.direction = null;
-        }
-        if (this.direction == "arrow-down") {
-            textureObject.setPosY(textureObject.getPosY() - (textureObject.getSpeed() * Gdx.graphics.getDeltaTime()));
             this.direction = null;
         }
     }
