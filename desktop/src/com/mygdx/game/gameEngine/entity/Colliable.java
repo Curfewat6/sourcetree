@@ -12,6 +12,7 @@ public class Colliable extends Entity implements Collision{
     private Rectangle rectBound;
     private SpriteBatch batch;
     private String texName;
+	private boolean isAI;
     private PlayerControlManager playerControl;
 
 	public Colliable(String texPath, float posX, float posY, float speed) {

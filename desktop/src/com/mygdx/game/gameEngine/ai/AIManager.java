@@ -3,8 +3,11 @@ package com.mygdx.game.gameEngine.ai;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.gameEngine.entity.Colliable;
+import com.mygdx.game.gameEngine.entity.Entity;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.entity.EntityManager;
+import com.mygdx.game.gameEngine.entity.NonColliable;
+import com.mygdx.game.gameLogic.entity.Player;
 import com.mygdx.game.gameLogic.entity.Target;
 
 public class AIManager implements AIManagement{
@@ -24,43 +27,54 @@ public class AIManager implements AIManagement{
 		return instance;
 	}
     
-    public void aiMovement() {
-        entityManager.getEntities().forEach(entity -> {
-            if (entity instanceof Target) {
-                Target textureObject = (Target) entity;
-                movementSet(textureObject);
-            } 
-        });	
-    }
+    // public void aiMovement() {
+    //     entityManager.getEntities().forEach(entity -> {
+    //         if (entity instanceof Target) {
+    //             Target textureObject = (Target) entity;
+    //             movementSet(textureObject);
+    //         } 
+    //     });	
+    // }
     
-    public void movementSet(Target droplet) {
+    // public void movementSet(Target droplet) {
     	
-		float ranX = MathUtils.random(64,Gdx.graphics.getWidth() - 64);
-		if(droplet.getPosY() > 0 ) {
-			droplet.setPosY(droplet.getPosY() - droplet.getSpeed());
+	// 	float ranX = MathUtils.random(64,Gdx.graphics.getWidth() - 64);
+	// 	if(droplet.getPosY() > 0 ) {
+	// 		droplet.setPosY(droplet.getPosY() - droplet.getSpeed());
 			
-		}else if(droplet.getPosY() <= 0) {
-			if(droplet.getSpeed() < 10) {
-				droplet.setSpeed(droplet.getSpeed() + 2);
-				droplet.setPosY(400);
-				droplet.setPosX(ranX);
-			}else {
-				droplet.setPosY(400);
-				droplet.setPosX(ranX);
-			}
-		}
+	// 	}else if(droplet.getPosY() <= 0) {
+	// 		if(droplet.getSpeed() < 10) {
+	// 			droplet.setSpeed(droplet.getSpeed() + 2);
+	// 			droplet.setPosY(400);
+	// 			droplet.setPosX(ranX);
+	// 		}else {
+	// 			droplet.setPosY(400);
+	// 			droplet.setPosX(ranX);
+	// 		}
+	// 	}
     	
-    }
+    // }
     
-    public void resetMovement(Target droplet) {
-    	float ranX = MathUtils.random(64,Gdx.graphics.getWidth() - 64);
-    	if(droplet.getSpeed() < 10) {
-			droplet.setSpeed(droplet.getSpeed() + 2);
-			droplet.setPosY(400);
-			droplet.setPosX(ranX);
-		}else {
-			droplet.setPosY(400);
-			droplet.setPosX(ranX);
-		}
-    }
+    // public void resetMovement(Target droplet) {
+    // 	float ranX = MathUtils.random(64,Gdx.graphics.getWidth() - 64);
+    // 	if(droplet.getSpeed() < 10) {
+	// 		droplet.setSpeed(droplet.getSpeed() + 2);
+	// 		droplet.setPosY(400);
+	// 		droplet.setPosX(ranX);
+	// 	}else {
+	// 		droplet.setPosY(400);
+	// 		droplet.setPosX(ranX);
+	// 	}
+    // }
+	public boolean checkAI(Entity a) {
+
+		if ((a instanceof Colliable)) {
+			Colliable A = (Colliable) a;
+			if(A.get)
+		}	
+		
+
+		
+		return true;
+	}
 }

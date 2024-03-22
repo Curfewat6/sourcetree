@@ -6,6 +6,7 @@ public abstract class Entity {
     protected float posX, posY, speed, width, height;
     protected String entName;
     protected Color texColor;
+    protected boolean isAI;
     
 
     public Entity(float posX, float posY, float speed, Color texColor) {
