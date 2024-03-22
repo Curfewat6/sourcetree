@@ -21,7 +21,7 @@ import com.mygdx.game.gameEngine.collision.CollisionManager;
 import com.mygdx.game.gameEngine.entity.Entity;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.entity.EntityManager;
-import com.mygdx.game.gameEngine.entity.Player;
+import com.mygdx.game.gameLogic.entity.Player;
 import com.mygdx.game.gameEngine.io.InputOutManagement;
 import com.mygdx.game.gameEngine.io.InputOutputManager;
 import com.mygdx.game.gameEngine.pcm.PlayerControlManagement;

@@ -1,10 +1,8 @@
 package com.mygdx.game.gameEngine.pcm;
 import com.badlogic.gdx.Gdx;
-import com.mygdx.game.gameEngine.entity.Circle;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.entity.EntityManager;
-import com.mygdx.game.gameEngine.entity.Player;
-import com.mygdx.game.gameEngine.entity.Triangle;
+import com.mygdx.game.gameLogic.entity.Player;
 import com.mygdx.game.gameEngine.screen.ScreenManager;
 
 public class PlayerControlManager implements PlayerControlManagement {
@@ -32,12 +30,6 @@ public class PlayerControlManager implements PlayerControlManagement {
             if (entity instanceof Player) {
                 Player textureObject = (Player) entity;
                     handleBucketInput(textureObject);
-            } else if (entity instanceof Circle) {
-                Circle circle = (Circle) entity;
-                handleCircleInput(circle);
-            } else if (entity instanceof Triangle) {
-                Triangle triangle = (Triangle) entity;
-                handleTriangleInput(triangle);
             }
         });	
     }
@@ -66,30 +58,5 @@ public class PlayerControlManager implements PlayerControlManagement {
             this.direction = null;
         }
     }
-    
-    public void handleCircleInput(Circle circle) {
-        if (this.direction == "up") {
-            circle.setPosY(circle.getPosY() + (circle.getSpeed() * Gdx.graphics.getDeltaTime()));
-            this.direction = null;
-        }
-        if (this.direction == "down") {
-            circle.setPosY(circle.getPosY() - (circle.getSpeed() * Gdx.graphics.getDeltaTime()));
-            this.direction = null;
-        }
-    }
-    
-    public void handleTriangleInput(Triangle triangle) {
-        if (this.direction == "left") {
-            //triangle.setPosX(triangle.getPosX() + (triangle.getSpeed() * Gdx.graphics.getDeltaTime()));
-        	triangle.setX(-5);
-        	this.direction = null;
-        }
-        if (this.direction == "right") {
-            //triangle.setPosX(triangle.getPosX() - (triangle.getSpeed() * Gdx.graphics.getDeltaTime()));
-        	triangle.setX(5);
-        	this.direction = null;
-        }
-    }
-
 }
 

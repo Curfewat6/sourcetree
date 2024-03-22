@@ -18,8 +18,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.entity.EntityManager;
-import com.mygdx.game.gameEngine.entity.NonPlayable;
-import com.mygdx.game.gameEngine.entity.Player;
+import com.mygdx.game.gameLogic.entity.Target;
+import com.mygdx.game.gameLogic.entity.Player;
 
 
 public class EndScreen extends Screens{
@@ -121,7 +121,7 @@ public class EndScreen extends Screens{
 		for (int i = 0; i < x; i++) {
 			float ranX = MathUtils.random(64,Gdx.graphics.getWidth()- 64);
 			float ranY = MathUtils.random(Gdx.graphics.getHeight()/2,Gdx.graphics.getHeight());
-			em.addEntity(new NonPlayable("droplet.png",ranX,ranY,2));
+			em.addEntity(new Target("droplet.png",ranX,ranY,2));
 		}
 		//Creates all the Object needed
 		em.addEntity(new Player("bucket.png",280,20,300));

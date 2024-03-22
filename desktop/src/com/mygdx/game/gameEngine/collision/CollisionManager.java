@@ -6,8 +6,7 @@ import com.mygdx.game.gameEngine.ai.AIManager;
 import com.mygdx.game.gameEngine.entity.Entity;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.entity.EntityManager;
-import com.mygdx.game.gameEngine.entity.NonPlayable;
-import com.mygdx.game.gameEngine.entity.Player;
+import com.mygdx.game.gameLogic.entity.Player;
 
 public class CollisionManager implements CollisionManagement{
 	
@@ -39,17 +38,17 @@ public class CollisionManager implements CollisionManagement{
             }	
             Player A = (Player) a;
             
-   		for (int j = 1; j < em.getEntities().size() ; j++) {
-   			Entity b = em.getEntities().get(j);
-               if (!(b instanceof NonPlayable)) {
-                   continue;
-               }
-               NonPlayable B = (NonPlayable) b;
-    	if( A.collideEntity(B)) {
-    		collisionCount ++;
-    		ai.resetMovement(B);
-    			}
-   			}
+   		// for (int j = 1; j < em.getEntities().size() ; j++) {
+   		// 	Entity b = em.getEntities().get(j);
+        //        if (!(b instanceof NonPlayable)) {
+        //            continue;
+        //        }
+        //        NonPlayable B = (NonPlayable) b;
+    	// if( A.collideEntity(B)) {
+    	// 	collisionCount ++;
+    	// 	ai.resetMovement(B);
+    	// 		}
+   		// 	}
     	}
 		return collisionCount;
     }
