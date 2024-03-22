@@ -53,7 +53,7 @@ public class GameScreen extends Screens implements PauseCallBack{
 		entityList = EntityManager.getInstance();
 		playerControl = PlayerControlManager.getInstance();
 		ioManager = InputOutputManager.getInstance();
-		//ioManager.setPauseCallback(this);
+		ioManager.setPauseCallback(this);
 		collisionManager = CollisionManager.getInstance();
 		aiManager = AIManager.getInstance();
 		
@@ -122,10 +122,20 @@ public class GameScreen extends Screens implements PauseCallBack{
 			//isPaused = !isPaused;
 		//}
 		keyPressed = ioManager.handleInput();
+		//System.out.println(isPaused);
 	    if (!isPaused) {
-			if(!keyPressed.equals("no-input")){
-				playerControl.setDirection(keyPressed); // Set the direction based on input
-				playerControl.movePlayerBasedOnDirection(); 
+			if (keyPressed.startsWith("left")) {
+				playerControl.setDirection("left");
+				playerControl.movePlayerBasedOnDirection();
+				System.out.println("Moving left");
+			} else if (keyPressed.startsWith("right")) {
+				playerControl.setDirection("right");
+				playerControl.movePlayerBasedOnDirection();
+				System.out.println("Moving right");
+			} else if (keyPressed.startsWith("SHOOT:")) {
+				String typedText = keyPressed.substring(6); // Basically just get the text after the "SHOOT:" part
+				System.out.println("shooting: ");
+				System.out.println(typedText);
 			}
 	        // Update and draw entities only when the game is not paused
 	        //entityList.move();

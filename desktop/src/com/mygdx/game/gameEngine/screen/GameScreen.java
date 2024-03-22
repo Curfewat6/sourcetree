@@ -123,14 +123,15 @@ public class GameScreen extends Screens implements PauseCallBack{
 	    if (!isPaused) {
 			if (keyPressed.startsWith("left")) {
 				playerControl.setDirection("left");
-				playerControl.movePlayerBasedOnDirection(); // Assuming this method exists and moves the player
+				playerControl.movePlayerBasedOnDirection();
 			} else if (keyPressed.startsWith("right")) {
 				playerControl.setDirection("right");
-				playerControl.movePlayerBasedOnDirection(); // Assuming this method exists and moves the player
+				playerControl.movePlayerBasedOnDirection(); 
 			} else if (keyPressed.startsWith("SHOOT:")) {
-				String typedText = keyPressed.substring(6); // Extract the text after "SHOOT:"
-				// Here, you need to implement logic to shoot using the typedText
-				// For example, playerControl.shoot(typedText); assuming such a method exists
+				String typedText = keyPressed.substring(6); // Basically just get the text after the "SHOOT:" part
+			}
+			if (keyPressed.equals("pause")) {
+				isPaused = !isPaused;
 			}
 	        // Update and draw entities only when the game is not paused
 	        //entityList.move();

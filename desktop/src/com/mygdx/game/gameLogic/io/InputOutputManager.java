@@ -32,9 +32,10 @@ public class InputOutputManager implements InputOutManagement {
      @Override
      public String handleInput() {
          if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)) {
-            keys = keyboard.handleKeyInput(pcb);
-            System.out.println(keys);
-            return keys;
+            // keys = keyboard.handleKeyInput(pcb);
+            // System.out.println(keys);
+            // return keys;
+            return keyboard.handleKeyInput(pcb);
          }
          return "no-input";
          // If you want to add more input devices u can put them here <3
