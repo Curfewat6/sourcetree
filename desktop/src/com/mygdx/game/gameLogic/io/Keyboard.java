@@ -7,7 +7,6 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.game.gameEngine.pcm.PlayerControlManagement;
-import com.mygdx.game.gameEngine.screen.GameScreen;
 import com.mygdx.game.gameEngine.screen.PauseCallBack;
 
 //This class is only here to process keyboard input. Something like keybinds in games

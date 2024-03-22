@@ -5,8 +5,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.screen.ScreenManagement;
-import com.mygdx.game.gameEngine.screen.TitleScreen;
 import com.mygdx.game.gameLogic.entity.Player;
+import com.mygdx.game.gameLogic.screen.ScreenCreate;
+
 
 public class LifeCycleManager implements LifeCycleManagement{
 	
@@ -16,9 +17,8 @@ public class LifeCycleManager implements LifeCycleManagement{
 	 public LifeCycleManager() {}
 
 	    // Start the simulation and initialize the first scene
-	    public void startSimulation(ScreenManagement screenManager, EntityManagement entityManager) {
+	    public void startSimulation(EntityManagement entityManager) {
 	    	batch = new SpriteBatch();
-			game = screenManager.getScreen();
 			int x = 10;
 			//ensure that the object is randomly place 
 			for (int i = 0; i < x; i++) {
@@ -31,13 +31,10 @@ public class LifeCycleManager implements LifeCycleManagement{
 			//entityManager.addEntity(new Triangle(150,250,350,50,150,50,Color.RED,200));
 			//entityManager.addEntity(new Circle(50,50,50,Color.GREEN,200));
 	    	
-	    	game.setScreen(new TitleScreen(game));		
-			
 	    }
 
 	    // Ends the simulation and disposes everything used
-	    public void endSimulation(ScreenManagement screenManager,EntityManagement entityManager ) {
+	    public void endSimulation(EntityManagement entityManager ) {
 	        entityManager.dispose();
-	        screenManager.dispose();
 	    }
 }

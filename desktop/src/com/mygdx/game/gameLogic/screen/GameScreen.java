@@ -26,6 +26,8 @@ import com.mygdx.game.gameLogic.io.InputOutManagement;
 import com.mygdx.game.gameLogic.io.InputOutputManager;
 import com.mygdx.game.gameEngine.pcm.PlayerControlManagement;
 import com.mygdx.game.gameEngine.pcm.PlayerControlManager;
+import com.mygdx.game.gameEngine.screen.*;
+
 
 
 public class GameScreen extends Screens implements PauseCallBack{
@@ -134,23 +136,20 @@ public class GameScreen extends Screens implements PauseCallBack{
 			ScreenBounds();
 
 
-	        int collisionsThisFrame = collisionManager.checkCollision();
-	        totalCollisions += collisionsThisFrame;
+	        //int collisionsThisFrame = collisionManager.checkCollision();
+	        //totalCollisions += collisionsThisFrame;
 
 			// [ATTENTION!] Hi i commented this out to test my IO. You can uncomment it if need be. ~ Lucas <3
 	        //System.out.println("Total collisions so far: " + totalCollisions);
 	        
 		     // Check if there have been any collisions
-		     if (totalCollisions >= 50 ) {
+		     //if (totalCollisions >= 50 ) {
 		    	 // Switch to end game scene
-		    	 getGame().setScreen(new EndScreen(getGame()));
-		     } else {
-
-				// [ATTENTION!] Hi i commented this one too LOL. Can uncomment if need be. ~ Lucas <3
-		        // System.out.println(totalCollisions);
+		    	 //getGame().setScreen(new EndScreen(getGame()));
+		    	 
+		    	 
 		     }
-	    }
-		
+	    
 		getStage().act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 		getStage().draw();
 		entityList.draw();
