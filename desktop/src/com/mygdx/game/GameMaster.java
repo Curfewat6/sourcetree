@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.gameEngine.collision.CollisionManagement;
 import com.mygdx.game.gameEngine.collision.CollisionManager;
@@ -14,6 +15,7 @@ import com.mygdx.game.gameEngine.screen.ScreenManagement;
 import com.mygdx.game.gameEngine.io.InputOutManagement;
 import com.mygdx.game.gameEngine.io.InputOutputManager;
 import com.mygdx.game.gameEngine.screen.ScreenManager;
+import com.mygdx.game.gameLogic.screen.LevelSpecifier;
 import com.mygdx.game.gameLogic.screen.ScreenCreate;
 
 
@@ -27,6 +29,8 @@ public class GameMaster extends Game
 	private CollisionManagement collision;
 	private PlayerControlManagement playerControl;
 	private InputOutManagement ioManager;
+	private LevelSpecifier level;
+
 
 
 	@Override
@@ -43,7 +47,9 @@ public class GameMaster extends Game
 	    // Prepare the initial screen
 	    String[] initialScreen = {"TitleScreen"};
 	    
-	    new ScreenCreate().createScreen(initialScreen, this, (ScreenManager) screenList);
+		level = new LevelSpecifier(0, "background.jpg", entityList, 0);
+
+	    new ScreenCreate().createScreen(initialScreen, this, (ScreenManager) screenList, level);
 		lifeCycle.startSimulation(entityList);
 		
 	}

@@ -31,7 +31,7 @@ public class TitleScreen extends Screens{
 	private EntityManagement em;
 	private FitViewport fitViewport;
 	private ScreenManagement screenList;
-
+	private LevelSpecifier level;
 
 
 
@@ -40,7 +40,6 @@ public class TitleScreen extends Screens{
 		super(game, Width, Height); 
 		em = EntityManager.getInstance();
 		screenList = ScreenManager.getInstance();
-
 
 	}
 	
@@ -67,13 +66,11 @@ public class TitleScreen extends Screens{
 		            
 		    	    // Prepare the game screen
 		    	    String[] Game = {"GameScreen"};
-		    	    
-		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList);
+		    		level = new LevelSpecifier(0, "Gamebackground.jpg", em, 0);
+		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList, level);
 	        }
 	    });
-	    
-        setBackgroundImage(new Image(getTexture()));
-        getBackgroundImage().setSize(Screens.Width, Screens.Height);
+	    getBackgroundImage().setSize(Screens.Width, Screens.Height);
 
 	    
         getStage().addActor(getBackgroundImage());
@@ -86,7 +83,8 @@ public class TitleScreen extends Screens{
 	@Override
 	public void show() {
 	    skin = new Skin(Gdx.files.internal("uiskin.json")); 
-	    setTexture(new Texture(Gdx.files.internal("background.jpg")));
+	    // get the background image path from level specifier
+	    setTexture(new Texture(level.getBgPath()));
 	    create();
 	}
 

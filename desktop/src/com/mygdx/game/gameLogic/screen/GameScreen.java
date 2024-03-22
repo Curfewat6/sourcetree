@@ -37,6 +37,8 @@ public class GameScreen extends Screens implements PauseCallBack{
 	private PlayerControlManagement playerControl;
 	private InputOutManagement ioManager;
 	private AIManagement aiManager;
+	private ScreenManagement screenList;
+
 	
 	private boolean isPaused = false;
     private SpriteBatch batch;
@@ -44,10 +46,12 @@ public class GameScreen extends Screens implements PauseCallBack{
     private int totalCollisions = 0;
 	private FitViewport fitViewport;
 	private String keyPressed;
+	private LevelSpecifier level;
+
 
 
 	
-	public GameScreen(Game game) 
+	public GameScreen(Game game, LevelSpecifier level) 
 	{
 		super(game, Width, Height);
 		entityList = EntityManager.getInstance();
@@ -145,8 +149,11 @@ public class GameScreen extends Screens implements PauseCallBack{
 		     // Check if there have been any collisions
 		     if (totalCollisions >= 50 ) {
 		    	 // Switch to end game scene
-		    	 getGame().setScreen(new EndScreen(getGame()));
+		    	 // getGame().setScreen(new EndScreen(getGame()));
 		    	 
+		    	    String[] Game = {"EndScreen"};
+		    		level = new LevelSpecifier(0, "background.jpg", entityList, 0);
+		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList, level);
 		    	 
 		     } else {
 
