@@ -121,15 +121,22 @@ public class GameScreen extends Screens implements PauseCallBack{
 		//}
 		keyPressed = ioManager.handleInput();
 	    if (!isPaused) {
-			if(!keyPressed.equals("no-input")){
-				playerControl.setDirection(keyPressed); // Set the direction based on input
-				playerControl.movePlayerBasedOnDirection(); 
+			if (keyPressed.startsWith("left")) {
+				playerControl.setDirection("left");
+				playerControl.movePlayerBasedOnDirection(); // Assuming this method exists and moves the player
+			} else if (keyPressed.startsWith("right")) {
+				playerControl.setDirection("right");
+				playerControl.movePlayerBasedOnDirection(); // Assuming this method exists and moves the player
+			} else if (keyPressed.startsWith("SHOOT:")) {
+				String typedText = keyPressed.substring(6); // Extract the text after "SHOOT:"
+				// Here, you need to implement logic to shoot using the typedText
+				// For example, playerControl.shoot(typedText); assuming such a method exists
 			}
 	        // Update and draw entities only when the game is not paused
 	        //entityList.move();
 	        entityList.update();
 	        //playerControl.handlingPlayerInput();			
-			aiManager.aiMovement();
+			//aiManager.aiMovement();
 			// Enforce bounds after updates
 			ScreenBounds();
 

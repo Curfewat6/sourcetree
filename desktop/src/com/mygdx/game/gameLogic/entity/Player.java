@@ -34,7 +34,7 @@ public class Player extends NonColliable{
     
     @Override
     public void update() {
-    	System.out.println("In " + texName + " at " + "(" + posX + ","+ posY +") with the speed of " + speed);
+    	//System.out.println("In " + texName + " at " + "(" + posX + ","+ posY +") with the speed of " + speed);
     }
 
     public Texture getTexture() {
