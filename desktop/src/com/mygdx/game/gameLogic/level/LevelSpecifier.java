@@ -1,4 +1,4 @@
-package com.mygdx.game.gameLogic.screen;
+package com.mygdx.game.gameLogic.level;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
@@ -39,4 +39,11 @@ public class LevelSpecifier {
 	public void setLevelNumber(int levelNumber) {
 		this.levelNumber = levelNumber;
 	}
+
+	public void dispose() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
 }

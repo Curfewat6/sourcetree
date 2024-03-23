@@ -24,6 +24,9 @@ import com.mygdx.game.gameEngine.entity.EntityManager;
 import com.mygdx.game.gameLogic.entity.Player;
 import com.mygdx.game.gameLogic.io.InputOutManagement;
 import com.mygdx.game.gameLogic.io.InputOutputManager;
+import com.mygdx.game.gameLogic.level.LevelManagement;
+import com.mygdx.game.gameLogic.level.LevelManager;
+import com.mygdx.game.gameLogic.level.LevelSpecifier;
 import com.mygdx.game.gameEngine.pcm.PlayerControlManagement;
 import com.mygdx.game.gameEngine.pcm.PlayerControlManager;
 import com.mygdx.game.gameEngine.screen.*;
@@ -38,6 +41,7 @@ public class GameScreen extends Screens implements PauseCallBack{
 	private InputOutManagement ioManager;
 	private AIManagement aiManager;
 	private ScreenManagement screenList;
+	private LevelManagement levelList;
 
 	
 	private boolean isPaused = false;
@@ -54,13 +58,15 @@ public class GameScreen extends Screens implements PauseCallBack{
 	public GameScreen(Game game, LevelSpecifier level) 
 	{
 		super(game, Width, Height);
+		setName("GameScreen");
 		entityList = EntityManager.getInstance();
 		playerControl = PlayerControlManager.getInstance();
 		ioManager = InputOutputManager.getInstance();
 		ioManager.setPauseCallback(this);
 		collisionManager = CollisionManager.getInstance();
 		aiManager = AIManager.getInstance();
-		
+		levelList = LevelManager.getInstance();
+
 		background = level.getBgPath();
 		
 		batch = new SpriteBatch();
@@ -165,7 +171,7 @@ public class GameScreen extends Screens implements PauseCallBack{
 		    	 // getGame().setScreen(new EndScreen(getGame()));
 		    	 
 		    	    String[] Game = {"EndScreen"};
-		    		level = new LevelSpecifier(0, "background.jpg", entityList, 0);
+					level = levelList.getlevel(0);
 		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList, level);
 		    }
 		    	 

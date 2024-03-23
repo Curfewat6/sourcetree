@@ -20,6 +20,9 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.entity.EntityManager;
 import com.mygdx.game.gameEngine.screen.*;
+import com.mygdx.game.gameLogic.level.LevelManagement;
+import com.mygdx.game.gameLogic.level.LevelManager;
+import com.mygdx.game.gameLogic.level.LevelSpecifier;
 import com.mygdx.game.gameLogic.sound.SoundManagement;
 import com.mygdx.game.gameLogic.sound.SoundManager;
 
@@ -27,12 +30,15 @@ import com.mygdx.game.gameLogic.sound.SoundManager;
 
 public class TitleScreen extends Screens{
 	
+	private EntityManagement em;
+	private ScreenManagement screenList;
+	private LevelManagement levelList;
+
+	
 	private Skin skin;
 	private Label title;
 	private TextButton playButton;
-	private EntityManagement em;
 	private FitViewport fitViewport;
-	private ScreenManagement screenList;
 	private LevelSpecifier level;
 	private String background;
 
@@ -40,9 +46,11 @@ public class TitleScreen extends Screens{
 
 	public TitleScreen(Game game, LevelSpecifier level) 
 	{
-		super(game, Width, Height); 
+		super(game, Width, Height);
+		setName("TitleScreen");
 		em = EntityManager.getInstance();
 		screenList = ScreenManager.getInstance();
+		levelList = LevelManager.getInstance();
 		background = level.getBgPath();
 		
 	}
@@ -69,11 +77,9 @@ public class TitleScreen extends Screens{
 		            //getGame().setScreen(new GameScreen(getGame()));
 		            
 		    	    // Prepare the game screen
+		    	    
+		    	    screenList.changeScreen(screenList.getScreen("GameInfoScreen"));
 
-		    	    String[] Game = {"GameInfoScreen"};
-					
-					level = new LevelSpecifier(0, "Gamebackground.jpg", em, 0);
-		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList, level);
 	        }
 	    });
 	    

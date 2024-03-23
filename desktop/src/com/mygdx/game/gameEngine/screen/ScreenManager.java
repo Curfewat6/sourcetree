@@ -41,9 +41,18 @@ public class ScreenManager implements ScreenManagement
 		screenList.clear();
 	}
 	
-    public Game getScreen()
+
+    
+    public Screens getScreen(String screenName) 
     {
-    	return screenList.get(0).getGame();
+        for (Screens screen : screenList) 
+        {
+            if (screen.getName().equals(screenName)) 
+            { // Assuming there's a getName() method in Screens
+                return screen;
+            }
+        }
+        return null; // Return null if no matching screen is found
     }
     
     public void changeScreen(Screens screen)

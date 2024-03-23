@@ -19,6 +19,9 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.entity.EntityManager;
 import com.mygdx.game.gameLogic.entity.Target;
+import com.mygdx.game.gameLogic.level.LevelManagement;
+import com.mygdx.game.gameLogic.level.LevelManager;
+import com.mygdx.game.gameLogic.level.LevelSpecifier;
 import com.mygdx.game.gameLogic.entity.Player;
 import com.mygdx.game.gameEngine.screen.*;
 
@@ -26,12 +29,15 @@ import com.mygdx.game.gameEngine.screen.*;
 
 public class EndScreen extends Screens{
 	
+	
+	private EntityManagement em;
+	private ScreenManagement screenList;
+	private LevelManagement levelList;
+
 	private Label title;
 	private Skin skin;
-	private EntityManagement em;
 	private TextButton mainMenuButton;
 	private FitViewport fitViewport;
-	private ScreenManagement screenList;
 	private LevelSpecifier level;
 	private String background;
 
@@ -39,8 +45,10 @@ public class EndScreen extends Screens{
 	public EndScreen(Game game, LevelSpecifier level) 
 	{
 		super(game, Width, Height); 
+		setName("EndScreen");
 		em = EntityManager.getInstance();
 		screenList = ScreenManager.getInstance();
+		levelList = LevelManager.getInstance();
 		
 		background = level.getBgPath();
 
@@ -64,12 +72,10 @@ public class EndScreen extends Screens{
 		        @Override
 		        public void clicked(InputEvent event, float x, float y) 
 		        {
-		    	    // Prepare the initial screen
-		    	    String[] Game = {"TitleScreen"};
-		    		level = new LevelSpecifier(0, "background.jpg", em, 0);
-		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList, level);
+
 			        //getGame().setScreen(new TitleScreen(getGame()));
-		        	
+		    	    screenList.changeScreen(screenList.getScreen("TitleScreen"));
+
 		        }
 		    });
 		 
