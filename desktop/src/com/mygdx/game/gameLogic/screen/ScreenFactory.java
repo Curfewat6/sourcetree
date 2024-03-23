@@ -5,18 +5,18 @@ import com.mygdx.game.gameEngine.screen.Screens;
 import com.mygdx.game.gameLogic.level.LevelSpecifier;
 
 public class ScreenFactory {
-	public static Screens getScreen(ScreenEnum screen, Game game, LevelSpecifier level) 
+	public static Screens getScreen(ScreenEnum screen, String name, Game game, LevelSpecifier level) 
 	{
 		switch (screen) 
 		{
 		case TITLESCREEN:
-			return new TitleScreen(game, level);
+			return new TitleScreen(game, name, level);
 		case GAMEINFOSCREEN:
-			return new GameInfoScreen(game, level);
+			return new GameInfoScreen(game, name, level);
 		case GAMESCREEN:
-			return new GameScreen(game, level);
+			return new GameScreen(game, name, level);
 		case ENDSCREEN:	
-			return new EndScreen(game, level);
+			return new EndScreen(game, name, level);
 		default:
 			return null;
 		}

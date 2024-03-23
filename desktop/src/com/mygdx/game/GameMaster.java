@@ -52,19 +52,20 @@ public class GameMaster extends Game
 		levelList.addLevel(new LevelSpecifier(0, "background.jpg", entityList, 0));
 		levelList.addLevel(new LevelSpecifier(1, "Gamebackground.jpg", entityList, 10));
 	    // Prepare the initial screen
+		
 	    String[] initialScreen = {"TitleScreen"};
 	    String[] GameInfoScreen = {"GameInfoScreen"};
 	    String[] GameScreen = {"GameScreen"};
 	    String[] EndScreen = {"EndScreen"};
 
 
-	    new ScreenCreate().createScreen(initialScreen, this, (ScreenManager) screenList, levelList.getlevel(0));
-	    new ScreenCreate().createScreen(GameInfoScreen, this, (ScreenManager) screenList, levelList.getlevel(0));
-	    new ScreenCreate().createScreen(GameScreen, this, (ScreenManager) screenList, levelList.getlevel(1));
-	    new ScreenCreate().createScreen(EndScreen, this, (ScreenManager) screenList, levelList.getlevel(0));
+	    new ScreenCreate().createScreen(initialScreen, "TITLE", this, (ScreenManager) screenList, levelList.getlevel(0));
+	    new ScreenCreate().createScreen(GameInfoScreen, "INFO", this, (ScreenManager) screenList, levelList.getlevel(0));
+	    new ScreenCreate().createScreen(GameScreen, "GAME1", this, (ScreenManager) screenList, levelList.getlevel(1));
+	    new ScreenCreate().createScreen(EndScreen, "END", this, (ScreenManager) screenList, levelList.getlevel(0));
 
 
-	    screenList.changeScreen(screenList.getScreen("TitleScreen"));
+	    screenList.getScreen("TITLE");
 		lifeCycle.startSimulation(entityList);
 		
 	}

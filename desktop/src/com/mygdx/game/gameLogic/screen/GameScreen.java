@@ -55,10 +55,10 @@ public class GameScreen extends Screens implements PauseCallBack{
 
 
 	
-	public GameScreen(Game game, LevelSpecifier level) 
+	public GameScreen(Game game, String name, LevelSpecifier level) 
 	{
 		super(game, Width, Height);
-		setName("GameScreen");
+		setName(name);
 		entityList = EntityManager.getInstance();
 		playerControl = PlayerControlManager.getInstance();
 		ioManager = InputOutputManager.getInstance();
@@ -169,10 +169,9 @@ public class GameScreen extends Screens implements PauseCallBack{
 		    {
 		    	 // Switch to end game scene
 		    	 // getGame().setScreen(new EndScreen(getGame()));
-		    	 
-		    	    String[] Game = {"EndScreen"};
-					level = levelList.getlevel(0);
-		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList, level);
+			    screenList.getScreen("END");
+
+
 		    }
 		    	 
 	    }
