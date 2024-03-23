@@ -10,8 +10,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.gameEngine.ai.AIManagement;
@@ -34,7 +38,7 @@ import com.mygdx.game.gameEngine.screen.*;
 
 
 public class GameScreen extends Screens implements PauseCallBack{
-
+	private Skin skin;
 	private EntityManagement entityList;
 	private CollisionManagement collisionManager;
 	private PlayerControlManagement playerControl;
@@ -43,7 +47,7 @@ public class GameScreen extends Screens implements PauseCallBack{
 	private ScreenManagement screenList;
 	private LevelManagement levelList;
 
-	
+	private Dialog pauseMenu;
 	private boolean isPaused = false;
     private SpriteBatch batch;
     private BitmapFont font;
@@ -66,7 +70,7 @@ public class GameScreen extends Screens implements PauseCallBack{
 		collisionManager = CollisionManager.getInstance();
 		aiManager = AIManager.getInstance();
 		levelList = LevelManager.getInstance();
-
+		screenList = ScreenManager.getInstance();
 		background = level.getBgPath();
 		
 		batch = new SpriteBatch();
@@ -80,23 +84,39 @@ public class GameScreen extends Screens implements PauseCallBack{
 		setStage(newStage);
 		Gdx.input.setInputProcessor(getStage());
 
-		
+		pauseMenu = new Dialog("", skin);
+        pauseMenu.text("Game Paused");
+		pauseMenu.button("Go Home", "QUIT").addListener(new ClickListener() 
+		{
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				resume();
+				screenList.getScreen("TITLE");
+			}
+		});
+		pauseMenu.hide();
+		getStage().addActor(pauseMenu);
+
         setBackgroundImage(new Image(getTexture()));
         getBackgroundImage().setSize(Screens.Width, Screens.Height);
         
         getStage().addActor(getBackgroundImage());
-
+		
 	}
 
 	
 	@Override
 	public void pause() {
+		pauseMenu.show(getStage());
 	    isPaused = true;
+		
 	}
 
 	@Override
 	public void resume() {
 	    isPaused = false;
+		pauseMenu.hide();
+		
 	}
 	
 	
@@ -104,6 +124,7 @@ public class GameScreen extends Screens implements PauseCallBack{
 	@Override
 	public void show() 
 	{
+		skin = new Skin(Gdx.files.internal("uiskin.json")); 
 	    setTexture(new Texture(background));
 	    create();
 	}
@@ -184,9 +205,9 @@ public class GameScreen extends Screens implements PauseCallBack{
         
 		if (isPaused) {
 		    // Example: Display a simple pause overlay
-		    batch.begin();
-			font.draw(batch, "Paused - Press Esc to Resume", 100, 150);
-		    batch.end();
+		    // batch.begin();
+			// font.draw(batch, "Paused - Press Esc to Resume", 100, 150);
+		    // batch.end();
 		}
 
 	}
@@ -213,6 +234,11 @@ public class GameScreen extends Screens implements PauseCallBack{
 	public void togglePause() {
 		// TODO Auto-generated method stub
 		isPaused = !isPaused;
+		if(isPaused){
+			pause();
+		} else{
+			resume();
+		}
 	}
 	
 }
