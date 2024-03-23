@@ -84,15 +84,21 @@ public class GameScreen extends Screens implements PauseCallBack{
 		setStage(newStage);
 		Gdx.input.setInputProcessor(getStage());
 
-		pauseMenu = new Dialog("", skin);
-        pauseMenu.text("Game Paused");
-		pauseMenu.button("Go Home", "QUIT").addListener(new ClickListener() 
-		{
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				resume();
-				screenList.getScreen("TITLE");
-			}
+		pauseMenu = new Dialog("", skin) {
+		    public void result(Object obj) {
+		        if ("QUIT".equals(obj)) {
+		            resume();
+		            screenList.getScreen("TITLE");
+		        }
+		    }
+		};
+		pauseMenu.text("Game Paused");
+		pauseMenu.button("Go Home", "QUIT").addListener(new ClickListener() {
+		    @Override
+		    public void clicked(InputEvent event, float x, float y) {
+		        super.clicked(event, x, y);
+		        event.stop(); // Consume the event to prevent it from propagating further
+		    }
 		});
 		pauseMenu.hide();
 		getStage().addActor(pauseMenu);
