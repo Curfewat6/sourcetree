@@ -37,6 +37,8 @@ public class GameScreen extends Screens implements PauseCallBack{
 	private PlayerControlManagement playerControl;
 	private InputOutManagement ioManager;
 	private AIManagement aiManager;
+	private ScreenManagement screenList;
+
 	
 	private boolean isPaused = false;
     private SpriteBatch batch;
@@ -44,10 +46,12 @@ public class GameScreen extends Screens implements PauseCallBack{
     private int totalCollisions = 0;
 	private FitViewport fitViewport;
 	private String keyPressed;
+	private LevelSpecifier level;
+	private String background;
 
 
 	
-	public GameScreen(Game game) 
+	public GameScreen(Game game, LevelSpecifier level) 
 	{
 		super(game, Width, Height);
 		entityList = EntityManager.getInstance();
@@ -56,6 +60,8 @@ public class GameScreen extends Screens implements PauseCallBack{
 		ioManager.setPauseCallback(this);
 		collisionManager = CollisionManager.getInstance();
 		aiManager = AIManager.getInstance();
+		
+		background = level.getBgPath();
 		
 		batch = new SpriteBatch();
 		font = new BitmapFont();
@@ -92,7 +98,7 @@ public class GameScreen extends Screens implements PauseCallBack{
 	@Override
 	public void show() 
 	{
-	    setTexture(new Texture(Gdx.files.internal("gamebackground.jpg")));
+	    setTexture(new Texture(background));
 	    create();
 	}
 	
@@ -122,8 +128,9 @@ public class GameScreen extends Screens implements PauseCallBack{
 			//isPaused = !isPaused;
 		//}
 		keyPressed = ioManager.handleInput();
-	    if (!isPaused) {
-			if (keyPressed.startsWith("left")) {
+	    if (!isPaused) 
+	    {
+	    	if (keyPressed.startsWith("left")) {
 				playerControl.setDirection("left");
 				playerControl.movePlayerBasedOnDirection();
 				System.out.println("Moving left");
@@ -147,17 +154,22 @@ public class GameScreen extends Screens implements PauseCallBack{
 
 	        //int collisionsThisFrame = collisionManager.checkCollision();
 	        //totalCollisions += collisionsThisFrame;
-
+	
 			// [ATTENTION!] Hi i commented this out to test my IO. You can uncomment it if need be. ~ Lucas <3
 	        //System.out.println("Total collisions so far: " + totalCollisions);
 	        
-		     // Check if there have been any collisions
-		     //if (totalCollisions >= 50 ) {
+		    // Check if there have been any collisions
+		    if (totalCollisions >= 50 ) 
+		    {
 		    	 // Switch to end game scene
-		    	 //getGame().setScreen(new EndScreen(getGame()));
+		    	 // getGame().setScreen(new EndScreen(getGame()));
 		    	 
+		    	    String[] Game = {"EndScreen"};
+		    		level = new LevelSpecifier(0, "background.jpg", entityList, 0);
+		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList, level);
+		    }
 		    	 
-		     }
+	    }
 	    
 		getStage().act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 		getStage().draw();

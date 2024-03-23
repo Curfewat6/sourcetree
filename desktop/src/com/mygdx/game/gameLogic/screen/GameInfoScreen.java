@@ -46,14 +46,19 @@ public class GameInfoScreen extends Screens{
     private SoundManagement sm;
     private Texture Image;
     private BitmapFont Font;
+	private String background;
+	private LevelSpecifier level;
+
     
-    public GameInfoScreen(Game game){
+    public GameInfoScreen(Game game, LevelSpecifier level){
         super(game, Width, Height);
         entityList = EntityManager.getInstance();
         screenList = ScreenManager.getInstance();
         batch = new SpriteBatch();
         font = new BitmapFont();
         this.sm = SoundManager.getInstance();
+		background = level.getBgPath();
+
     }
 	
     public void create(){
@@ -76,8 +81,10 @@ public class GameInfoScreen extends Screens{
 	        {
 				// Prepare the GameInfoScreen
 		    	    String[] Game = {"GameScreen"};
+		    	    
+					level = new LevelSpecifier(0, "Gamebackground.jpg", entityList, 0);
                     sm.playSound(0, 0.1f);
-		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList);
+		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList, level);
 	        }
 	    });
         setBackgroundImage(new Image(getTexture()));
@@ -101,7 +108,7 @@ public class GameInfoScreen extends Screens{
 	public void show() 
 	{
         skin = new Skin(Gdx.files.internal("uiskin.json")); 
-        setTexture(new Texture(Gdx.files.internal("background.jpg")));
+        setTexture(new Texture(background));
 	    create();
 	}
 

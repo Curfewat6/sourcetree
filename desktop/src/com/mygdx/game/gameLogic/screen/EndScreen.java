@@ -32,14 +32,17 @@ public class EndScreen extends Screens{
 	private TextButton mainMenuButton;
 	private FitViewport fitViewport;
 	private ScreenManagement screenList;
+	private LevelSpecifier level;
+	private String background;
 
 
-
-	public EndScreen(Game game) 
+	public EndScreen(Game game, LevelSpecifier level) 
 	{
 		super(game, Width, Height); 
 		em = EntityManager.getInstance();
 		screenList = ScreenManager.getInstance();
+		
+		background = level.getBgPath();
 
 	}
 	
@@ -63,8 +66,8 @@ public class EndScreen extends Screens{
 		        {
 		    	    // Prepare the initial screen
 		    	    String[] Game = {"TitleScreen"};
-		    	    
-		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList);
+		    		level = new LevelSpecifier(0, "background.jpg", em, 0);
+		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList, level);
 			        //getGame().setScreen(new TitleScreen(getGame()));
 		        	
 		        }
@@ -82,7 +85,7 @@ public class EndScreen extends Screens{
 	@Override
 	public void show() {
 	    skin = new Skin(Gdx.files.internal("uiskin.json")); 
-	    setTexture(new Texture(Gdx.files.internal("background.jpg")));
+	    setTexture(new Texture(background));
 	    create();
 	    resetEM();
 	}

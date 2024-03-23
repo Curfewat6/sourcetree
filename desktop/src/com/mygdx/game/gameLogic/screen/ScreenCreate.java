@@ -7,32 +7,32 @@ import com.mygdx.game.gameEngine.screen.ScreenManagement;
 
 public class ScreenCreate extends ScreenManager{
 	
-	public void createScreen(String[] args, Game game, ScreenManagement manager)
+	public void createScreen(String[] args, Game game, ScreenManagement manager, LevelSpecifier level)
 	{
 		for (String arg : args)
 		{
             if (arg.startsWith("TitleScreen"))
             {
-            	Screens TitleScreen = (Screens) ScreenFactory.getScreen(ScreenEnum.TITLESCREEN, game);
+            	Screens TitleScreen = (Screens) ScreenFactory.getScreen(ScreenEnum.TITLESCREEN, game, level);
             	manager.addScreen(TitleScreen);
             	manager.changeScreen(TitleScreen);
             }
 			if (arg.startsWith("GameInfoScreen"))
             {
-            	Screens GameInfoScreen = (Screens) ScreenFactory.getScreen(ScreenEnum.GAMEINFOSCREEN, game);
+            	Screens GameInfoScreen = (Screens) ScreenFactory.getScreen(ScreenEnum.GAMEINFOSCREEN, game, level);
             	manager.addScreen(GameInfoScreen);
             	manager.changeScreen(GameInfoScreen);
             }
             if (arg.startsWith("GameScreen"))
             {
-            	Screens GameScreen = (Screens) ScreenFactory.getScreen(ScreenEnum.GAMESCREEN, game);
+            	Screens GameScreen = (Screens) ScreenFactory.getScreen(ScreenEnum.GAMESCREEN, game, level);
             	manager.addScreen(GameScreen);
             	manager.changeScreen(GameScreen);
 
             }
             if (arg.startsWith("EndScreen"))
             {
-            	Screens EndScreen = (Screens) ScreenFactory.getScreen(ScreenEnum.ENDSCREEN, game);
+            	Screens EndScreen = (Screens) ScreenFactory.getScreen(ScreenEnum.ENDSCREEN, game, level);
             	manager.addScreen(EndScreen);
             	manager.changeScreen(EndScreen);
 
