@@ -60,9 +60,9 @@ public class GameInfoScreen extends Screens{
 	
 
     
-    public GameInfoScreen(Game game, LevelSpecifier level){
+    public GameInfoScreen(Game game, String name, LevelSpecifier level){
         super(game, Width, Height);
-		setName("GameInfoScreen");
+		setName(name);
         entityList = EntityManager.getInstance();
         screenList = ScreenManager.getInstance();
         batch = new SpriteBatch();
@@ -96,7 +96,7 @@ public class GameInfoScreen extends Screens{
 		            
                     sm.playSound(0, 0.1f);
                     
-            	    screenList.changeScreen(screenList.getScreen("GameScreen"));
+            	    screenList.getScreen("GAME1");
 
 	        }
 	    });
