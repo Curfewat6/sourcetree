@@ -32,14 +32,17 @@ public class TitleScreen extends Screens{
 	private FitViewport fitViewport;
 	private ScreenManagement screenList;
 	private LevelSpecifier level;
+	private String background;
 
 
 
-	public TitleScreen(Game game) 
+	public TitleScreen(Game game, LevelSpecifier level) 
 	{
 		super(game, Width, Height); 
 		em = EntityManager.getInstance();
 		screenList = ScreenManager.getInstance();
+		background = level.getBgPath();
+		
 
 	}
 	
@@ -70,6 +73,8 @@ public class TitleScreen extends Screens{
 		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList, level);
 	        }
 	    });
+	    
+	    setBackgroundImage(new Image(getTexture()));
 	    getBackgroundImage().setSize(Screens.Width, Screens.Height);
 
 	    
@@ -84,7 +89,8 @@ public class TitleScreen extends Screens{
 	public void show() {
 	    skin = new Skin(Gdx.files.internal("uiskin.json")); 
 	    // get the background image path from level specifier
-	    setTexture(new Texture(level.getBgPath()));
+
+	    setTexture(new Texture(background));
 	    create();
 	}
 

@@ -12,13 +12,13 @@ public class LevelSpecifier {
 	{
 		this.levelNumber = levelNumber;
 		this.bgPath = bgPath;
-		String[] TargetList = {"Target"};         
-		String[] PlayerList = {"Player","Bullet"};         
-		for (int i = 0; i < x; i++) 
-		{             
-			EntityCreation.createEntity(TargetList, entityManager);         
-			}         
-		EntityCreation.createEntity(PlayerList, entityManager);
+//		String[] TargetList = {"Target"};         
+//		String[] PlayerList = {"Player","Bullet"};         
+//		for (int i = 0; i < x; i++) 
+//		{             
+//			EntityCreation.createEntity(TargetList, entityManager);         
+//			}         
+//		EntityCreation.createEntity(PlayerList, entityManager);
 		
 	}
 

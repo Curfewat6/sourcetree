@@ -10,11 +10,11 @@ public class ScreenFactory {
 		switch (screen) 
 		{
 		case TITLESCREEN:
-			return new TitleScreen(game);
+			return new TitleScreen(game, level);
 		case GAMESCREEN:
 			return new GameScreen(game, level);
 		case ENDSCREEN:	
-			return new EndScreen(game);
+			return new EndScreen(game, level);
 		default:
 			return null;
 		}

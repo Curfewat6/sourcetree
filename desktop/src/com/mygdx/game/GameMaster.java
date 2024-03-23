@@ -44,6 +44,7 @@ public class GameMaster extends Game
 	    playerControl = PlayerControlManager.getInstance();
 		ioManager = InputOutputManager.getInstance();
 		
+		
 	    // Prepare the initial screen
 	    String[] initialScreen = {"TitleScreen"};
 	    

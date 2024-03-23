@@ -47,7 +47,7 @@ public class GameScreen extends Screens implements PauseCallBack{
 	private FitViewport fitViewport;
 	private String keyPressed;
 	private LevelSpecifier level;
-
+	private String background;
 
 
 	
@@ -60,6 +60,8 @@ public class GameScreen extends Screens implements PauseCallBack{
 		//ioManager.setPauseCallback(this);
 		collisionManager = CollisionManager.getInstance();
 		aiManager = AIManager.getInstance();
+		
+		background = level.getBgPath();
 		
 		batch = new SpriteBatch();
 		font = new BitmapFont();
@@ -96,7 +98,7 @@ public class GameScreen extends Screens implements PauseCallBack{
 	@Override
 	public void show() 
 	{
-	    setTexture(new Texture(Gdx.files.internal("gamebackground.jpg")));
+	    setTexture(new Texture(background));
 	    create();
 	}
 	
