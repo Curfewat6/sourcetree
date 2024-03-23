@@ -93,6 +93,8 @@ public class GameInfoScreen extends Screens{
 	    });
         setBackgroundImage(new Image(getTexture()));
         getBackgroundImage().setSize(Screens.Width, Screens.Height);
+        
+        getStage().addActor(getBackgroundImage());
 	    getStage().addActor(playButton);
     }
 
