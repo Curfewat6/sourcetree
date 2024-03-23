@@ -62,6 +62,7 @@ public class GameInfoScreen extends Screens{
     
     public GameInfoScreen(Game game, LevelSpecifier level){
         super(game, Width, Height);
+		setName("GameInfoScreen");
         entityList = EntityManager.getInstance();
         screenList = ScreenManager.getInstance();
         batch = new SpriteBatch();
@@ -93,12 +94,10 @@ public class GameInfoScreen extends Screens{
 	        {
 		            //getGame().setScreen(new GameScreen(getGame()));
 		            
-		    	    // Prepare the game screen
-		    	    String[] Game = {"GameScreen"};
-		    	    
-					level = levelList.getlevel(1);
                     sm.playSound(0, 0.1f);
-		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList, level);
+                    
+            	    screenList.changeScreen(screenList.getScreen("GameScreen"));
+
 	        }
 	    });
         setBackgroundImage(new Image(getTexture()));

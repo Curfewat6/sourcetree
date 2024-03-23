@@ -45,6 +45,7 @@ public class EndScreen extends Screens{
 	public EndScreen(Game game, LevelSpecifier level) 
 	{
 		super(game, Width, Height); 
+		setName("EndScreen");
 		em = EntityManager.getInstance();
 		screenList = ScreenManager.getInstance();
 		levelList = LevelManager.getInstance();
@@ -71,12 +72,10 @@ public class EndScreen extends Screens{
 		        @Override
 		        public void clicked(InputEvent event, float x, float y) 
 		        {
-		    	    // Prepare the initial screen
-		    	    String[] Game = {"TitleScreen"};
-					level = levelList.getlevel(0);
-		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList, level);
+
 			        //getGame().setScreen(new TitleScreen(getGame()));
-		        	
+		    	    screenList.changeScreen(screenList.getScreen("TitleScreen"));
+
 		        }
 		    });
 		 

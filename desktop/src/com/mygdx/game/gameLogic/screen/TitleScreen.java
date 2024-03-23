@@ -46,7 +46,8 @@ public class TitleScreen extends Screens{
 
 	public TitleScreen(Game game, LevelSpecifier level) 
 	{
-		super(game, Width, Height); 
+		super(game, Width, Height);
+		setName("TitleScreen");
 		em = EntityManager.getInstance();
 		screenList = ScreenManager.getInstance();
 		levelList = LevelManager.getInstance();
@@ -76,10 +77,9 @@ public class TitleScreen extends Screens{
 		            //getGame().setScreen(new GameScreen(getGame()));
 		            
 		    	    // Prepare the game screen
+		    	    
+		    	    screenList.changeScreen(screenList.getScreen("GameInfoScreen"));
 
-		    	    String[] Game = {"GameInfoScreen"};
-					level = levelList.getlevel(0);
-		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList, level);
 	        }
 	    });
 	    

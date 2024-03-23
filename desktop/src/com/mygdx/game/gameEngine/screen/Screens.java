@@ -13,6 +13,7 @@ public abstract class Screens implements Screen
 	private Stage stage;
     private Image backgroundImage;
     private Texture texture;
+    private String name;
     protected static float Width = 800;
 	protected static float Height = 600;
 	
@@ -22,6 +23,11 @@ public abstract class Screens implements Screen
 		stage = new Stage();
 		Screens.Width = Width;
 		Screens.Height = Height;
+	}
+	
+	public String getName()
+	{
+		return name;
 	}
 	
     public Game getGame() 
@@ -42,6 +48,11 @@ public abstract class Screens implements Screen
     public Texture getTexture() 
     {
     	return texture;
+    }
+    
+    public void setName(String name)
+    {
+    	this.name = name;
     }
     
     public void setGame(Game game)

@@ -53,9 +53,18 @@ public class GameMaster extends Game
 		levelList.addLevel(new LevelSpecifier(1, "Gamebackground.jpg", entityList, 10));
 	    // Prepare the initial screen
 	    String[] initialScreen = {"TitleScreen"};
+	    String[] GameInfoScreen = {"GameInfoScreen"};
+	    String[] GameScreen = {"GameScreen"};
+	    String[] EndScreen = {"EndScreen"};
 
-	    level = levelList.getlevel(0);
-	    new ScreenCreate().createScreen(initialScreen, this, (ScreenManager) screenList, level);
+
+	    new ScreenCreate().createScreen(initialScreen, this, (ScreenManager) screenList, levelList.getlevel(0));
+	    new ScreenCreate().createScreen(GameInfoScreen, this, (ScreenManager) screenList, levelList.getlevel(0));
+	    new ScreenCreate().createScreen(GameScreen, this, (ScreenManager) screenList, levelList.getlevel(1));
+	    new ScreenCreate().createScreen(EndScreen, this, (ScreenManager) screenList, levelList.getlevel(0));
+
+
+	    screenList.changeScreen(screenList.getScreen("TitleScreen"));
 		lifeCycle.startSimulation(entityList);
 		
 	}

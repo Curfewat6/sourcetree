@@ -58,6 +58,7 @@ public class GameScreen extends Screens implements PauseCallBack{
 	public GameScreen(Game game, LevelSpecifier level) 
 	{
 		super(game, Width, Height);
+		setName("GameScreen");
 		entityList = EntityManager.getInstance();
 		playerControl = PlayerControlManager.getInstance();
 		ioManager = InputOutputManager.getInstance();
