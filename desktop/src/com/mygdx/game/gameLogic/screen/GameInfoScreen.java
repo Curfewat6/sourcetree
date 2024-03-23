@@ -1,5 +1,7 @@
 package com.mygdx.game.gameLogic.screen;
 
+import java.util.List;
+
 import org.lwjgl.opengl.GL20;
 
 import com.badlogic.gdx.Game;
@@ -26,13 +28,9 @@ import com.mygdx.game.gameEngine.collision.CollisionManager;
 import com.mygdx.game.gameEngine.entity.Entity;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.entity.EntityManager;
-import com.mygdx.game.gameLogic.entity.Player;
-import com.mygdx.game.gameLogic.io.InputOutManagement;
-import com.mygdx.game.gameLogic.io.InputOutputManager;
+import com.mygdx.game.gameLogic.entity.Target;
 import com.mygdx.game.gameLogic.sound.SoundManagement;
 import com.mygdx.game.gameLogic.sound.SoundManager;
-import com.mygdx.game.gameEngine.pcm.PlayerControlManagement;
-import com.mygdx.game.gameEngine.pcm.PlayerControlManager;
 import com.mygdx.game.gameEngine.screen.*;
 
 
@@ -57,7 +55,7 @@ public class GameInfoScreen extends Screens{
         font = new BitmapFont();
         this.sm = SoundManager.getInstance();
     }
-
+	
     public void create(){
         fitViewport = new FitViewport(Screens.Width, Screens.Height);
         Stage newStage = new Stage(fitViewport);
@@ -76,9 +74,7 @@ public class GameInfoScreen extends Screens{
 	        @Override
 	        public void clicked(InputEvent event, float x, float y) 
 	        {
-		            //getGame().setScreen(new GameScreen(getGame()));
-		            
-		    	    // Prepare the game screen
+				// Prepare the GameInfoScreen
 		    	    String[] Game = {"GameScreen"};
                     sm.playSound(0, 0.1f);
 		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList);
@@ -108,24 +104,6 @@ public class GameInfoScreen extends Screens{
         setTexture(new Texture(Gdx.files.internal("background.jpg")));
 	    create();
 	}
-	
-	private void ScreenBounds() {
-	    int screenWidth = Gdx.graphics.getWidth();
-	    int screenHeight = Gdx.graphics.getHeight();
-
-	    for (int i = 0; i < entityList.getEntities().size(); i++){
-	   		Entity a = entityList.getEntities().get(i);
-			   	if (!(a instanceof Player)) {
-		             continue;
-		        }	
-		        Player player = (Player) a;
-		        float newX = Math.max(0, Math.min(player.getPosX(), screenWidth - 64));
-		 	    float newY = Math.max(0, Math.min(player.getPosY(), screenHeight - 64));
-
-		 	    player.setPosX(newX);
-		 	    player.setPosY(newY);
-	    }
-	}
 
     @Override
 	public void render(float delta) {
@@ -144,9 +122,7 @@ public class GameInfoScreen extends Screens{
 
 
 	@Override
-	public void hide() {
-
-		
+	public void hide() {		
 	}
 
 	@Override
