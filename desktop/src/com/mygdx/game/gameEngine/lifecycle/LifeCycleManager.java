@@ -13,7 +13,7 @@ public class LifeCycleManager implements LifeCycleManagement{
 	
 	private Game game;
 	private SpriteBatch batch;
-
+	
 	 public LifeCycleManager() {}
 
 	    // Start the simulation and initialize the first scene

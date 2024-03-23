@@ -10,5 +10,5 @@ public interface EntityManagement {
 	public abstract void update();
 	public void setList(EntityManagement em);
 	public List<Entity> getEntities();
-	
+	public List<Colliable> getCollidables();
 }

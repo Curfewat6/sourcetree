@@ -1,4 +1,4 @@
-package com.mygdx.game.gameLogic.screen;
+package com.mygdx.game.gameEngine.screen;
 
 import org.lwjgl.opengl.GL20;
 
@@ -22,12 +22,10 @@ import com.mygdx.game.gameEngine.entity.Entity;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.entity.EntityManager;
 import com.mygdx.game.gameLogic.entity.Player;
-import com.mygdx.game.gameLogic.io.InputOutManagement;
-import com.mygdx.game.gameLogic.io.InputOutputManager;
+import com.mygdx.game.gameEngine.io.InputOutManagement;
+import com.mygdx.game.gameEngine.io.InputOutputManager;
 import com.mygdx.game.gameEngine.pcm.PlayerControlManagement;
 import com.mygdx.game.gameEngine.pcm.PlayerControlManager;
-import com.mygdx.game.gameEngine.screen.*;
-
 
 
 public class GameScreen extends Screens implements PauseCallBack{
@@ -37,8 +35,6 @@ public class GameScreen extends Screens implements PauseCallBack{
 	private PlayerControlManagement playerControl;
 	private InputOutManagement ioManager;
 	private AIManagement aiManager;
-	private ScreenManagement screenList;
-
 	
 	private boolean isPaused = false;
     private SpriteBatch batch;
@@ -46,12 +42,10 @@ public class GameScreen extends Screens implements PauseCallBack{
     private int totalCollisions = 0;
 	private FitViewport fitViewport;
 	private String keyPressed;
-	private LevelSpecifier level;
-	private String background;
 
 
 	
-	public GameScreen(Game game, LevelSpecifier level) 
+	public GameScreen(Game game) 
 	{
 		super(game, Width, Height);
 		entityList = EntityManager.getInstance();
@@ -60,8 +54,6 @@ public class GameScreen extends Screens implements PauseCallBack{
 		ioManager.setPauseCallback(this);
 		collisionManager = CollisionManager.getInstance();
 		aiManager = AIManager.getInstance();
-		
-		background = level.getBgPath();
 		
 		batch = new SpriteBatch();
 		font = new BitmapFont();
@@ -98,7 +90,7 @@ public class GameScreen extends Screens implements PauseCallBack{
 	@Override
 	public void show() 
 	{
-	    setTexture(new Texture(background));
+	    setTexture(new Texture(Gdx.files.internal("gamebackground.jpg")));
 	    create();
 	}
 	
@@ -128,20 +120,18 @@ public class GameScreen extends Screens implements PauseCallBack{
 			//isPaused = !isPaused;
 		//}
 		keyPressed = ioManager.handleInput();
-	    if (!isPaused) 
-	    {
-	    	if (keyPressed.startsWith("left")) {
+	    if (!isPaused) {
+			if (keyPressed.startsWith("left")) {
 				playerControl.setDirection("left");
 				playerControl.movePlayerBasedOnDirection();
-				System.out.println("Moving left");
 			} else if (keyPressed.startsWith("right")) {
 				playerControl.setDirection("right");
-				playerControl.movePlayerBasedOnDirection();
-				System.out.println("Moving right");
+				playerControl.movePlayerBasedOnDirection(); 
 			} else if (keyPressed.startsWith("SHOOT:")) {
 				String typedText = keyPressed.substring(6); // Basically just get the text after the "SHOOT:" part
-				System.out.println("shooting: ");
-				System.out.println(typedText);
+			}
+			if (keyPressed.equals("pause")) {
+				isPaused = !isPaused;
 			}
 	        // Update and draw entities only when the game is not paused
 	        //entityList.move();
@@ -152,25 +142,19 @@ public class GameScreen extends Screens implements PauseCallBack{
 			ScreenBounds();
 
 
-	        //int collisionsThisFrame = collisionManager.checkCollision();
-	        //totalCollisions += collisionsThisFrame;
-	
-			// [ATTENTION!] Hi i commented this out to test my IO. You can uncomment it if need be. ~ Lucas <3
-	        //System.out.println("Total collisions so far: " + totalCollisions);
-	        
-		    // Check if there have been any collisions
-		    if (totalCollisions >= 50 ) 
-		    {
-		    	 // Switch to end game scene
-		    	 // getGame().setScreen(new EndScreen(getGame()));
-		    	 
-		    	    String[] Game = {"EndScreen"};
-		    		level = new LevelSpecifier(0, "background.jpg", entityList, 0);
-		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList, level);
-		    }
-		    	 
+//	        int collisionsThisFrame = collisionManager.checkCollision();
+//	        totalCollisions += collisionsThisFrame;
+//	        System.out.println("Total collisions so far: " + totalCollisions);
+//	        
+//		     // Check if there have been any collisions
+//		     if (totalCollisions >= 50 ) {
+//		    	 // Switch to end game scene
+//		    	 getGame().setScreen(new EndScreen(getGame()));
+//		     } else {
+//		         System.out.println(totalCollisions);
+//		     }
 	    }
-	    
+		
 		getStage().act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 		getStage().draw();
 		entityList.draw();

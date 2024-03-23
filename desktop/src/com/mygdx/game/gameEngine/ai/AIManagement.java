@@ -1,11 +1,9 @@
 package com.mygdx.game.gameEngine.ai;
 
-import com.mygdx.game.gameLogic.entity.Target;
+import com.mygdx.game.gameEngine.entity.Entity;
 
 public interface AIManagement {
 	
-	public void aiMovement();
-	public void movementSet(Target droplet);
-	public void resetMovement(Target b);
+	public boolean checkAI(Entity a);
 
 }

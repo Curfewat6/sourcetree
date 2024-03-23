@@ -20,6 +20,8 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.entity.EntityManager;
 import com.mygdx.game.gameEngine.screen.*;
+import com.mygdx.game.gameLogic.sound.SoundManagement;
+import com.mygdx.game.gameLogic.sound.SoundManager;
 
 
 
@@ -43,7 +45,6 @@ public class TitleScreen extends Screens{
 		screenList = ScreenManager.getInstance();
 		background = level.getBgPath();
 		
-
 	}
 	
 	public void create()
@@ -57,7 +58,7 @@ public class TitleScreen extends Screens{
 		title = new Label("Demo", skin);
 		title.setPosition(Screens.Width / 2 - title.getWidth() / 2, Screens.Height / 2 + 100);
 		
-	    playButton = new TextButton("Play", skin);
+	    playButton = new TextButton("Start", skin);
 	    playButton.setPosition(Screens.Width / 2 - playButton.getWidth() / 2, Screens.Height / 2);
 
 	    playButton.addListener(new ClickListener() 
@@ -68,8 +69,10 @@ public class TitleScreen extends Screens{
 		            //getGame().setScreen(new GameScreen(getGame()));
 		            
 		    	    // Prepare the game screen
-		    	    String[] Game = {"GameScreen"};
-		    		level = new LevelSpecifier(0, "Gamebackground.jpg", em, 0);
+
+		    	    String[] Game = {"GameInfoScreen"};
+					
+					level = new LevelSpecifier(0, "Gamebackground.jpg", em, 0);
 		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList, level);
 	        }
 	    });

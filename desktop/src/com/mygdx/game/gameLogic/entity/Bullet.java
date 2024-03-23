@@ -17,6 +17,7 @@ public class Bullet extends Colliable{
 	public Bullet(String texPath, float posX, float posY, float speed,SpriteBatch batch) {
 		super(texPath, posX, posY, speed);
 		this.batch = batch;
+		this.texName = texPath;
 		// TODO Auto-generated constructor stub
 	}
 
