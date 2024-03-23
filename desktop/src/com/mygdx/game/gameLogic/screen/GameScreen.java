@@ -122,7 +122,6 @@ public class GameScreen extends Screens implements PauseCallBack{
 			//isPaused = !isPaused;
 		//}
 		keyPressed = ioManager.handleInput();
-		//System.out.println(isPaused);
 	    if (!isPaused) {
 			if (keyPressed.startsWith("left")) {
 				playerControl.setDirection("left");

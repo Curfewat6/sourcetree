@@ -33,7 +33,7 @@ public class TitleScreen extends Screens{
 	private EntityManagement em;
 	private FitViewport fitViewport;
 	private ScreenManagement screenList;
-	private SoundManagement sm;
+	
 
 
 
@@ -43,7 +43,7 @@ public class TitleScreen extends Screens{
 		super(game, Width, Height); 
 		em = EntityManager.getInstance();
 		screenList = ScreenManager.getInstance();
-		this.sm = SoundManager.getInstance();
+		
 
 
 	}
@@ -59,7 +59,7 @@ public class TitleScreen extends Screens{
 		title = new Label("Demo", skin);
 		title.setPosition(Screens.Width / 2 - title.getWidth() / 2, Screens.Height / 2 + 100);
 		
-	    playButton = new TextButton("Play", skin);
+	    playButton = new TextButton("Start", skin);
 	    playButton.setPosition(Screens.Width / 2 - playButton.getWidth() / 2, Screens.Height / 2);
 
 	    playButton.addListener(new ClickListener() 
@@ -70,8 +70,8 @@ public class TitleScreen extends Screens{
 		            //getGame().setScreen(new GameScreen(getGame()));
 		            
 		    	    // Prepare the game screen
-		    	    String[] Game = {"GameScreen"};
-					sm.playSound(0, 0.1f);
+		    	    String[] Game = {"GameInfoScreen"};
+					
 
 		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList);
 	        }

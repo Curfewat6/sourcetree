@@ -10,6 +10,8 @@ public class ScreenFactory {
 		{
 		case TITLESCREEN:
 			return new TitleScreen(game);
+		case GAMEINFOSCREEN:
+			return new GameInfoScreen(game);
 		case GAMESCREEN:
 			return new GameScreen(game);
 		case ENDSCREEN:	
