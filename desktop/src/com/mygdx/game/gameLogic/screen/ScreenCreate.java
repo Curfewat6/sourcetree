@@ -2,6 +2,7 @@ package com.mygdx.game.gameLogic.screen;
 
 import com.mygdx.game.gameEngine.screen.ScreenManager;
 import com.mygdx.game.gameEngine.screen.Screens;
+import com.mygdx.game.gameLogic.level.LevelSpecifier;
 import com.badlogic.gdx.Game;
 import com.mygdx.game.gameEngine.screen.ScreenManagement;
 

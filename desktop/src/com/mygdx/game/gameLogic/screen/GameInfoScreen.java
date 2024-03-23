@@ -29,6 +29,9 @@ import com.mygdx.game.gameEngine.entity.EntityManager;
 import com.mygdx.game.gameLogic.entity.Player;
 import com.mygdx.game.gameLogic.io.InputOutManagement;
 import com.mygdx.game.gameLogic.io.InputOutputManager;
+import com.mygdx.game.gameLogic.level.LevelManagement;
+import com.mygdx.game.gameLogic.level.LevelManager;
+import com.mygdx.game.gameLogic.level.LevelSpecifier;
 import com.mygdx.game.gameLogic.sound.SoundManagement;
 import com.mygdx.game.gameLogic.sound.SoundManager;
 import com.mygdx.game.gameEngine.pcm.PlayerControlManagement;
@@ -37,19 +40,24 @@ import com.mygdx.game.gameEngine.screen.*;
 
 
 public class GameInfoScreen extends Screens{
+	
+	private LevelManagement levelList;
     private EntityManagement entityList;
+    private SoundManagement sm;
+    private ScreenManagement screenList;
+
+    
     private Skin skin;
     private SpriteBatch batch;
     private BitmapFont font;
 	private FitViewport fitViewport;
     private TextButton playButton;
-    private ScreenManagement screenList;
     private boolean isPaused = false;
-    private SoundManagement sm;
     private Texture Image;
     private BitmapFont Font;
 	private String background;
 	private LevelSpecifier level;
+	
 
     
     public GameInfoScreen(Game game, LevelSpecifier level){
@@ -60,6 +68,8 @@ public class GameInfoScreen extends Screens{
         font = new BitmapFont();
         this.sm = SoundManager.getInstance();
 		background = level.getBgPath();
+		levelList = LevelManager.getInstance();
+
 
     }
 
@@ -86,7 +96,7 @@ public class GameInfoScreen extends Screens{
 		    	    // Prepare the game screen
 		    	    String[] Game = {"GameScreen"};
 		    	    
-					level = new LevelSpecifier(0, "Gamebackground.jpg", entityList, 0);
+					level = levelList.getlevel(1);
                     sm.playSound(0, 0.1f);
 		    	    new ScreenCreate().createScreen(Game, getGame(), (ScreenManager) screenList, level);
 	        }
