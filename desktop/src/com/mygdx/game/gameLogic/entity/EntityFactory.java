@@ -11,14 +11,14 @@ public class EntityFactory {
         SpriteBatch batch = new SpriteBatch();
         System.out.println("Creating entity: " + texPath);
         switch (entity) {
-            case BULLET:
-                return new Bullet(texPath, 280,20,300,batch);
-            case TARGET:
-                float ranX = MathUtils.random(64,Gdx.graphics.getWidth()- 64);
-                float ranY = MathUtils.random(Gdx.graphics.getHeight()/2,Gdx.graphics.getHeight());
-                return new Target(texPath, ranX,ranY,300,batch);
-            case PLAYER:
-                return new Player(texPath, 280,20,300, batch);
+//            case BULLET:
+//                return new Bullet(texPath, 280,20,300,batch);
+//            case TARGET:
+//                float ranX = MathUtils.random(64,Gdx.graphics.getWidth()- 64);
+//                float ranY = MathUtils.random(Gdx.graphics.getHeight()/2,Gdx.graphics.getHeight());
+//                return new Target(texPath, ranX,ranY,300);
+//            case PLAYER:
+//                return new Player(texPath, 280,20,300);
             default:
                 return null;
         }

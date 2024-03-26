@@ -55,14 +55,27 @@ public class Keyboard {
             }
 
             if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
-                String result = "SHOOT:" + inputBuffer.toString();
-                inputBuffer.setLength(0);
-                return result; 
+                return "shoot";
+            }
+            
+            if (Gdx.input.isKeyJustPressed(Keys.ANY_KEY)) {
+                isCapturing = true;
             }
 
-            captureTypingInput();
+            if (Gdx.input.isKeyJustPressed(Keys.TAB)) {
+                isCapturing = false;
+                String input = inputBuffer.toString();
+                inputBuffer.setLength(0); // clear the buffer
+                return input; // return the captured input
+            }
 
-            return "TYPING:" + inputBuffer.toString();
+            if (isCapturing) {
+                for (int i = 0; i < 256; i++) {
+                    if (Gdx.input.isKeyJustPressed(i)) {
+                        inputBuffer.append(Keys.toString(i));
+                    }
+                }
+            }
             // Imma take this out because we can only move left  & right and shoot
 
             // if (Gdx.input.isKeyPressed(Keys.W)) {

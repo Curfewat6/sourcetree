@@ -62,7 +62,7 @@ public class EndScreen extends Screens{
 		
 		Gdx.input.setInputProcessor(getStage());
 
-		title = new Label("YAYYYY YOU WIN!!!", skin);
+		title = new Label("YAYYYY Game over!!!", skin);
 		title.setPosition(Screens.Width / 2 - title.getWidth() / 2, Screens.Height / 2 + 100);
 		mainMenuButton = new TextButton("MainMenu", skin);
 		mainMenuButton.setPosition(Screens.Width / 2 - mainMenuButton.getWidth() / 2, Screens.Height / 2);

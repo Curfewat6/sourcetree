@@ -1,5 +1,6 @@
 package com.mygdx.game.gameLogic.screen;
 
+import com.mygdx.game.gameEngine.utils.SoundsManager;
 import org.lwjgl.opengl.GL20;
 
 import com.badlogic.gdx.Game;
@@ -42,6 +43,8 @@ public class TitleScreen extends Screens{
 	private LevelSpecifier level;
 	private String background;
 
+	SoundsManager soundsManager = new SoundsManager();
+
 
 
 	public TitleScreen(Game game, String name, LevelSpecifier level) 
@@ -52,7 +55,8 @@ public class TitleScreen extends Screens{
 		screenList = ScreenManager.getInstance();
 		levelList = LevelManager.getInstance();
 		background = level.getBgPath();
-		
+
+		soundsManager.stop("music");
 	}
 	
 	public void create()
@@ -63,11 +67,12 @@ public class TitleScreen extends Screens{
 		
 	    Gdx.input.setInputProcessor(getStage());
 		
-		title = new Label("Demo", skin);
+		title = new Label("Hello!", skin);
 		title.setPosition(Screens.Width / 2 - title.getWidth() / 2, Screens.Height / 2 + 100);
 		
 	    playButton = new TextButton("Start", skin);
-	    playButton.setPosition(Screens.Width / 2 - playButton.getWidth() / 2, Screens.Height / 2);
+		playButton.setSize(200,50);
+		playButton.setPosition(Screens.Width / 2 - playButton.getWidth() / 2, Screens.Height / 2);
 
 	    playButton.addListener(new ClickListener() 
 	    {
@@ -84,7 +89,8 @@ public class TitleScreen extends Screens{
 	    setBackgroundImage(new Image(getTexture()));
 	    getBackgroundImage().setSize(Screens.Width, Screens.Height);
 
-	    
+
+
         getStage().addActor(getBackgroundImage());
 	    getStage().addActor(title);
 	    getStage().addActor(playButton);

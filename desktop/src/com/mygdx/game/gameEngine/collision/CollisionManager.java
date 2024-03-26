@@ -1,6 +1,7 @@
 package com.mygdx.game.gameEngine.collision;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.game.gameEngine.ai.AIManagement;
 import com.mygdx.game.gameEngine.ai.AIManager;
 import com.mygdx.game.gameEngine.entity.Colliable;
@@ -43,5 +44,17 @@ public class CollisionManager implements CollisionManagement{
         }
         return false; // No collision detected
     }
+
+	public boolean rectCollide(Rectangle a, Rectangle b) {
+		Rectangle rectangle = a;
+		Rectangle r = b;
+		if (r.x < rectangle.x + rectangle.width &&
+				r.x + r.width > rectangle.x &&
+				r.y < rectangle.y + rectangle.height &&
+				r.height + r.y > rectangle.y) {
+			return true;
+		}
+		return false;
+	}
 }
    

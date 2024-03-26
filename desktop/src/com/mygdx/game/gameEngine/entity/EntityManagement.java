@@ -2,7 +2,8 @@ package com.mygdx.game.gameEngine.entity;
 
 import java.util.List;
 
-public interface EntityManagement {
+public interface
+EntityManagement {
 	
 	public abstract void addEntity(Entity entity);
 	public abstract void draw();

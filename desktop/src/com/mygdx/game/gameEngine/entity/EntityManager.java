@@ -1,5 +1,7 @@
 package com.mygdx.game.gameEngine.entity;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +9,7 @@ public class EntityManager implements EntityManagement{
 	private List<Entity> entities;
 	private List<Colliable> collidables;
 	private static EntityManager instance;
+    public SpriteBatch batch;
 	
 	public EntityManager() {
 		instance = this;
@@ -32,13 +35,18 @@ public class EntityManager implements EntityManagement{
     public void draw() {
         for (Entity entity : entities) {
         	entity.create();
-            entity.render();
+            entity.render(batch);
         }
     }
 
     public void update() {
         for (Entity entity : entities) {
             entity.update();
+        }
+        for (int i =0; i < entities.size();i++) {
+            if(entities.get(i).destroyFlag){
+                entities.remove(i);
+            }
         }
     }
 

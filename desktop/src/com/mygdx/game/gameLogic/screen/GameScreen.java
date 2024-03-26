@@ -1,5 +1,11 @@
 package com.mygdx.game.gameLogic.screen;
 
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.mygdx.game.gameEngine.entity.Colliable;
+import com.mygdx.game.gameEngine.utils.SoundsManager;
+import com.mygdx.game.gameLogic.entity.*;
 import org.lwjgl.opengl.GL20;
 
 import com.badlogic.gdx.Game;
@@ -12,9 +18,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -25,7 +28,6 @@ import com.mygdx.game.gameEngine.collision.CollisionManager;
 import com.mygdx.game.gameEngine.entity.Entity;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.entity.EntityManager;
-import com.mygdx.game.gameLogic.entity.Player;
 import com.mygdx.game.gameLogic.io.InputOutManagement;
 import com.mygdx.game.gameLogic.io.InputOutputManager;
 import com.mygdx.game.gameLogic.level.LevelManagement;
@@ -35,6 +37,8 @@ import com.mygdx.game.gameEngine.pcm.PlayerControlManagement;
 import com.mygdx.game.gameEngine.pcm.PlayerControlManager;
 import com.mygdx.game.gameEngine.screen.*;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class GameScreen extends Screens implements PauseCallBack{
@@ -57,8 +61,18 @@ public class GameScreen extends Screens implements PauseCallBack{
 	private LevelSpecifier level;
 	private String background;
 
+	SoundsManager soundsManager;
 
-	
+
+	Player player;
+	Cannon cannon;
+
+	Label wordLabel;
+	String word;
+	float spawnTime = 0;
+	Label scoreLabel;
+	int score = 0;
+
 	public GameScreen(Game game, String name, LevelSpecifier level) 
 	{
 		super(game, Width, Height);
@@ -74,6 +88,7 @@ public class GameScreen extends Screens implements PauseCallBack{
 		background = level.getBgPath();
 		
 		batch = new SpriteBatch();
+		EntityManager.getInstance().batch = batch;
 		font = new BitmapFont();
 	}
 	
@@ -107,7 +122,28 @@ public class GameScreen extends Screens implements PauseCallBack{
         getBackgroundImage().setSize(Screens.Width, Screens.Height);
         
         getStage().addActor(getBackgroundImage());
-		
+
+		player = new Player();
+		cannon = new Cannon();
+		entityList.addEntity(player);
+		entityList.addEntity(cannon);
+
+		skin = new Skin(Gdx.files.internal("uiskin.json"));
+
+		word = "BLUE";
+		wordLabel = new Label(word,skin);
+		wordLabel.setFontScale(2.2f);
+		scoreLabel = new Label("Score: 0",skin);
+		scoreLabel.setFontScale(1.5f);
+		scoreLabel.setPosition(player.getPosX() + 200,player.getPosY() + 20);
+		scoreLabel.setColor(Color.CYAN);
+
+		getStage().addActor(wordLabel);
+		getStage().addActor(scoreLabel);
+
+		soundsManager = new SoundsManager();
+		soundsManager.music();
+
 	}
 
 	
@@ -122,10 +158,7 @@ public class GameScreen extends Screens implements PauseCallBack{
 	public void resume() {
 	    isPaused = false;
 		pauseMenu.hide();
-		
 	}
-	
-	
 
 	@Override
 	public void show() 
@@ -164,29 +197,80 @@ public class GameScreen extends Screens implements PauseCallBack{
 	    if (!isPaused) 
 	    {
 	    	if (keyPressed.startsWith("left")) {
-				playerControl.setDirection("left");
-				playerControl.movePlayerBasedOnDirection();
-				System.out.println("Moving left");
+				cannon.setRotateSpeed(3);
 			} else if (keyPressed.startsWith("right")) {
-				playerControl.setDirection("right");
-				playerControl.movePlayerBasedOnDirection();
-				System.out.println("Moving right");
-			} else if (keyPressed.startsWith("SHOOT:")) {
-				String typedText = keyPressed.substring(6); // Basically just get the text after the "SHOOT:" part
-				System.out.println("shooting: ");
-				System.out.println(typedText);
+				cannon.setRotateSpeed(-3);
+			} else if (keyPressed.startsWith("SHOOT:") ) {
+				Bullet bullet = cannon.shoot(word);
+				if(bullet != null){
+					entityList.addEntity(bullet);
+				}
 			}
-	        // Update and draw entities only when the game is not paused
-	        //entityList.move();
+			else if (keyPressed.startsWith("BACKSPACE") ) {
+				if(word.length() > 0){
+//					word = word.substring(0, word.length() - 1);
+					word = "";
+				}
+			}
+
+			else {
+				cannon.setRotateSpeed(0);
+
+				if(keyPressed.length() == 1){
+					char typeChar = keyPressed.charAt(0);
+					word += typeChar;
+
+				}
+
+			}
 	        entityList.update();
-	        //playerControl.handlingPlayerInput();			
-			//aiManager.aiMovement();
-			// Enforce bounds after updates
 			ScreenBounds();
 
+			List<Entity> addedEntities  = new ArrayList<>();
 
-	        //int collisionsThisFrame = collisionManager.checkCollision();
-	        //totalCollisions += collisionsThisFrame;
+	        for(Entity e : entityList.getEntities()){
+				if(e instanceof Enemy){
+					if(e.getPosY() <= 80){
+						player.setLives(player.getLives()-1);
+						e.setDestroyFlag(true);
+						score -= 1;
+						if(score < 0){
+							score = 0;
+						}
+						soundsManager.play("death",1.0f);
+						if(player.getLives() <= 0){
+							soundsManager.stop("music");
+							screenList.getScreen("END");
+							return;
+						}
+						continue;
+					}
+				}
+
+				// spawn explosion
+				for(Entity otherE : entityList.getEntities()){
+					if(e == otherE){
+						continue;
+					}
+					if( e instanceof Bullet && otherE instanceof Enemy ){
+						Rectangle a = ((Colliable)e).getRectBound();
+						Rectangle b = ((Colliable)otherE).getRectBound();
+
+						if(CollisionManager.getInstance().rectCollide(a,b)){
+							if(((Bullet) e).getColor().equals(((Enemy)otherE).getColor())){
+								score += 1;
+								soundsManager.play("correct",1.0f);
+
+								e.setDestroyFlag(true);
+								otherE.setDestroyFlag(true);
+								Explosion explosion = new Explosion(otherE.getPosX() - 32,otherE.getPosY() - 32,((Bullet)e).getColor());
+								addedEntities.add(explosion);
+							}
+						}
+					}
+				}
+			}
+			entityList.getEntities().addAll(addedEntities);
 	
 			// [ATTENTION!] Hi i commented this out to test my IO. You can uncomment it if need be. ~ Lucas <3
 	        //System.out.println("Total collisions so far: " + totalCollisions);
@@ -198,14 +282,24 @@ public class GameScreen extends Screens implements PauseCallBack{
 		    	 // getGame().setScreen(new EndScreen(getGame()));
 			    screenList.getScreen("END");
 
-
 		    }
-		    	 
+
+			///////////
+			spawnTime -= Gdx.graphics.getDeltaTime();
+			if(spawnTime < 0){
+				spawnTime = 3;
+				entityList.addEntity(new Enemy());
+			}
+
 	    }
 	    
 		getStage().act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 		getStage().draw();
 		entityList.draw();
+		wordLabel.setText(word);
+		wordLabel.setPosition(player.getPosX() + 150 - wordLabel.getWidth(),100);
+		changeTextColor(word);
+		scoreLabel.setText("Score: " + String.valueOf(score));
 
 
         
@@ -216,6 +310,25 @@ public class GameScreen extends Screens implements PauseCallBack{
 		    // batch.end();
 		}
 
+	}
+
+	void changeTextColor(String color){
+		wordLabel.setColor(Color.WHITE);
+		if(color.equals("RED")){
+			wordLabel.setColor(Color.RED);
+		}
+		if(color.equals("GREEN")){
+			wordLabel.setColor(Color.GREEN);
+		}
+		if(color.equals("BLUE")){
+			wordLabel.setColor(Color.BLUE);
+		}
+		if(color.equals("ORANGE")){
+			wordLabel.setColor(Color.ORANGE);
+		}
+		if(color.equals("YELLOW")){
+			wordLabel.setColor(Color.YELLOW);
+		}
 	}
 
 	@Override

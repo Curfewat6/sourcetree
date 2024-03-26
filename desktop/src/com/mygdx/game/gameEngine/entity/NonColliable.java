@@ -1,5 +1,7 @@
 package com.mygdx.game.gameEngine.entity;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
+
 public class NonColliable extends Entity {
 
 	private boolean isAI;
@@ -18,7 +20,7 @@ public class NonColliable extends Entity {
 	}
 
 	@Override
-	public void render() {
+	public void render(Batch batch) {
 		// TODO Auto-generated method stub
 
 	}

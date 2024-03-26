@@ -1,13 +1,16 @@
 package com.mygdx.game.gameEngine.entity;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Batch;
 
 public abstract class Entity {
     protected float posX, posY, speed, width, height;
     protected String entName;
     protected Color texColor;
     protected boolean isAI;
-    
+
+    protected boolean destroyFlag = false;
+
 
     public Entity(float posX, float posY, float speed, Color texColor) {
         this.posX = posX;
@@ -46,10 +49,19 @@ public abstract class Entity {
     public void setSpeed(float dp) {
         speed = dp;
     }
-    
-	public abstract String getName();
+
+    public boolean isDestroyFlag() {
+        return destroyFlag;
+    }
+
+    public void setDestroyFlag(boolean destroyFlag) {
+        this.destroyFlag = destroyFlag;
+    }
+
+    public abstract String getName();
 	public abstract void dispose();
-	public abstract void render();
+
+	public abstract void render(Batch batch);
 	public abstract void create();
 	public abstract void update();
 }

@@ -50,15 +50,26 @@ public class Keyboard {
             }
 
             if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
+                System.out.println("shoot");
                 String result = "SHOOT:" + inputBuffer.toString();
                 System.out.println(inputBuffer.toString());
                 inputBuffer.setLength(0);
                 return result; 
             }
 
-            captureTypingInput();
+//            captureTypingInput();
+            for (int i = 29; i < 55; i++) {
+                System.out.println(i);
+                System.out.println("ccccccccccccccccccccccccccccccccccccc");
 
-            return "TYPING:" + inputBuffer.toString();
+                if (Gdx.input.isKeyJustPressed(i)) {
+                    // I add 36 because the raw key code is not translated </3
+                    char typedChar = (char) (i + 36);
+                    return String.valueOf(typedChar);
+                }
+            }
+
+            return "";
             // Imma take this out because we can only move left  & right and shoot
 
             // if (Gdx.input.isKeyPressed(Keys.W)) {
