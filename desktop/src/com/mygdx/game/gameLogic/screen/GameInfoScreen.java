@@ -28,6 +28,7 @@ import com.mygdx.game.gameEngine.collision.CollisionManager;
 import com.mygdx.game.gameEngine.entity.Entity;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.entity.EntityManager;
+import com.mygdx.game.gameLogic.entity.EntityCreation;
 import com.mygdx.game.gameLogic.entity.Player;
 import com.mygdx.game.gameLogic.io.InputOutManagement;
 import com.mygdx.game.gameLogic.io.InputOutputManager;
@@ -70,10 +71,14 @@ public class GameInfoScreen extends Screens{
         this.sm = SoundManager.getInstance();
 		background = level.getBgPath();
 		levelList = LevelManager.getInstance();
-
-
     }
-	
+
+	public void initializeEntities() {
+    // Example initialization, you can modify it according to your needs
+    String[] entitiesToCreate = {"Target:noodles.png"};
+    EntityCreation.createEntity(entitiesToCreate, entityList);
+	}
+
     public void create(){
         fitViewport = new FitViewport(Screens.Width, Screens.Height);
         Stage newStage = new Stage(fitViewport);
@@ -125,6 +130,7 @@ public class GameInfoScreen extends Screens{
         skin = new Skin(Gdx.files.internal("uiskin.json")); 
         setTexture(new Texture(background));
 	    create();
+		initializeEntities();
 	}
 
     @Override
@@ -136,6 +142,7 @@ public class GameInfoScreen extends Screens{
 		fitViewport.apply();
 		getStage().act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 		getStage().draw();
+		entityList.draw();
     }
     @Override
 	public void resize(int width, int height) {

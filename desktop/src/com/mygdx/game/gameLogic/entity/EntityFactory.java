@@ -9,6 +9,7 @@ public class EntityFactory {
 
     public static Entity getEntity(EntityEnum entity, String texPath) {
         SpriteBatch batch = new SpriteBatch();
+        System.out.println("Creating entity: " + texPath);
         switch (entity) {
             case BULLET:
                 return new Bullet(texPath, 280,20,300,batch);
