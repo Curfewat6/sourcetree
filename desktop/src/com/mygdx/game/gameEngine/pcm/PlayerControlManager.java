@@ -49,6 +49,10 @@ public class PlayerControlManager implements PlayerControlManagement {
             textureObject.setPosX(textureObject.getPosX() + (textureObject.getSpeed() * Gdx.graphics.getDeltaTime()));
             this.direction = null;
         }
+
+        if (this.direction == "shoot"){
+            // Do something
+        }
     }
 
     public void movePlayerBasedOnDirection() {

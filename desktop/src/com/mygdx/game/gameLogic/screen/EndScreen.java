@@ -19,22 +19,39 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.gameEngine.entity.EntityManagement;
 import com.mygdx.game.gameEngine.entity.EntityManager;
 import com.mygdx.game.gameLogic.entity.Target;
+import com.mygdx.game.gameLogic.level.LevelManagement;
+import com.mygdx.game.gameLogic.level.LevelManager;
+import com.mygdx.game.gameLogic.level.LevelSpecifier;
 import com.mygdx.game.gameLogic.entity.Player;
+import com.mygdx.game.gameEngine.screen.*;
+
 
 
 public class EndScreen extends Screens{
 	
+	
+	private EntityManagement em;
+	private ScreenManagement screenList;
+	private LevelManagement levelList;
+
 	private Label title;
 	private Skin skin;
-	private EntityManagement em;
 	private TextButton mainMenuButton;
 	private FitViewport fitViewport;
+	private LevelSpecifier level;
+	private String background;
 
 
-	public EndScreen(Game game) 
+	public EndScreen(Game game, String name, LevelSpecifier level) 
 	{
 		super(game, Width, Height); 
+		setName(name);
 		em = EntityManager.getInstance();
+		screenList = ScreenManager.getInstance();
+		levelList = LevelManager.getInstance();
+		
+		background = level.getBgPath();
+
 	}
 	
 	public void create()
@@ -45,7 +62,7 @@ public class EndScreen extends Screens{
 		
 		Gdx.input.setInputProcessor(getStage());
 
-		title = new Label("YAYYYY YOU WIN!!!", skin);
+		title = new Label("YAYYYY Game over!!!", skin);
 		title.setPosition(Screens.Width / 2 - title.getWidth() / 2, Screens.Height / 2 + 100);
 		mainMenuButton = new TextButton("MainMenu", skin);
 		mainMenuButton.setPosition(Screens.Width / 2 - mainMenuButton.getWidth() / 2, Screens.Height / 2);
@@ -55,8 +72,10 @@ public class EndScreen extends Screens{
 		        @Override
 		        public void clicked(InputEvent event, float x, float y) 
 		        {
-		        		
-			            getGame().setScreen(new TitleScreen(getGame()));
+
+			        //getGame().setScreen(new TitleScreen(getGame()));
+		    	    screenList.getScreen("TITLE");
+
 		        }
 		    });
 		 
@@ -72,7 +91,7 @@ public class EndScreen extends Screens{
 	@Override
 	public void show() {
 	    skin = new Skin(Gdx.files.internal("uiskin.json")); 
-	    setTexture(new Texture(Gdx.files.internal("background.jpg")));
+	    setTexture(new Texture(background));
 	    create();
 	    resetEM();
 	}

@@ -1,5 +1,4 @@
 package com.mygdx.game.gameLogic.io;
-
 import java.util.ArrayList;
 import java.util.List;
 import com.badlogic.gdx.Gdx;
@@ -7,7 +6,6 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.game.gameEngine.pcm.PlayerControlManagement;
-import com.mygdx.game.gameEngine.screen.GameScreen;
 import com.mygdx.game.gameEngine.screen.PauseCallBack;
 
 //This class is only here to process keyboard input. Something like keybinds in games
@@ -15,17 +13,37 @@ public class Keyboard {
     private PlayerControlManagement pcm;
     private boolean isPaused = false;
     private StringBuilder inputBuffer = new StringBuilder();
-    private boolean isCapturing = false;
+    private boolean isCapturing = true;
 
     public Keyboard(PlayerControlManagement playerControl) {
         this.pcm = playerControl;
     }
-    
+
+    private void captureTypingInput() {
+        if (!isCapturing) return;
+
+        // Only play with the 26 alphabets. all upper case 
+        for (int i = 29; i < 55; i++) {
+            if (Gdx.input.isKeyJustPressed(i)) {
+                // I add 36 because the raw key code is not translated </3
+                char typedChar = (char) (i + 36);
+                
+                inputBuffer.append(typedChar);
+            }
+        }
+    }
+
     public String handleKeyInput(PauseCallBack pcb) {
        // boolean directionKeyPressed = false;
     
         if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
+           
             if (pcb != null) {
+                System.out.println("PAUSE");
+                pcb.togglePause();
+                
+                System.out.println(pcb);
+                isPaused = !isPaused;
                 return "pause";
             }
         } else if(!isPaused){
@@ -37,27 +55,26 @@ public class Keyboard {
             }
 
             if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
-                return "shoot";
+                String result = "SHOOT:" + inputBuffer.toString();
+                inputBuffer.setLength(0);
+                return result; 
             }
-            
-            if (Gdx.input.isKeyJustPressed(Keys.ANY_KEY)) {
-                isCapturing = true;
-            }
-
-            if (Gdx.input.isKeyJustPressed(Keys.TAB)) {
-                isCapturing = false;
-                String input = inputBuffer.toString();
-                inputBuffer.setLength(0); // clear the buffer
-                return input; // return the captured input
+            if (Gdx.input.isKeyJustPressed(Keys.BACKSPACE)) {
+                return "BACKSPACE";
             }
 
-            if (isCapturing) {
-                for (int i = 0; i < 256; i++) {
-                    if (Gdx.input.isKeyJustPressed(i)) {
-                        inputBuffer.append(Keys.toString(i));
-                    }
+//            captureTypingInput();
+
+            for (int i = 29; i < 55; i++) {
+                if (Gdx.input.isKeyJustPressed(i)) {
+                    // I add 36 because the raw key code is not translated </3
+                    char typedChar = (char) (i + 36);
+
+                    return String.valueOf(typedChar);
                 }
             }
+
+            return "TYPING:" + inputBuffer.toString();
             // Imma take this out because we can only move left  & right and shoot
 
             // if (Gdx.input.isKeyPressed(Keys.W)) {

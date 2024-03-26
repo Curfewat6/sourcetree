@@ -18,7 +18,8 @@ public class ScreenManager implements ScreenManagement
 		screenList = new ArrayList<>();
 	}
 	
-	public static ScreenManager getInstance() {
+	public static ScreenManager getInstance()
+	{
 		if(instance==null)
 		{
 			instance = new ScreenManager();
@@ -40,8 +41,24 @@ public class ScreenManager implements ScreenManagement
 		screenList.clear();
 	}
 	
-    public Game getScreen(){
-    	return screenList.get(0).getGame();
+
+    
+    public void getScreen(String screenName) 
+    {
+        for (Screens screen : screenList) 
+        {
+            if (screen.getName().equals(screenName)) 
+            { // Assuming there's a getName() method in Screens
+            	screen.getGame().setScreen(screen);
+            	
+            }
+        }
+    }
+    
+    public void changeScreen(Screens screen)
+    {
+    	//screenList.get().getGame().setScreen(screen);  
+
     }
 
 	 

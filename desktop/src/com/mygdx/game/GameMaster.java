@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.gameEngine.collision.CollisionManagement;
 import com.mygdx.game.gameEngine.collision.CollisionManager;
@@ -14,12 +15,15 @@ import com.mygdx.game.gameEngine.screen.ScreenManagement;
 import com.mygdx.game.gameEngine.io.InputOutManagement;
 import com.mygdx.game.gameEngine.io.InputOutputManager;
 import com.mygdx.game.gameEngine.screen.ScreenManager;
-import com.mygdx.game.gameEngine.screen.TitleScreen;
+import com.mygdx.game.gameLogic.level.LevelManagement;
+import com.mygdx.game.gameLogic.level.LevelManager;
+import com.mygdx.game.gameLogic.level.LevelSpecifier;
+import com.mygdx.game.gameLogic.screen.ScreenCreate;
 
 
 
 public class GameMaster extends Game
-{	
+{
 
 	private EntityManagement entityList;
 	private ScreenManagement screenList;
@@ -27,6 +31,10 @@ public class GameMaster extends Game
 	private CollisionManagement collision;
 	private PlayerControlManagement playerControl;
 	private InputOutManagement ioManager;
+	private LevelManagement levelList;
+	
+	private LevelSpecifier level;
+	
 
 
 	@Override
@@ -39,12 +47,29 @@ public class GameMaster extends Game
 	    collision = CollisionManager.getInstance();
 	    playerControl = PlayerControlManager.getInstance();
 		ioManager = InputOutputManager.getInstance();
+		levelList = LevelManager.getInstance();
 		
+		levelList.addLevel(new LevelSpecifier(0, "background.jpg", entityList, 0));
+		levelList.addLevel(new LevelSpecifier(1, "Gamebackground.jpg", entityList, 10));
+	    // Prepare the initial screen
 		
-		screenList.addScreen(new TitleScreen(this));
-		lifeCycle.startSimulation(screenList, entityList);
+	    String[] initialScreen = {"TitleScreen"};
+	    String[] GameInfoScreen = {"GameInfoScreen"};
+	    String[] GameScreen = {"GameScreen"};
+	    String[] EndScreen = {"EndScreen"};
+
+
+	    new ScreenCreate().createScreen(initialScreen, "TITLE", this, (ScreenManager) screenList, levelList.getlevel(0));
+	    new ScreenCreate().createScreen(GameInfoScreen, "INFO", this, (ScreenManager) screenList, levelList.getlevel(0));
+	    new ScreenCreate().createScreen(GameScreen, "GAME1", this, (ScreenManager) screenList, levelList.getlevel(1));
+	    new ScreenCreate().createScreen(EndScreen, "END", this, (ScreenManager) screenList, levelList.getlevel(0));
+
+
+	    screenList.getScreen("TITLE");
+		lifeCycle.startSimulation(entityList);
 		
 	}
+	
 		
 	@Override
 	public void render() 
@@ -59,7 +84,7 @@ public class GameMaster extends Game
 	}
 	public void dispose() {
 		//clear all object render
-		lifeCycle.endSimulation(screenList, entityList);
+		lifeCycle.endSimulation(entityList);
 		
 	}
 	@Override

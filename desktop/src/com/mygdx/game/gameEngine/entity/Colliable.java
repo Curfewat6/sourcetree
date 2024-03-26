@@ -2,16 +2,17 @@ package com.mygdx.game.gameEngine.entity;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.game.gameEngine.pcm.PlayerControlManager;
 
 public class Colliable extends Entity implements Collision{
 	
-	private Texture tex;
+	protected Texture tex;
     private Rectangle rectBound;
     private SpriteBatch batch;
-    private String texName;
+    protected String texName;
 	private boolean isAI;
     private PlayerControlManager playerControl;
 
@@ -31,9 +32,11 @@ public class Colliable extends Entity implements Collision{
 	}
 
 	@Override
-	public void render() {
+	public void render(Batch batch) {
 		// TODO Auto-generated method stub
-		
+		batch.begin();
+		batch.draw(this.tex,posX,posY);
+		batch.end();
 	}
 
 	@Override
