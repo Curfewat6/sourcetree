@@ -19,19 +19,20 @@ public class Keyboard {
         this.pcm = playerControl;
     }
 
-    private void captureTypingInput() {
-        if (!isCapturing) return;
+    //Apparently this wasnt used???
+    // private void captureTypingInput() {
+    //     if (!isCapturing) return;
 
-        // Only play with the 26 alphabets. all upper case 
-        for (int i = 29; i < 55; i++) {
-            if (Gdx.input.isKeyJustPressed(i)) {
-                // I add 36 because the raw key code is not translated </3
-                char typedChar = (char) (i + 36);
+    //     // Only play with the 26 alphabets. all upper case 
+    //     for (int i = 29; i < 55; i++) {
+    //         if (Gdx.input.isKeyJustPressed(i)) {
+    //             // I add 36 because the raw key code is not translated </3
+    //             char typedChar = (char) (i + 36);
                 
-                inputBuffer.append(typedChar);
-            }
-        }
-    }
+    //             inputBuffer.append(typedChar);
+    //         }
+    //     }
+    // }
 
     public String handleKeyInput(PauseCallBack pcb) {
        // boolean directionKeyPressed = false;
